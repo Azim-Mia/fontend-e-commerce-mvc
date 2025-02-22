@@ -1,17 +1,20 @@
-import axios from 'axios';
-const findSingle = async(url:unknown, method:unknown)=>{
-  try{
-    const {data} =await axios({
-  method: method, //you can set what request you want to be
- withCredentials: true,
-  url: url,
-  headers: {
-    Authorization: '' as unknown
-  }
-})
-return {data};
-  }catch(error:unknown){
+import axios from "axios";
+
+const findSingle = async (url: string, method: string) => {
+  try {
+    const { data } = await axios.request({
+      method: method, // Specify the request method (GET, POST, etc.)
+      withCredentials: true,
+      url: url,
+      headers: {
+        Authorization: "your-auth-token", // Replace this with actual token or variable
+      },
+    });
+
+    return {data};
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error;
     return {error}
   }
-}
-export default findSingle;
+};
