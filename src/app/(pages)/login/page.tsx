@@ -57,7 +57,7 @@ axios.defaults.withCredentials = true;
    }else{
      setError('Something problem, Try again.')
    }
-   }catch(err:string){
+   }catch(err){
      console.log(err)
      setIsLoading(false);
      setError(err?.message)
@@ -102,12 +102,9 @@ axios.defaults.withCredentials = true;
   </form>
   </div>)
 }
-/*LoginPage.propTypes = {
+LoginPage.propTypes = {
   //other properties
-  onError: PropTypes.func.isRequired,
-};*/
-
-export default LoginPage;
-export type message = {
-    message: string,
-  };
+  message: PropTypes.string.isRequired,
+  err: PropTypes.string.isRequired,
+  
+};
