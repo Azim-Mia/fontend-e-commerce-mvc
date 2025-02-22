@@ -12,7 +12,7 @@ const LoginPage =()=>{
   const [resetPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState('');
-  const [error, setError] = useState('boolean | undefined')
+  const [error, setError] = useState('')
 const router = useRouter();
 enum MODL {
     LOGIN = "LOGIN",
@@ -75,17 +75,17 @@ axios.defaults.withCredentials = true;
     ):null}
     { mode === MODL.RESET_PASSWORD || mode === MODL.LOGIN || mode === MODL.REGISTER ? (<div className="flex flex-row xs:flex-col text-center justify-center items-center xs:gap-3 xs:p-2 xs:text-1xl">
     <label className="text-2xl font-semibold text-white">E-mail : </label>
-    <input type="email" id="email" name="email" required="email required" placeholder="example@gmail.com"  className="p-2 ring-2 ring-gary-100 rounded-md text-center cursor-pointer" onChange={(e)=>setUserEmail(e.target.value)}/> 
+    <input type="email" id="email" name="email" placeholder="example@gmail.com"  className="p-2 ring-2 ring-gary-100 rounded-md text-center cursor-pointer" onChange={(e)=>setUserEmail(e.target.value)}/> 
     </div>
     ):null}
     { mode === MODL.LOGIN || mode === MODL.REGISTER ? (<div className="flex flex-col md:flex-row lg:flex-row text-center justify-center items-center xs:gap-3 xs:p-2 xs:text-1xl">
       <label className="text-2xl text-white font-semibold">Password : </label>
-    <input type="password" id="password" name="password" placeholder="Enter Password" required='password required'  className="ring-2 ring-gary-100 rounded-md text-center p-2 cursor-pointer" onChange={(e)=>setPassword(e.target.value)}/> 
+    <input type="password" id="password" name="password" placeholder="Enter Password" className="ring-2 ring-gary-100 rounded-md text-center p-2 cursor-pointer" onChange={(e)=>setPassword(e.target.value)}/> 
     </div>
     ):null}
      { mode === MODL.EMAIL_VERIFICATION ? (<div className="flex flex-wrap text-center items-center gap-2">
       <label className="text-2xl text-white font-semibold">Code: </label>
-    <input type="number" id="Code" name="Code" placeholder="verification code" required="email code required" className="p-2 ring-2 ring-gary-100 rounded-md cursor-pointer text-center" onChange={(e)=>setEmailCode(e.target.value)}/> 
+    <input type="number" id="Code" name="Code" placeholder="verification code" className="p-2 ring-2 ring-gary-100 rounded-md cursor-pointer text-center" onChange={(e)=>setEmailCode(e.target.value)}/> 
     </div>
     ):null}
     {mode === MODL.LOGIN && (<div><button onClick={()=>setMode(MODL.RESET_PASSWORD)}><p className="text-white font-semibold">Forgot Password</p></button></div>)}
