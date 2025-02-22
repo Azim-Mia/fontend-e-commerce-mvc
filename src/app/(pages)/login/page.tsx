@@ -91,14 +91,14 @@ axios.defaults.withCredentials = true;
     {mode === MODL.LOGIN && (<div><button onClick={()=>setMode(MODL.RESET_PASSWORD)}><p className="text-white font-semibold">Forgot Password</p></button></div>)}
       {mode === MODL.EMAIL_VERIFICATION && (<div className="flex gap-4">
       <p onClick={()=>setMode(MODL.RESET_PASSWORD)}>Go Beack</p>
-      <button className="text-blue text-1.5xl font-semibold">Resend</button></div>)} 
+      <button type="submit" className="text-blue text-1.5xl font-semibold">Resend</button></div>)} 
     
  <button type="submit" className= "text-1xl font-semibold py-2 px-6 bg-black text-white rounded-md disabled:cursor-not-allowed" disabled={isLoading}>{isLoading ? "Loading...":buttonTitle}</button>
  {error && <p>{error}</p>}
- {mode === MODL.LOGIN && (<div onClick={()=>setMode(MODL.REGISTER)}>{"Don't"} have , <br/> an Account? <button className="text-blue">Register now</button></div>)}
+ {mode === MODL.LOGIN && (<div onClick={()=>setMode(MODL.REGISTER)}>{"Don't"} have , <br/> an Account? <button type="submit" className="text-blue">Register now</button></div>)}
 {mode === MODL.REGISTER && (<div>Already Register? <button onClick={()=>setMode(MODL.LOGIN)}><p className="text-blue font-semibold">Login</p></button></div>)}
 {mode === MODL.RESET_PASSWORD && (<div className="flex gap-3 text-white"><p onClick={()=>setMode(MODL.LOGIN)}>Go back to</p>
-<p className="text-blue font-semibold" onClick={()=>setMode(MODL.EMAIL_VERIFICATION)}>Login</p></div>)}
+<button className="text-blue font-semibold" onClick={()=>setMode(MODL.EMAIL_VERIFICATION)}>Login</button></div>)}
 {message && (<div className="text-white">{message}</div>)}
   </form>
   </div>)
