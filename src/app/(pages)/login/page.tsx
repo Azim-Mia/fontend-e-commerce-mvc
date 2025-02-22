@@ -12,7 +12,7 @@ const LoginPage =()=>{
   const [resetPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState('');
-  const [error, setError] = useState('')
+  const [error, setError] = useState<string | null>(null);
 const router = useRouter();
 enum MODL {
     LOGIN = "LOGIN",
@@ -61,7 +61,7 @@ axios.defaults.withCredentials = true;
    }catch(err){
      console.log(err)
      setIsLoading(false);
-     setError(err)
+     setError((err as Error).message);
      setMessage('');
    } 
  }
