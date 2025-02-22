@@ -57,7 +57,7 @@ axios.defaults.withCredentials = true;
    }else{
      setError('Something problem, Try again.')
    }
-   }catch(err){
+   }catch(err:Message.message){
      console.log(err)
      setIsLoading(false);
      setError(err?.message)
@@ -108,3 +108,11 @@ axios.defaults.withCredentials = true;
 };*/
 
 export default LoginPage;
+export type Message = {
+    id: string,
+    message: string,
+    created_at: number,
+    username: string,
+    profilePic: string,
+    email: string,
+  };
