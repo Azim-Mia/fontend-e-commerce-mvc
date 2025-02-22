@@ -6,11 +6,11 @@ const findSingle = async(url:unknown, method:unknown)=>{
  withCredentials: true,
   url: url,
   headers: {
-    Authorization: ''
+    Authorization: '' as unknown
   }
 })
 return {data};
-  }catch(error){
+  }catch(error:unknown){
     return {error}
   }
 }
