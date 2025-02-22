@@ -57,7 +57,7 @@ axios.defaults.withCredentials = true;
    }else{
      setError('Something problem, Try again.')
    }
-   }catch(err){
+   }catch(err:string){
      console.log(err)
      setIsLoading(false);
      setError(err?.message)
@@ -105,6 +105,4 @@ axios.defaults.withCredentials = true;
 LoginPage.propTypes = {
   //other properties
   message: PropTypes.string.isRequired,
-  err: PropTypes.string.isRequired,
-  
 };
