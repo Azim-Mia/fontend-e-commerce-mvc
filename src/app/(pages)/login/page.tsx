@@ -61,7 +61,7 @@ axios.defaults.withCredentials = true;
    }catch(err){
      console.log(err)
      setIsLoading(false);
-     setError(err?.message)
+     setError(err)
      setMessage('');
    } 
  }
