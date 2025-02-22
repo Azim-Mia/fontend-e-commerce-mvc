@@ -10,7 +10,7 @@ const findSingle = async(url, method)=>{
   }
 })
 return {data};
-  }catch(error:any){
+  }catch(error){
     return {error}
   }
 }
