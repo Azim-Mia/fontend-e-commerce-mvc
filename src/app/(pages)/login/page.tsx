@@ -91,7 +91,7 @@ axios.defaults.withCredentials = true;
     {mode === MODL.LOGIN && (<div><button onClick={()=>setMode(MODL.RESET_PASSWORD)}><p className="text-white font-semibold">Forgot Password</p></button></div>)}
       {mode === MODL.EMAIL_VERIFICATION && (<div className="flex gap-4">
       <p onClick={()=>setMode(MODL.RESET_PASSWORD)}>Go Beack</p>
-      <button className="text-blue text-1.5xl font-semibold" onClick={handleSubmit}>Resend</button></div>)} 
+      <button className="text-blue text-1.5xl font-semibold">Resend</button></div>)} 
     
  <button type="submit" className= "text-1xl font-semibold py-2 px-6 bg-black text-white rounded-md disabled:cursor-not-allowed" disabled={isLoading}>{isLoading ? "Loading...":buttonTitle}</button>
  {error && <p>{error}</p>}
