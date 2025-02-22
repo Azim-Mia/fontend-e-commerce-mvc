@@ -1,6 +1,6 @@
 'use client';
-import PropTypes from 'prop-types';
 import React,{useState} from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import {useRouter} from 'next/navigation';
 const LoginPage =()=>{
