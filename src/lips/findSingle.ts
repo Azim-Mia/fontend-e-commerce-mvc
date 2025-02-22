@@ -1,5 +1,5 @@
 import axios from 'axios';
-const findSingle = async(url:any, method:string)=>{
+const findSingle = async(url:unknown, method:unknown)=>{
   try{
     const {data} =await axios({
   method: method, //you can set what request you want to be
