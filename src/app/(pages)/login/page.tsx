@@ -102,6 +102,9 @@ axios.defaults.withCredentials = true;
   </form>
   </div>)
 }
+export default LoginPage
+
+
 /*LoginPage.propTypes = {
   //other properties
   message: PropTypes.string.isRequired,
