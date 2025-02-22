@@ -12,7 +12,7 @@ const LoginPage =()=>{
   const [resetPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState('');
-  const [error, setError] = useState('')
+  const [error, setError] = useState('boolean | undefined')
 const router = useRouter();
 enum MODL {
     LOGIN = "LOGIN",
@@ -70,7 +70,7 @@ axios.defaults.withCredentials = true;
  <h1 className = "text-2xl font-semibold">{formTitle}</h1>
     { mode === MODL.REGISTER ? (<div className="flex flex-row xs:flex-col justify-center text-center items-center xs:gap-3">
       <label className="text-2xl text-white font-semibold">Username : </label>
-    <input type="text" id="userName" name="username" placeholder="Enter Name"  className="p-2 ring-2 ring-gary-100 rounded-md text-center cursor-pointer" onChange={(e)=>setUserName(e.target.value)}/> 
+    <input type="text" id="userName" name="username" placeholder="Enter Name" onChange={(e)=>setUserName(e.target.value)} className="p-2 ring-2 ring-gary-100 rounded-md text-center cursor-pointer" /> 
     </div>
     ):null}
     { mode === MODL.RESET_PASSWORD || mode === MODL.LOGIN || mode === MODL.REGISTER ? (<div className="flex flex-row xs:flex-col text-center justify-center items-center xs:gap-3 xs:p-2 xs:text-1xl">
