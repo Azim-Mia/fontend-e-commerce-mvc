@@ -18,3 +18,4 @@ const findSingle = async (url: string, method: string) => {
     return {error}
   }
 };
+export default findSingle;
