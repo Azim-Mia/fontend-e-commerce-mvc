@@ -8,7 +8,7 @@ const LoginPage =()=>{
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [password, setPassword] =useState('');
-  const [emailCode, setEmailCode] = useState(null);
+  const [emailCode, setEmailCode] = useState<number | null>(null);
   const [resetPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState('');
@@ -85,7 +85,7 @@ axios.defaults.withCredentials = true;
     ):null}
      { mode === MODL.EMAIL_VERIFICATION ? (<div className="flex flex-wrap text-center items-center gap-2">
       <label className="text-2xl text-white font-semibold">Code: </label>
-    <input type="number" id="Code" name="Code" placeholder="verification code" className="p-2 ring-2 ring-gary-100 rounded-md cursor-pointer text-center" onChange={(e)=>setEmailCode(e.target.value)}/> 
+    <input type="number" id="Code" name="Code" placeholder="verification code" className="p-2 ring-2 ring-gary-100 rounded-md cursor-pointer text-center" onChange={(e) => setEmailCode(Number(e.target.value))}/> 
     </div>
     ):null}
     {mode === MODL.LOGIN && (<div><button onClick={()=>setMode(MODL.RESET_PASSWORD)}><p className="text-white font-semibold">Forgot Password</p></button></div>)}
