@@ -1,4 +1,5 @@
 'use client';
+import PropTypes from 'prop-types';
 import React,{useState} from 'react';
 import axios from 'axios';
 import {useRouter} from 'next/navigation';
@@ -102,10 +103,8 @@ axios.defaults.withCredentials = true;
   </form>
   </div>)
 }
+
+LoginPage.propTypes = {
+  message: PropTypes.string,
+};
 export default LoginPage
-
-
-/*LoginPage.propTypes = {
-  //other properties
-  message: PropTypes.string.isRequired,
-};*/
