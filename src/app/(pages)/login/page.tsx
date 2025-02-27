@@ -33,7 +33,14 @@ enum MODL {
     e.preventDefault();
     axios.defaults.withCredentials = true;
    if(mode === 'RESET_PASSWORD'){
-    setMode('EMAIL_VERIFICATION')
+     const forgetEmail = {
+       email:userEmail
+     }
+  const {data} = await axios.post('http://localhost:3001/auth/users/password/forget',forgetEmail); 
+   if(data.success == true){
+       setMessage(data?.message);
+       setError('')
+   }
     }else if(mode === 'EMAIL_VERIFICATION'){
       setIsLoading(true)
     //send varification code
@@ -98,7 +105,7 @@ axios.defaults.withCredentials = true;
  {mode === MODL.LOGIN && (<div onClick={()=>setMode(MODL.REGISTER)}>{"Don't"} have , <br/> an Account? <button type="submit" className="text-blue">Register now</button></div>)}
 {mode === MODL.REGISTER && (<div>Already Register? <button onClick={()=>setMode(MODL.LOGIN)}><p className="text-blue font-semibold">Login</p></button></div>)}
 {mode === MODL.RESET_PASSWORD && (<div className="flex gap-3 text-white"><p onClick={()=>setMode(MODL.LOGIN)}>Go back to</p>
-<button className="text-blue font-semibold" onClick={()=>setMode(MODL.EMAIL_VERIFICATION)}>Login</button></div>)}
+<button className="text-blue font-semibold" onClick={()=>setMode(MODL.LOGIN)}>Login</button></div>)}
 {message && (<div className="text-white">{message}</div>)}
   </form>
   </div>)
