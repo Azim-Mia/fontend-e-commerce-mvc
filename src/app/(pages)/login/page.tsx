@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import React,{useState} from 'react';
 import axios from 'axios';
 import {useRouter} from 'next/navigation';
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 const LoginPage =()=>{
   const [mode, setMode] = useState('LOGIN');
   const [userName, setUserName] = useState('');
@@ -67,6 +69,7 @@ axios.defaults.withCredentials = true;
    }
    }catch(err:unknown){
     if(err instanceof Error){
+      toast(err.message)
       setError(err.message);
     }
      setIsLoading(false);
@@ -77,22 +80,22 @@ axios.defaults.withCredentials = true;
  <h1 className = "text-2xl font-semibold">{formTitle}</h1>
     { mode === MODL.REGISTER ? (<div className="flex flex-row xs:flex-col justify-center text-center items-center xs:gap-3">
       <label className="text-2xl text-white font-semibold">Username : </label>
-    <input type="text" id="userName" name="username" placeholder="Enter Name" onChange={(e)=>setUserName(e.target.value)} className="p-2 ring-2 ring-gary-100 rounded-md text-center cursor-pointer" /> 
+    <input type="text" id="userName" required name="username" placeholder="Enter Name" onChange={(e)=>setUserName(e.target.value)} className="p-2 ring-2 ring-gary-100 rounded-md text-center cursor-pointer" /> 
     </div>
     ):null}
     { mode === MODL.RESET_PASSWORD || mode === MODL.LOGIN || mode === MODL.REGISTER ? (<div className="flex flex-row xs:flex-col text-center justify-center items-center xs:gap-3 xs:p-2 xs:text-1xl">
     <label className="text-2xl font-semibold text-white">E-mail : </label>
-    <input type="email" id="email" name="email" placeholder="example@gmail.com"  className="p-2 ring-2 ring-gary-100 rounded-md text-center cursor-pointer" onChange={(e)=>setUserEmail(e.target.value)}/> 
+    <input type="email" id="email" required name="email" placeholder="example@gmail.com"  className="p-2 ring-2 ring-gary-100 rounded-md text-center cursor-pointer" onChange={(e)=>setUserEmail(e.target.value)}/> 
     </div>
     ):null}
     { mode === MODL.LOGIN || mode === MODL.REGISTER ? (<div className="flex flex-col md:flex-row lg:flex-row text-center justify-center items-center xs:gap-3 xs:p-2 xs:text-1xl">
       <label className="text-2xl text-white font-semibold">Password : </label>
-    <input type="password" id="password" name="password" placeholder="Enter Password" className="ring-2 ring-gary-100 rounded-md text-center p-2 cursor-pointer" onChange={(e)=>setPassword(e.target.value)}/> 
+    <input type="password" id="password" required name="password" placeholder="Enter Password" className="ring-2 ring-gary-100 rounded-md text-center p-2 cursor-pointer" onChange={(e)=>setPassword(e.target.value)}/> 
     </div>
     ):null}
      { mode === MODL.EMAIL_VERIFICATION ? (<div className="flex flex-wrap text-center items-center gap-2">
       <label className="text-2xl text-white font-semibold">Code: </label>
-    <input type="number" id="Code" name="Code" placeholder="verification code" className="p-2 ring-2 ring-gary-100 rounded-md cursor-pointer text-center" onChange={(e) => setEmailCode(Number(e.target.value))}/> 
+    <input type="number" id="Code" required name="Code" placeholder="verification code" className="p-2 ring-2 ring-gary-100 rounded-md cursor-pointer text-center" onChange={(e) => setEmailCode(Number(e.target.value))}/> 
     </div>
     ):null}
     {mode === MODL.LOGIN && (<div><button onClick={()=>setMode(MODL.RESET_PASSWORD)}><p className="text-white font-semibold">Forgot Password</p></button></div>)}
@@ -106,6 +109,7 @@ axios.defaults.withCredentials = true;
 {mode === MODL.REGISTER && (<div>Already Register? <button onClick={()=>setMode(MODL.LOGIN)}><p className="text-blue font-semibold">Login</p></button></div>)}
 {mode === MODL.RESET_PASSWORD && (<div className="flex gap-3 text-white"><p onClick={()=>setMode(MODL.LOGIN)}>Go back to</p>
 <button className="text-blue font-semibold" onClick={()=>setMode(MODL.LOGIN)}>Login</button></div>)}
+<ToastContainer className ="text-2xl font-semibold mt-24"/>
 {message && (<div className="text-white">{message}</div>)}
   </form>
   </div>)
