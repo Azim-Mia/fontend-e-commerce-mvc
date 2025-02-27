@@ -17,9 +17,6 @@ const PasswordPage =async({params})=>{
   </>)
 }
 export default PasswordPage;
-export async function generateStaticParams({params}){
-  const currentToken =(await params).token;
- const bb= currentToken.slice(3)
-    return {token:bb.toString()
-    }
-  };
+export async function generateStaticParams() {
+  return [{ token: "exampleToken123" }];
+}
