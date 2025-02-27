@@ -17,3 +17,8 @@ const PasswordPage =async({params})=>{
   </>)
 }
 export default PasswordPage;
+export async function generateStaticParams(){
+    return products.map((data)=>({
+      token:token.toString(),
+    }));
+  };
