@@ -1,30 +1,34 @@
 'use client'; // Ensures this runs on the client side
-import {redirect } from "next/navigation";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import React,{ useState } from "react";
 import axios from "axios";
-const NewPassword = ({token:any}) => {
+const NewPassword = ({ token }: {token: { token: string } }) => {
+  const router = useRouter();
   const sliceToken = token?.slice(3) || ""; // Prevent errors if token is undefined
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(null);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
     if (password !== confirmPassword) {
       setError("Passwords do not match!");
       return;
     }
-    
+
     try {
-       await axios.post(
+      await axios.post(
         `http://localhost:3001/auth/users/password/forget/verify/${sliceToken}`,
-        { password:password }
+        { password }
       );
       setSuccess("Password updated successfully!");
-      redirect('/login')
       setError(null);
-    } catch (err) {
+
+      // Redirect using router.push() instead of redirect()
+      router.push('/login');
+    } catch (err: any) {
       setError(err.response?.data?.message || "Something went wrong.");
     }
   };
