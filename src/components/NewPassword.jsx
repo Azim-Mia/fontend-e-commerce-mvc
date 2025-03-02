@@ -2,15 +2,15 @@
 import { useRouter } from "next/navigation";
 import React,{ useState } from "react";
 import axios from "axios";
-const NewPassword = ({ token }: {token: { token: string } }) => {
+const NewPassword = ({token}) => {
   const router = useRouter();
   const sliceToken = token?.slice(3) || ""; // Prevent errors if token is undefined
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     if (password !== confirmPassword) {
@@ -28,7 +28,7 @@ const NewPassword = ({ token }: {token: { token: string } }) => {
 
       // Redirect using router.push() instead of redirect()
       router.push('/login');
-    } catch (err: unknown) {
+    } catch (err) {
       setError(err.response?.data?.message || "Something went wrong.");
     }
   };
