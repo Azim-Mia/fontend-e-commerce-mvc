@@ -68,9 +68,8 @@ const PasswordPage = () => {
   );
 };
 export default PasswordPage;
-export function generateStaticParams() {
-  const { token } = useParams();
-  return [
-    { token:token }, // এখানে ডাইনামিকভাবে টোকেন যুক্ত করুন
-  ];
-}
+export function generateStaticParams(){
+    return [{
+      token:"jfjjdjjfjajja",
+    };
+  };
