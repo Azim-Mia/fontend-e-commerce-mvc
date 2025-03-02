@@ -67,5 +67,8 @@ const PasswordPage = () => {
     </div>
   );
 };
-
 export default PasswordPage;
+export function generateStaticParams(){
+  const { token } = useParams();
+  token:token,
+  };
