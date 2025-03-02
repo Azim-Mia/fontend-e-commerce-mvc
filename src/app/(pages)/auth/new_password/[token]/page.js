@@ -71,5 +71,5 @@ export default PasswordPage;
 export function generateStaticParams(){
     return [{
       token:"jfjjdjjfjajja",
-    };
+    }];
   };
