@@ -112,6 +112,7 @@ axios.defaults.withCredentials = true;
 {mode === MODL.RESET_PASSWORD && (<div className="flex gap-3 text-white"><p onClick={()=>setMode(MODL.LOGIN)}>Go back to</p>
 <button className="text-blue font-semibold" onClick={()=>setMode(MODL.LOGIN)}>Login</button></div>)}
 <ToastContainer className ="text-2xl font-semibold mt-24"/>
+<p>{message}</p>
   </form>
   </div>)
 }

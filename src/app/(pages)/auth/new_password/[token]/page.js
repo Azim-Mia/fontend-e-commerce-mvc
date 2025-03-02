@@ -21,7 +21,7 @@ const PasswordPage = () => {
     }
     
     try {
-      const res = await axios.post(
+       await axios.post(
         `http://localhost:3001/auth/users/password/forget/verify/${sliceToken}`,
         { password:password }
       );
