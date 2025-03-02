@@ -1,4 +1,4 @@
-"use client"; // Ensures this runs on the client side
+'use client'; // Ensures this runs on the client side
 
 import { useParams,redirect } from "next/navigation";
 import { useState } from "react";
