@@ -2,7 +2,7 @@
 import {redirect } from "next/navigation";
 import { useState } from "react";
 import axios from "axios";
-const NewPassword = ({token as any}) => {
+const NewPassword = ({token:any}) => {
   const sliceToken = token?.slice(3) || ""; // Prevent errors if token is undefined
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
