@@ -1,5 +1,4 @@
 import axios from "axios";
-
 const findSingle = async (url: string, method: string) => {
   try {
     const { data } = await axios.request({

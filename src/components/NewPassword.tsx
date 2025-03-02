@@ -1,9 +1,8 @@
 'use client'; // Ensures this runs on the client side
-import { useParams,redirect } from "next/navigation";
+import {redirect } from "next/navigation";
 import { useState } from "react";
 import axios from "axios";
-const PasswordPage = () => {
-  const { token } = useParams(); // Get token from URL
+const NewPassword = ({token}) => {
   const sliceToken = token?.slice(3) || ""; // Prevent errors if token is undefined
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -64,4 +63,4 @@ const PasswordPage = () => {
     </div>
   );
 };
-export default PasswordPage;
+export default NewPassword;
