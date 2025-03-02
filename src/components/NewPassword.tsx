@@ -28,7 +28,7 @@ const NewPassword = ({ token }: {token: { token: string } }) => {
 
       // Redirect using router.push() instead of redirect()
       router.push('/login');
-    } catch (err: any) {
+    } catch (err: unknown) {
       setError(err.response?.data?.message || "Something went wrong.");
     }
   };
