@@ -35,13 +35,15 @@ enum MODL {
     e.preventDefault();
     axios.defaults.withCredentials = true;
    if(mode === 'RESET_PASSWORD'){
+     setIsLoading(true)
      const forgetEmail = {
        email:userEmail
      }
   const {data} = await axios.post('http://localhost:3001/auth/users/password/forget',forgetEmail); 
    if(data.success == true){
-       setMessage(data?.message);
+       toast(data?.message);
        setError('')
+       setIsLoading(false);
    }
     }else if(mode === 'EMAIL_VERIFICATION'){
       setIsLoading(true)
@@ -110,7 +112,6 @@ axios.defaults.withCredentials = true;
 {mode === MODL.RESET_PASSWORD && (<div className="flex gap-3 text-white"><p onClick={()=>setMode(MODL.LOGIN)}>Go back to</p>
 <button className="text-blue font-semibold" onClick={()=>setMode(MODL.LOGIN)}>Login</button></div>)}
 <ToastContainer className ="text-2xl font-semibold mt-24"/>
-{message && (<div className="text-white">{message}</div>)}
   </form>
   </div>)
 }
