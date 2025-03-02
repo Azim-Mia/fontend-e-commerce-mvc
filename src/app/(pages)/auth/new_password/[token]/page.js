@@ -1,13 +1,10 @@
 'use client'; // Ensures this runs on the client side
-
 import { useParams,redirect } from "next/navigation";
 import { useState } from "react";
 import axios from "axios";
-
 const PasswordPage = () => {
   const { token } = useParams(); // Get token from URL
   const sliceToken = token?.slice(3) || ""; // Prevent errors if token is undefined
-
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState(null);
@@ -68,8 +65,3 @@ const PasswordPage = () => {
   );
 };
 export default PasswordPage;
-export function generateStaticParams(){
-    return [{
-      token:"jfjjdjjfjajja",
-    }];
-  };
