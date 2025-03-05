@@ -3,6 +3,7 @@ import React,{useState,useEffect} from 'react';
 import Image from 'next/image';
 import product_1 from '../assets/images/product_1.jpeg'
 import product_2 from '../assets/images/product_2.jpeg'
+//get cart then map
 const CartModuls = ({onRemoveCart})=>{
   const [isCart,setIsCart]=useState(true)
   const handleRemoveCart=()=>{

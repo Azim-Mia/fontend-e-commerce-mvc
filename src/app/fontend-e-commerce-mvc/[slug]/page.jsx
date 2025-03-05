@@ -1,9 +1,13 @@
 import productDatas from '@/lips/productDatas';
+import findSingle from '@/lips/findSingle';
 import ProductImages from '@/components/ProductImages';
 import CustomizeProducts from '@/components/CustomizeProducts';
 import AddQuantity from '@/components/AddQuantity';
 const SinglePage=async({params})=>{
  const productId =(await params).slug;
+ const url =`http://localhost:3001/products/find/${productId}`;
+ const singleProduct =await findSingle(url,'get')
+ console.log(singleProduct)
   return (<div className="px-4 gap-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 relative flex flex-col sm:flex-row sm:gap-4 md:flex-row lg:flex-row ">
 {/*Image Container*/}
 <div className="w-full lg:w-1/2 lg:sticky top-20 h-max">

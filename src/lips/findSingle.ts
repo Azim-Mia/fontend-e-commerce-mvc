@@ -6,7 +6,7 @@ const findSingle = async (url: string, method: string) => {
       withCredentials: true,
       url: url,
       headers: {
-        Authorization: "your-auth-token", // Replace this with actual token or variable
+        Authorization:'azim', // Replace this with actual token or variable
       },
     });
 
