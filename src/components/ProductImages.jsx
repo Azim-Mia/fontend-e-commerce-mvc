@@ -9,7 +9,7 @@ const ProductImages = ()=>{
   const [index, setImageIndex] = useState(0)
   return (<div className="">
   <div className="flex w-full flex-col sm:h-[600px] xs:h-[300px]  relative">
-  <Link href={`/mwc-fashion/${index + 1 }`}><Image src={images[index].url} alt="product" fill sizes="50vw" className="object-cover rounded-md mt-1" /></Link>
+  <Link href={`/fontend-e-commerce-mvc/${index + 1 }`}><Image src={images[index].url} alt="product" fill sizes="50vw" className="object-cover rounded-md mt-1" /></Link>
   </div>
    <div className="w-1/2 h-32 relative flex justify-between gap-4 mt-8">
 {images.map((data, i)=>(<div key={data.id} className="w-1/4  h-32  xs:h-16 relative">

@@ -12,6 +12,7 @@ const CartModuls = ({onRemoveCart})=>{
     onRemoveCart(isCart);
   },[isCart])
   return (<div className="w-max absolute p-4 rounded-md shadow-[_0_3px_10px_rgb(0.0.0.2)] bg-white top-24  right-5 flex flex-center items-center">
+  
   {isCart && (<div className="relative flex gap-4 sm:flex-col gap-1 xs:flex-col gap-1">
  <div className="flex justify-between">
    <h2>Shipping Cart</h2>
