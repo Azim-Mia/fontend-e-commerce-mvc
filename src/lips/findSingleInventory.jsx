@@ -1,12 +1,12 @@
 import axios from "axios";
-const addToCart = async (url, method,sessionId) => {
+const findSingleInventory = async (url,method) => {
   try {
     const { data } = await axios.request({
       method: method, // Specify the request method (GET, POST, etc.)
       withCredentials: true,
       url: url,
       headers: {
-        'x-card-session-id':sessionId || '', // Replace this with actual token or variable
+        Authorization:'azim', // Replace this with actual token or variable
       },
     });
 
@@ -17,4 +17,4 @@ const addToCart = async (url, method,sessionId) => {
     return {error}
   }
 };
-export default addToCart;
+export default findSingleInventory;
