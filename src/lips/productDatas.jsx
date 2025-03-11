@@ -12,7 +12,7 @@ import product_11 from '../assets/images/product_11.webp'
 import product_12 from '../assets/images/product_12.jpg'
 const data=[
   {
-   id:1,
+   id:'35765883-20cf-40eb-acc7-2bc95aec1d24',
    title:"summer sale collections ",
    name:'one-product',
    des:"Sale! Up to 30% Off!",
@@ -21,7 +21,7 @@ const data=[
    bg:"bg-gradient-to-r from-yellow to-pink",
   },
   {
-  id:2,
+  id:'79187399-2c65-4b7a-9677-aad6d12086e3',
    title:"summer sale collections ",
    name:'two-product',
    des:"Sale! Up to 40% Off!",
@@ -30,7 +30,7 @@ const data=[
    bg:"bg-gradient-to-r from-yellow to-pink",
   },
   {
-  id:3,
+  id:'590a546e-0e8c-449f-b3c8-75927edada16',
    title:"summer sale collections ",
    name:'three-product',
    des:"Sale! Up to 50% Off!",
@@ -39,7 +39,7 @@ const data=[
    bg:"bg-gradient-to-r from-yellow to-pink",
   },
   {
-  id:4,
+  id:'82e39c46-0c5b-4736-aed3-34608f319125',
    title:"summer sale collections ",
    name:'four-product',
    des:"Sale! Up to 60% Off!",
@@ -48,7 +48,7 @@ const data=[
    bg:"bg-gradient-to-r from-yellow to-pink",
   },
     {
-  id:5,
+  id:'0c749d60-6d30-4de0-9172-aebc28be4092',
    title:"summer sale collections ",
    name:'five-product',
    des:"Sale! Up to 70% Off!",
@@ -57,7 +57,7 @@ const data=[
    bg:"bg-gradient-to-r from-yellow to-pink",
   },
       {
-  id:6,
+  id:'9451c1b2-3a8a-4302-9267-c294991b5de0',
    title:"summer sale collections ",
    name:'six-product',
    des:"Sale! Up to 70% Off!",
@@ -66,7 +66,7 @@ const data=[
    bg:"bg-gradient-to-r from-yellow to-pink",
   },
       {
-  id:7,
+  id:'f5c29af0-f8f8-4b5c-a10a-5f164186090d',
    title:"summer sale collections ",
    name:'seven-product',
    des:"Sale! Up to 70% Off!",
@@ -75,7 +75,7 @@ const data=[
    bg:"bg-gradient-to-r from-yellow to-pink",
   },
         {
-  id:8,
+  id:'8c35a6cd-ae41-40f4-80ef-bf208f537a3e',
    title:"summer sale collections ",
    name:'eight-product',
    des:"Sale! Up to 70% Off!",
@@ -84,7 +84,7 @@ const data=[
    bg:"bg-gradient-to-r from-yellow to-pink",
   },
           {
-  id:9,
+  id:'04b7c632-4a03-4ee5-8963-bf1c624aee98',
    title:"summer sale collections ",
    name:'nine-product',
    des:"Sale! Up to 70% Off!",
@@ -93,7 +93,7 @@ const data=[
    bg:"bg-gradient-to-r from-yellow to-pink",
   },
           {
-  id:10,
+  id:'35765883-20cf-40eb-acc7-2bc95aec1d2432',
    title:"summer sale collections ",
    name:'ten-product',
    des:"Sale! Up to 70% Off!",
@@ -102,7 +102,7 @@ const data=[
    bg:"bg-gradient-to-r from-yellow to-pink",
   },
           {
-  id:11,
+  id:'35765883-20cf-40eb-acc7-2bc95aec1d240',
    title:"summer sale collections ",
    name:'eleven-product',
    des:"Sale! Up to 70% Off!",
@@ -111,7 +111,7 @@ const data=[
    bg:"bg-gradient-to-r from-yellow to-pink",
   },
           {
-  id:12,
+  id:'35765883-20cf-40eb-acc7-2bc95aec1d243',
    title:"summer sale collections ",
    name:'twelve-product',
    des:"Sale! Up to 70% Off!",

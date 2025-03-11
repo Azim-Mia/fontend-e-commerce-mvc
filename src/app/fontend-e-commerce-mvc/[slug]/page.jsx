@@ -1,3 +1,4 @@
+
 import productDatas from '@/lips/productDatas';
 import findSingle from '@/lips/findSingle';
 import ProductImages from '@/components/ProductImages';
@@ -5,8 +6,7 @@ import CustomizeProducts from '@/components/CustomizeProducts';
 import AddQuantity from '@/components/AddQuantity';
 const SinglePage=async({params})=>{
  const productId =(await params).slug;
- const url =`http://localhost:3001/products/find/${productId}`;
- const {data} =await findSingle(url,'get')
+ const {data} =await findSingle(productId,'get')
  if(!data){
   console.log('find productInfo is empty')
   return;

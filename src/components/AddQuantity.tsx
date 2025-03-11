@@ -1,10 +1,18 @@
 'use client';
+import axios from 'axios';
+import {cookies} from 'next/server';
 import React,{useState} from 'react';
-import findSingleInventory from '@/lips/findSingleInventory';
+import addToCartProduct from '@/lips/addToCartProduct';
 const AddQuantity = ({data})=>{
   const [quantity, setQuantity] = useState(1);
   const inventoryId = data?.findProduct.inventoryId;
   const productId = data?.findProduct.productId;
+  const url = 'http://localhost:3001/carts/add-to-cart';
+  const body={
+    inventoryId:inventoryId,
+    productId:productId,
+    quantity:quantity
+  }
   //incriment and dcriment quantity
   //TEMPORARI STOCK
   const stock = data.stock;
@@ -16,16 +24,20 @@ if(type ==="i" && quantity < stock){
   setQuantity((prev)=>prev + 1);
 }   
   };
-  const handleAddToCart =()=>{
-    alert(productId)
+  //set localStorage sessionId
+  const handleAddToCart =async()=>{
+    const {data} = await addToCartProduct(url,'post',body);
+    const res =await axios.post('http://localhost:3000/api/headers',{sessionId:data.sessionId});
+    alert(res);
   }
+  
   return (<div className ="flex flex-col gap-4 mt-4">
   <h4>Choose a Quantity</h4>
   <div className="flex justify-between flex-wrap items-center gap-6 lg:gap-8">
   <div className=" flex gap-4 sm:gap-6 md:gap-8">
   <div className="flex gap-4">
+     <button className=" text-2xl py-1 px-4 bg-gray-light rounded-lg hover:bg-lama hover:text-white" onClick={()=>handleQuantity('d')}> - </button>
   <button className="text-2xl py-1 px-4 bg-gray-light rounded-lg hover:bg-lama hover:text-white" onClick={()=>handleQuantity('i')}>+</button>
-   <button className=" text-2xl py-1 px-4 bg-gray-light rounded-lg hover:bg-lama hover:text-white" onClick={()=>handleQuantity('d')}> - </button>
     </div>
   <p className="text-sm bg-[#eeffcc] py-2 px-4 rounded-md">Quantity : {quantity}</p>
   </div>

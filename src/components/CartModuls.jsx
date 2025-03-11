@@ -3,9 +3,13 @@ import React,{useState,useEffect} from 'react';
 import Image from 'next/image';
 import product_1 from '../assets/images/product_1.jpeg'
 import product_2 from '../assets/images/product_2.jpeg'
+import findCart from '@/lips/findCart';
+import findSingle from '@/lips/findSingle'
 //get cart then map
 const CartModuls = ({onRemoveCart})=>{
   const [isCart,setIsCart]=useState(true)
+  const [cartProduct,setCartProduct] =useState(null);
+  //remove CartModuls
   const handleRemoveCart=()=>{
     setIsCart(false)
   }
@@ -13,7 +17,6 @@ const CartModuls = ({onRemoveCart})=>{
     onRemoveCart(isCart);
   },[isCart])
   return (<div className="w-max absolute p-4 rounded-md shadow-[_0_3px_10px_rgb(0.0.0.2)] bg-white top-24  right-5 flex flex-center items-center">
-  
   {isCart && (<div className="relative flex gap-4 sm:flex-col gap-1 xs:flex-col gap-1">
  <div className="flex justify-between">
    <h2>Shipping Cart</h2>
