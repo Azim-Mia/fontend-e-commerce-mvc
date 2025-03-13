@@ -1,7 +1,7 @@
 import axios from "axios";
 const findCart = async (sessionId) => {
   try {
-    const { data } = await axios.request({
+    const { data }   = await axios.request({
       method:'get', // Specify the request method (GET, POST, etc.)
       withCredentials: true,
       url:"http://localhost:3001/carts/me",
@@ -10,7 +10,7 @@ const findCart = async (sessionId) => {
       },
     });
 
-    return {data};
+    return { data } ;
   } catch (error) {
     console.error("Error fetching data:", error);
     return {error}

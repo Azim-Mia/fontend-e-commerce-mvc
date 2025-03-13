@@ -1,7 +1,7 @@
 import axios from "axios";
 const findSingle = async (url: string, method: string) => {
   try {
-    const { data } = await axios.request({
+    const { data }  = await axios.request({
       method: method, // Specify the request method (GET, POST, etc.)
       withCredentials: true,
       url:url,
@@ -10,7 +10,7 @@ const findSingle = async (url: string, method: string) => {
       },
     });
 
-    return {data};
+    return { data } ;
   } catch (error) {
     console.error("Error fetching data:", error);
     throw error;

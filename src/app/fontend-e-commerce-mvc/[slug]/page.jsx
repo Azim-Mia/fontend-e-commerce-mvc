@@ -1,4 +1,3 @@
-
 import productDatas from '@/lips/productDatas';
 import findSingle from '@/lips/findSingle';
 import ProductImages from '@/components/ProductImages';
@@ -7,12 +6,13 @@ import AddQuantity from '@/components/AddQuantity';
 const SinglePage=async({params})=>{
  const productId =(await params).slug;
  const url =`http://localhost:3001/products/find/${productId}`
- const {data} =await findSingle(url,'get')
+ const {data,error} =await findSingle(url,'get')
  if(!data){
   console.log('find productInfo is empty')
   return;
  }
   return (<div className="px-4 gap-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 relative flex flex-col sm:flex-row sm:gap-4 md:flex-row lg:flex-row ">
+{error && <p>{error?.response.message}</p>}
 {/*Image Container*/}
 <div className="w-full lg:w-1/2 lg:sticky top-20 h-max">
 <ProductImages />

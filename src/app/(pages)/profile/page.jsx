@@ -6,6 +6,7 @@ import axios from 'axios';
 const ProfilePage =()=>{
   const [info, setInfo] = useState({});
     const [error,setError] = useState('');
+    const [message,setMessage] = useState('');
    // const router = useRouter()
 const url = "http://localhost:3001/profile/find/12e9d19e-6c74-4f29-bc94-e779bb3b89f6"
 const fetchData =async()=>{
@@ -15,7 +16,7 @@ setError(error);
 }
 useEffect(()=>{
   fetchData();
-},[info,error])
+},[])
   if(info?.success == false){
      redirect('/login');
    } 
