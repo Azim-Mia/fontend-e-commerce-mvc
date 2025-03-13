@@ -1,10 +1,10 @@
 import axios from "axios";
-const findSingle = async (productId: string, method: string) => {
+const findSingle = async (url: string, method: string) => {
   try {
     const { data } = await axios.request({
       method: method, // Specify the request method (GET, POST, etc.)
       withCredentials: true,
-      url:`http://localhost:3001/products/find/${productId}`,
+      url:url,
       headers: {
         Authorization:'azim', // Replace this with actual token or variable
       },
