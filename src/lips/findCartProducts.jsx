@@ -1,24 +1,40 @@
 import axios from 'axios';
-const findCartProducts = async()=>{
-  try{
+
+const findCartProducts = async () => {
+  try {
+    let carts = [];
+
+    // Fetch session ID
     const requestId = await axios.get('http://localhost:3000/api/requestHeaders');
-      const existsId = requestId.headers['x-card-session-id'];
-    let carts =[];
-    const response = await axios.request({
-            method: 'get', // Specify the request method (GET, POST, etc.)
+    const existsId = requestId.headers['x-card-session-id'] || 'null';
+if(existsId !== 'null' ){
+    // Fetch cart items
+    const response = await axios.get('http://localhost:3001/carts/me', {
       withCredentials: true,
-      url:'http://localhost:3001/carts/me',
-      headers: {
-        'x-card-session-id': existsId || 'null', // Replace this with actual token or variable
-      }
-      });
- const items = response.data.items;
-items?.map((item)=>{
-  
-})
-  }catch(error){
-    console.log(error)
-    return {error}
-  }
+      headers: { 'x-card-session-id': existsId },
+    });
+
+    const items = response.data.items || [];
+
+    // Fetch product details for each cart item using Promise.all
+    const productPromises = items.map(async (item) => {
+      const { data } = await axios.get(`http://localhost:3001/products/find/${item.productId}`);
+      return {
+        productId:data.findProduct.productId,
+        name:data.findProduct.name,
+        price: data.findProduct.price,
+        image:data.findProduct.image,
+        quantity:item.quantity,
+      };
+    });
+    // Wait for all product requests to complete
+    carts = await Promise.all(productPromises);
 }
+    return { carts };
+  } catch (error) {
+    console.error('Error fetching cart products:', error);
+    return { error };
+  }
+};
+
 export default findCartProducts;

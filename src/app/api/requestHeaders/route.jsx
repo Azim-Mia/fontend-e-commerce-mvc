@@ -6,7 +6,7 @@ export async function GET(){
   return Response.json({message:"successfull"},{
     headers:{
       'Content-Type':'application/x-www-form-urlencoded',
-      'x-card-session-id':session || null,
+      'x-card-session-id':session || 'null',
     }
   })
 }
