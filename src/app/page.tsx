@@ -16,7 +16,7 @@ export default function HomePage() {
   </div>
   <div>
   <h1 className="text-3xl p-2">New Products</h1>
-<NewProducts />
+<NewProducts/>
   </div>
   </div>);
 }

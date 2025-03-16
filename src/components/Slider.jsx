@@ -17,8 +17,8 @@ const Slider = ()=>{
   <div className="relative w-max h-full flex transition-all ease-in-out duration-1000" style={{transfrom:`translateX(-${current * 100}vw)`}}>
 {slideData.map((slide,index,array)=><div className={`${slide.bg} w-screen h-full flex flex-col gap-16 xl:flex-row`} key={slide.id}>
 {/*TEXT CONTEINER*/}
-<div className="h-1/2 xl:w-1/2 xl:h-full sm:bottom-3 sm:pt-12 flex flex-col gap-8 items-center justify-center 2xl:gap-12 text-center ">
-<h2 className="text-xl lg:text-3xl xl:text-4xl 2xl:text-5xl">{slide.des}</h2>
+<div className=" h-1/2 xl:w-1/2 xl:h-full sm:bottom-3 sm:pt-12 flex flex-col gap-8 items-center justify-center 2xl:gap-12 text-center ">
+<h2 className="index text-xl lg:text-3xl xl:text-4xl 2xl:text-5xl">{slide.des}</h2>
 <h1 className="text-5xl lg:text-6xl xl:text-7xl 2xl:text-Bxt font-semibold">{slide.title}</h1>
 <Link href={slide.url} className="rounded-md bg-black text-white p-1">Shop Now </Link> 
 </div>

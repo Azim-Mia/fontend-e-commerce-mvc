@@ -17,9 +17,10 @@ cursor: pointer;
 }
 .menu{
   margin-top:1rem;
-  z-index:100;
+  z-index: 100;
   position: fixed;
   background:pink; 
+  color:#000;
   font-family: vardana;
 }
 .hidden{

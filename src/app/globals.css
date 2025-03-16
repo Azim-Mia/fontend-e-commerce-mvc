@@ -28,3 +28,9 @@ body {
 .scrollbar-hide:-webkit-scrollbar{
   scrollbar-width:none;
 }
+.index{
+  z-index:1;
+}
+.index-full{
+  z-index: 999;
+}
