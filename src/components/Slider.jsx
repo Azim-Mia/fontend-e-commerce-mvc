@@ -13,7 +13,8 @@ const Slider = ()=>{
   },3000);
   return ()=>clearInterval(setInvId)
   },[current]);
-  return (<div className="bg-linear-90 bg-[#FFF280] h-[calc(100vh-40px)] overflow-hidden">
+  return (<>
+  <div className="bg-linear-90 bg-[#FFF280] h-[calc(100vh-40px)] overflow-hidden">
   <div className="relative w-max h-full flex transition-all ease-in-out duration-1000" style={{transfrom:`translateX(-${current * 100}vw)`}}>
 {slideData.map((slide,index,array)=><div className={`${slide.bg} w-screen h-full flex flex-col gap-16 xl:flex-row`} key={slide.id}>
 {/*TEXT CONTEINER*/}
@@ -35,6 +36,7 @@ const Slider = ()=>{
 </div>
   </div>)}
   </div>
-  </div>)
+  </div>
+  </>)
 }
 export default Slider;

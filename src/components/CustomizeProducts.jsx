@@ -1,25 +1,27 @@
 'use client';
 import React,{useState} from 'react';
-const CustomizeProducts = ()=>{
+const CustomizeProducts = ({onHandleColor,onHandleSize})=>{
 const [size, setSize] = useState('');
 const handleSizeChange=(e)=>{
   const v = e.target.value
   setSize(v)
+  onHandleSize(v)
 }
 const handleSizeClick=(e)=>{
   const v = e.target.innerText;
   setSize(v)
+  onHandleSize(v)
 }
   return (<div className ="flex flex-col gap-6">
   <h4 className="font-medium">Choose a color</h4>
   <ul className="flex items-center gap-6">
-    <li name="" value={size} className="h-8 w-8 rounded-full ring-1 ring-gray-light bg-[#0000FF] cursor-pointer relative">
+    <li onClick={()=>onHandleColor('blue')} name="" value='' className="h-8 w-8 rounded-full ring-1 ring-gray-light bg-[#0000FF] cursor-pointer relative">
+    <div className="absolute h-10 w-10 rounded-full ring-2 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+  </li>
+    <li onClick={()=>onHandleColor('yellow')} value='' className="h-8 w-8 rounded-full ring-1 ring-gray-light bg-[#00FF00] cursor-pointer relative">
     <div className="absolute h-10 w-10 rounded-full ring-2 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
     </li>
-    <li value={size} className="h-8 w-8 rounded-full ring-1 ring-gray-light bg-[#00FF00] cursor-pointer relative">
-    <div className="absolute h-10 w-10 rounded-full ring-2 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
-    </li>
-    <li value={size} className="h-8 w-8 rounded-full ring-1 ring-gray-light cursor-pointer relative">
+    <li onClick={()=>onHandleColor('coral')} value='' className="h-8 w-8 rounded-full ring-1 ring-gray-light cursor-pointer relative">
     <div className="absolute h-10 w-10 rounded-full ring-2 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
     </li>
   </ul>

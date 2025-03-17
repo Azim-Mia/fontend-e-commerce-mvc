@@ -2,8 +2,11 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import addToCartProduct from '@/lips/addToCartProduct';
+import CustomizeProducts from '@/components/CustomizeProducts';
 const AddQuantity = ({ data }) => {
   const [quantity, setQuantity] = useState(1);
+  const [color,setColor]=useState('');
+  const [size,setSize]=useState('');
   const [message, setMessage] = useState('');
 
   const inventoryId = data?.findProduct.inventoryId;
@@ -14,6 +17,8 @@ const AddQuantity = ({ data }) => {
     inventoryId:inventoryId as string,
     productId:productId as string,
     quantity:quantity as number,
+    color:color as string,
+    size:size as string
   };
 const handleQuantityDecrincriment=()=>{
   if(quantity <= 1 ){
@@ -25,7 +30,14 @@ const handleQuantityDecrincriment=()=>{
   const handleQuantityIncriment=()=>{
     setQuantity(quantity +1)
   }
-
+const handleColor=(color)=>{
+  setColor(color)
+  alert(color)
+}
+const handleSize=(size)=>{
+  setSize(size)
+  alert(size)
+}
   const handleAddToCart = async () => {
     try {
       const response = await axios.get('http://localhost:3000/api/requestHeaders');
@@ -43,8 +55,8 @@ const handleQuantityDecrincriment=()=>{
     } catch (error) {
     }
   };
-
-  return (
+  return (<>
+  <CustomizeProducts onHandleColor={handleColor} onHandleSize={handleSize}/>
     <div className="flex flex-col gap-4 mt-4">
       <p>{message}</p>
       <h4>Choose a Quantity</h4>
@@ -68,7 +80,7 @@ const handleQuantityDecrincriment=()=>{
         </button>
       </div>
     </div>
-  );
+  </>);
 };
 
 export default AddQuantity;

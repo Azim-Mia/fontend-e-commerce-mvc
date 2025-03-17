@@ -1,21 +1,27 @@
 'use client';
 import React,{useState,useEffect} from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import product_1 from '../assets/images/product_1.jpeg'
 import product_2 from '../assets/images/product_2.jpeg'
 import findCart from '@/lips/findCart';
 import findSingle from '@/lips/findSingle'
 import findCartProducts from '@/lips/findCartProducts';
 import RemoveCartItem from '@/sub_components/RemoveCartItem'
+import ViewCart from '@/components/ViewCart'
 //get cart then map
 const CartModuls = ({onRemoveCart})=>{
   const [isCart,setIsCart]=useState(true)
+const [isViewCart,setIsViewCart]=useState(false)
   const [cartProduct,setCartProduct] =useState(null);
   const [allCart, setAllCart] = useState(null)
   const [errors ,setErrors] =useState(null);
   //remove CartModuls
   const handleRemoveCart=()=>{
     setIsCart(false)
+  }
+  const handleViewCart=()=>{
+    setIsViewCart(true)
   }
   const fetchAllCart = async()=>{
  try{
@@ -31,7 +37,8 @@ const CartModuls = ({onRemoveCart})=>{
       }
     onRemoveCart(isCart);
   },[isCart])
-  return (<div className="w-max absolute p-4 rounded-md shadow-[_0_3px_10px_rgb(0.0.0.2)] bg-white top-24  right-5 flex flex-center items-center">
+  return (<>
+  <div className="w-max absolute p-4 rounded-md shadow-[_0_3px_10px_rgb(0.0.0.2)] bg-white top-24  right-5 flex flex-col flex-center items-center">
   {isCart && (<div className="z-40 relative flex gap-4 sm:flex-col gap-1 xs:flex-col gap-1">
  <div className="flex justify-between">
    <h2>Shipping Cart</h2>
@@ -39,6 +46,7 @@ const CartModuls = ({onRemoveCart})=>{
   </div>
   {/*Product --1*/}
   <>
+ <div> {isViewCart && <ViewCart />}</div>
   <p>{errors}</p>
   {allCart && allCart.map((cart)=><div key={cart.productId} className="flex justify-between gap-2">
     <Image src={product_1} alt="products" width={72} height={96} className="object-cover rounded-md"/>
@@ -85,11 +93,13 @@ const CartModuls = ({onRemoveCart})=>{
      Shipping taxes calculate
      </p>
      <div className="flex gap-4 justify-between text-sm">
-     <button className="rounded-md py-1 px-2 ring-1 ring-gray">View Cart</button>
+     <button onClick={handleViewCart} className="rounded-md py-1 px-2 ring-1 ring-gray">view_carts</button>
     <button className="rounded-md py-1 px-2 ring-1 ring-gray bg-black text-white">Checkout</button>
      </div>
   </div>
   )}
-  </div>)
+  
+  </div>
+  </>)
 }
 export default CartModuls;
