@@ -8,21 +8,14 @@ import findCart from '@/lips/findCart';
 import findSingle from '@/lips/findSingle'
 import findCartProducts from '@/lips/findCartProducts';
 import RemoveCartItem from '@/sub_components/RemoveCartItem'
-import ViewCart from '@/components/ViewCart'
+
 //get cart then map
 const CartModuls = ({onRemoveCart})=>{
   const [isCart,setIsCart]=useState(true)
-const [isViewCart,setIsViewCart]=useState(false)
   const [cartProduct,setCartProduct] =useState(null);
   const [allCart, setAllCart] = useState(null)
   const [errors ,setErrors] =useState(null);
   //remove CartModuls
-  const handleRemoveCart=()=>{
-    setIsCart(false)
-  }
-  const handleViewCart=()=>{
-    setIsViewCart(true)
-  }
   const fetchAllCart = async()=>{
  try{
    const { carts, error  } = await findCartProducts();
@@ -30,6 +23,12 @@ const [isViewCart,setIsViewCart]=useState(false)
  }catch(error){
   setErrors(error) 
  }
+  }
+  const handleRemoveCart=()=>{
+    setIsCart(false)
+  }
+  const handleViewCart =()=>{
+    setIsCart(false)
   }
   useEffect(()=>{
       if(isCart){
@@ -46,7 +45,6 @@ const [isViewCart,setIsViewCart]=useState(false)
   </div>
   {/*Product --1*/}
   <>
- <div> {isViewCart && <ViewCart />}</div>
   <p>{errors}</p>
   {allCart && allCart.map((cart)=><div key={cart.productId} className="flex justify-between gap-2">
     <Image src={product_1} alt="products" width={72} height={96} className="object-cover rounded-md"/>
@@ -93,7 +91,7 @@ const [isViewCart,setIsViewCart]=useState(false)
      Shipping taxes calculate
      </p>
      <div className="flex gap-4 justify-between text-sm">
-     <button onClick={handleViewCart} className="rounded-md py-1 px-2 ring-1 ring-gray">view_carts</button>
+     <button onClick={handleViewCart} className="rounded-md py-1 px-2 ring-1 ring-gray"><Link href="/carts/view">view_carts</Link></button>
     <button className="rounded-md py-1 px-2 ring-1 ring-gray bg-black text-white">Checkout</button>
      </div>
   </div>

@@ -1,6 +1,8 @@
 'use client';
 import {useState, useEffect} from 'react';
+import Image from 'next/image';
 import axios from 'axios';
+import userImg from '../assets/images/product_1.jpeg'
 const ViewCart = ()=>{
   const [carts,setCart] = useState(null);
 const getCart =async()=>{
@@ -18,13 +20,25 @@ if(existsId !== 'null' ){
 useEffect(()=>{
   getCart()
 },[])
-  return (<div className="flex flex-row">
-  {carts ? (<ul className="flex flex-row">{carts.map((item)=><li key={item.productId} className="flex">
-  <h1>Price : {item.price}</h1>
-  <h1>Price : {item.price}</h1>
- <h1>Price : {item.price}</h1>
- <h1>Price : {item.price}</h1>
-  </li>)}</ul>):"Empty Item.."}
-  </div>)
+  return (<>
+  {carts ? (<ul className="m-1 h-auto rounded-md gap-4 sm:w-2/3 text-white p-1 xs:w-full sm:text-md">{carts?.map((item)=><li key={item.productId} className="flex bg-[#000] mt-2 gap-4 gap-3 xs:w-full rounded-md">
+   <div className="flex gap-2 p-4">
+    <Image src={userImg} alt="image" width={60} height={40} className="sm:h-48 sm:w-48 rounded-sm"/>
+  <div className="flex justify-center items-center xs:flex-col gap-4">
+ <div className="flex gap-2">
+ <h1>Name : {item.productName}</h1>
+ <p>Price : {item.price}</p>
+ </div>
+ <div className="flex gap-2">
+ <p>Quantity : {item.quantity}</p>
+ <p>Colour : {item.color}</p>
+ </div>
+ <div className="flex gap-2">
+ <p>Size : {item.size}</p>
+ </div>
+ </div>
+ </div>
+  </li>)}</ul>):"Cart is Empty"}
+  </>)
 }
 export default ViewCart
