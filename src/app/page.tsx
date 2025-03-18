@@ -1,5 +1,5 @@
 //import Image from "next/image";
-import Slider from '@/components/Slider';
+import Slider from '@/components/Slider'
 import ProductList  from '@/components/ProductList'
 import NewProducts from '@/components/NewProducts'
 import CategoryList from  '@/components/CategoryList'
