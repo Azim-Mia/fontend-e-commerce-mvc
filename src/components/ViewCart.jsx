@@ -38,7 +38,7 @@ useEffect(()=>{
  </div>
  </div>
  </div>
-  </li>)}</ul>):"Cart is Empty"}
+  </li>)}</ul>):"Card is Loading..."}
   </>)
 }
 export default ViewCart
