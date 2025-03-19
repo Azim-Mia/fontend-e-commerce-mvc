@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "mwc-fashion",
+  title: "ecommerce",
   description: "Dewangonj morden fashion"
 };
 

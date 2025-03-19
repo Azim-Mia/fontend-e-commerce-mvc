@@ -1,6 +1,7 @@
 'use client';
 import axios from 'axios';
 import React, { useState } from 'react';
+//get cart data
 import addToCartProduct from '@/lips/addToCartProduct';
 import CustomizeProducts from '@/components/CustomizeProducts';
 const AddQuantity = ({ data }) => {
@@ -51,8 +52,8 @@ const handleSize=(size)=>{
        const {data} = await addToCartProduct(url, 'post', body, existsId);
         setMessage(data.message);
       }
-      setMessage(error instanceof Error ? error.message : 'An error occurred');
-    } catch (error) {
+    } catch (error){
+     setMessage(error instanceof Error ? error.message : 'An error occurred'); 
     }
   };
   return (<>
