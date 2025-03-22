@@ -25,12 +25,14 @@ if(existsId !== 'null' ){
         price: data.findProduct.price,
         image:data.findProduct.image,
         quantity:item.quantity,
+        total:data.findProduct.price * item.quantity,
       };
     });
     // Wait for all product requests to complete
     carts = await Promise.all(productPromises);
 }
-    return { carts };
+const subtotal = carts.reduce((acc, item)=>acc + item.total, 0);
+    return { carts,subtotal };
   } catch (error) {
     console.error('Error fetching cart products:', error);
     return { error };

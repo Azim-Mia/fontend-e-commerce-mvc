@@ -8,18 +8,19 @@ import findCart from '@/lips/findCart';
 import findSingle from '@/lips/findSingle'
 import findCartProducts from '@/lips/findCartProducts';
 import RemoveCartItem from '@/sub_components/RemoveCartItem'
-
 //get cart then map
-const CartModuls = ({onRemoveCart})=>{
+const CartModuls = ({onRemoveCart,onCartLength})=>{
   const [isCart,setIsCart]=useState(true)
-  const [cartProduct,setCartProduct] =useState(null);
   const [allCart, setAllCart] = useState(null)
-  const [errors ,setErrors] =useState(null);
+  const [subtotal,setSubtotal] =useState(null);
+   const [errors ,setErrors] =useState(null);
   //remove CartModuls
   const fetchAllCart = async()=>{
  try{
-   const { carts, error  } = await findCartProducts();
+   const { carts,subtotal, error  } = await findCartProducts();
+   onCartLength(carts?.length)
  setAllCart(carts)
+ setSubtotal(subtotal);
  }catch(error){
   setErrors(error) 
  }
@@ -30,11 +31,9 @@ const CartModuls = ({onRemoveCart})=>{
     setIsCart(false)
   }
   useEffect(()=>{
-      if(isCart){
-        fetchAllCart();
-      }
+     fetchAllCart();
     onRemoveCart(isCart);
-  },[isCart,fetchAllCart])
+  },[isCart,subtotal,allCart])
   return (<>
   <div className="w-max absolute p-4 rounded-md shadow-[_0_3px_10px_rgb(0.0.0.2)] bg-white top-24  right-5 flex flex-col flex-center items-center">
   {isCart && (<div className="z-40 relative flex gap-4 sm:flex-col gap-1 xs:flex-col gap-1">
@@ -84,7 +83,7 @@ const CartModuls = ({onRemoveCart})=>{
 </>
      <div className="flex justify-between text-sm items-center">
      <span className="text-lama">Subtotal</span>
-     <span className="text-blue">$1999</span>
+     <span className="text-blue">{subtotal}</span>
      </div>
       <p className="text-sm text-gray mt-2 md-4">
      Shipping taxes calculate

@@ -2,9 +2,8 @@ import findSingle from '@/lips/findSingle';
 import productDatas from '@/lips/productDatas';
 import ProductImages from '@/components/ProductImages';
 import AddQuantity from '@/components/AddQuantity';
-
 const SinglePage = async ({ params }) => {
-  const productId = params.slug;
+  const productId =(await params).slug;
   const url = `http://localhost:3001/products/find/${productId}`;
 
   let data = null;

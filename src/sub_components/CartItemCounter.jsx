@@ -1,27 +1,14 @@
-'use client'
-import { useEffect, useState } from 'react';
+'use client';
+import React, { useEffect, useState } from "react";
 import findCartProducts from '@/lips/findCartProducts';
 
-const CartItemCounter = () => {
-  const [allCart, setAllCart] = useState([]);
+const CartItemCounter = ({length}) => {
   const [count, setCount] = useState(0);
- const getItems = async () => {
-      const { carts, error } = await findCartProducts();
-      if (error) {
-        console.error("Error fetching cart products:", error);
-        return;
-      }
-      setAllCart(carts || []); // Ensure it's an array
-      setCount(carts?.length || 0);
-    };
-  useEffect(() => {
-    getItems();
-  }, [getItems]); // Empty dependency array means it runs once
-  return (
-    <>  
-    <span>{count}</span>
-    </>
-  );
+  useEffect(()=>{
+    setCount(length)
+    alert(count)
+  },[count])
+  return <p className="text-white">{count}</p>;
 };
 
 export default CartItemCounter;
