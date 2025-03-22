@@ -12,7 +12,7 @@ const AddQuantity = ({ data }) => {
 
   const inventoryId = data?.findProduct.inventoryId;
   const productId = data?.findProduct.productId;
-  const stock = data.stock;
+  //const stock = data.stock;
   const url = 'http://localhost:3001/carts/add-to-cart';
   const body = {
     inventoryId:inventoryId as string,
