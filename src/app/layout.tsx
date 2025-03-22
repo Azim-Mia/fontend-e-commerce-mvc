@@ -12,7 +12,7 @@ const geistMono = Geist_Mono({
 });
 */
 
-export default const metadata = {
+export const metadata = {
   title: "ecommerce",
   description: "Dewangonj morden fashion"
 };
