@@ -9,7 +9,6 @@ const findSingle = async (url: string, method: string) => {
         Authorization:'azim', // Replace this with actual token or variable
       },
     });
-
     return { data } ;
   } catch (error) {
     console.error("Error fetching data:", error);

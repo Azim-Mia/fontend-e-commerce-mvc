@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 //get cart data
 import addToCartProduct from '@/lips/addToCartProduct';
 import CustomizeProducts from '@/components/CustomizeProducts';
-const AddQuantity = ({ data:any}) => {
+const AddQuantity = ({ data}) => {
   const [quantity, setQuantity] = useState(1);
   const [color,setColor]=useState('');
   const [size,setSize]=useState('');

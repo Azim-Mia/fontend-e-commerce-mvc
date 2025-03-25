@@ -1,100 +1,142 @@
 'use client';
 import { useState } from "react";
-export default function OrderForm() {
+import axios from "axios"; // Import axios
+export default function ContactForm() {
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
     phone: "",
+    district: "",
+    thana: "",
+    post_code: "",
     address: "",
-    items: [{ name: "", quantity: 1, price: 0 }],
   });
 
-  const handleChange = (e, index = null) => {
-    const { name, value } = e.target;
+  const [message, setMessage] = useState('');
+  const [datas, setDatas] = useState(null);
 
-    if (index !== null) {
-      const updatedItems = [...formData.items];
-      updatedItems[index][name] = value;
-      setFormData({ ...formData, items: updatedItems });
-    } else {
-      setFormData({ ...formData, [name]: value });
-    }
-  };
-
-  const addItem = () => {
-    setFormData({
-      ...formData,
-      items: [...formData.items, { name: "", quantity: 1, price: 0 }],
-    });
-  };
-
-  const removeItem = (index) => {
-    const updatedItems = formData.items.filter((_, i) => i !== index);
-    setFormData({ ...formData, items: updatedItems });
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Order Submitted:", formData);
-    alert("Order submitted successfully!");
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      address: "",
-      items: [{ name: "", quantity: 1, price: 0 }],
-    });
+    try {
+      const requestId = await axios.get('http://localhost:3000/api/requestHeaders');
+      const cardSessionId = requestId.headers['x-card-session-id'] || 'null';
+  
+      if (cardSessionId !== 'null') {
+        const formDatas = {
+     name:formData.name,
+     address:formData.address,
+     post_code:formData.post_code,
+   cardSessionId:cardSessionId };
+        const response = await axios.request({
+          method:'post',
+          withCredentials:true,
+         url:"http://localhost:3001/payment",
+          data:formDatas,
+        });
+        const data = await response.data; // Await response.json()
+        setDatas(data); // Store response data instead of setting formData
+        setMessage("Order submitted successfully!");
+      } else {
+        setMessage("Session ID not found.");
+      }
+    } catch (error) {
+      setMessage(error.message); // Use error.message to avoid object issues
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="order-form">
-      <h2>Order Form</h2>
+    <div className="flex justify-center items-center mt-12">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col bg-gray gap-8 p-4 rounded-md font-semibold text-sm"
+      >
+        <p>{message}</p>
+        {JSON.stringify(datas)}
+        <h1 className="text-center">Order Details</h1>
 
-      <label>Name:</label>
-      <input type="text" name="name" value={formData.name} onChange={handleChange} required />
-
-      <label>Email:</label>
-      <input type="email" name="email" value={formData.email} onChange={handleChange} required />
-
-      <label>Phone:</label>
-      <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required />
-
-      <label>Address:</label>
-      <textarea name="address" value={formData.address} onChange={handleChange} required></textarea>
-
-      <h3>Items</h3>
-      {formData.items.map((item, index) => (
-        <div key={index} className="item-row">
+        <label htmlFor="name" className="flex flex-inline gap-10">
+          Name :
           <input
             type="text"
             name="name"
-            value={item.name}
-            onChange={(e) => handleChange(e, index)}
-            placeholder="Item Name"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="Name"
             required
+            className="ring-1 ring-black rounded-md text-center"
           />
-          <input
-            type="number"
-            name="quantity"
-            value={item.quantity}
-            onChange={(e) => handleChange(e, index)}
-            min="1"
-            required
-          />
-          <input
-            type="number"
-            name="price"
-            value={item.price}
-            onChange={(e) => handleChange(e, index)}
-            min="0"
-            required
-          />
-          <button type="button" onClick={() => removeItem(index)}>Remove</button>
-        </div>
-      ))}
+        </label>
 
-      <button type="button" onClick={addItem}>Add Item</button>
-      <button type="submit">Submit Order</button>
-    </form>
+        <label htmlFor="phone" className="flex flex-inline gap-9">
+          Phone :
+          <input
+            type="number"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            placeholder="Phone"
+            required
+            className="ring-1 ring-black rounded-md text-center"
+          />
+        </label>
+
+        <label htmlFor="district" className="flex flex-inline gap-7">
+          District :
+          <input
+            type="text"
+            name="district"
+            value={formData.district}
+            onChange={handleChange}
+            placeholder="District"
+            required
+            className="ring-1 ring-black rounded-md text-center"
+          />
+        </label>
+
+        <label htmlFor="thana" className="flex flex-inline gap-9">
+          Thana :
+          <input
+            type="text"
+            name="thana"
+            value={formData.thana}
+            onChange={handleChange}
+            placeholder="Thana"
+            required
+            className="ring-1 ring-black rounded-md text-center"
+          />
+        </label>
+
+        <label htmlFor="address" className="flex flex-inline gap-6">
+          Address :
+          <input
+            type="text"
+            name="address"
+            value={formData.address}
+            onChange={handleChange}
+            placeholder="Address"
+            required
+            className="ring-1 ring-black rounded-md text-center"
+          />
+        </label>
+
+        <label htmlFor="post_code" className="flex flex-inline gap-1">
+          Post Code :
+          <input
+            type="text"
+            name="post_code"
+            value={formData.post_code}
+            onChange={handleChange}
+            placeholder="Post Code"
+            required
+            className="ring-1 ring-black rounded-md text-center"
+          />
+        </label>
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
   );
 }
