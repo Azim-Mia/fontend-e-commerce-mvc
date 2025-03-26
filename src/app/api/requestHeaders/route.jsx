@@ -15,7 +15,7 @@ export async function GET(){
 export async function POST(request) {
   const data = await request.json();
   console.log(data);
-  const expire = new Date(Date.now() + 120 * 1000); //120 seconds from now
+  const expire = new Date(Date.now() + 1200 * 1000); //120 seconds from now
 const cookiesRequest =await cookies()
  cookiesRequest.set('sessionId', data.sessionId, {
     expires: expire, 

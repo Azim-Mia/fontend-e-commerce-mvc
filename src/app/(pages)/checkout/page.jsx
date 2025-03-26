@@ -5,10 +5,10 @@ export default function ContactForm() {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
+    address: "",
+    post_code: "",
     district: "",
     thana: "",
-    post_code: "",
-    address: "",
   });
 
   const [message, setMessage] = useState('');
@@ -27,8 +27,11 @@ export default function ContactForm() {
       if (cardSessionId !== 'null') {
         const formDatas = {
      name:formData.name,
+     phone:formData.phone,
      address:formData.address,
      post_code:formData.post_code,
+     thana:formData.thana,
+     district:formData.district,
    cardSessionId:cardSessionId };
         const response = await axios.request({
           method:'post',
@@ -36,7 +39,9 @@ export default function ContactForm() {
          url:"http://localhost:3001/payment",
           data:formDatas,
         });
-        const data = await response.data; // Await response.json()
+        const data = await response.data;
+        window.location.replace(data.url);
+        // Await response.json()
         setDatas(data); // Store response data instead of setting formData
         setMessage("Order submitted successfully!");
       } else {
@@ -53,9 +58,8 @@ export default function ContactForm() {
         onSubmit={handleSubmit}
         className="flex flex-col bg-gray gap-8 p-4 rounded-md font-semibold text-sm"
       >
-        <p>{message}</p>
-        {JSON.stringify(datas)}
-        <h1 className="text-center">Order Details</h1>
+     <p>{message}</p>
+   <h1 className="text-center">Order Details</h1>
 
         <label htmlFor="name" className="flex flex-inline gap-10">
           Name :
@@ -73,7 +77,7 @@ export default function ContactForm() {
         <label htmlFor="phone" className="flex flex-inline gap-9">
           Phone :
           <input
-            type="number"
+            type="text"
             name="phone"
             value={formData.phone}
             onChange={handleChange}

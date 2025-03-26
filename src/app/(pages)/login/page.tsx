@@ -14,7 +14,6 @@ const LoginPage =()=>{
   const [resetPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState('');
-  const [error, setError] = useState('')
 const router = useRouter();
 enum MODL {
     LOGIN = "LOGIN",
@@ -42,7 +41,6 @@ enum MODL {
   const {data} = await axios.post('http://localhost:3001/auth/users/password/forget',forgetEmail); 
    if(data.success == true){
        toast(data?.message);
-       setError('')
        setIsLoading(false);
    }
     }else if(mode === 'EMAIL_VERIFICATION'){
@@ -50,8 +48,18 @@ enum MODL {
     //send varification code
     console.log(userEmail)
    }else if(mode === 'REGISTER'){
+   axios.defaults.withCredentials = true;
+   const user = {
+     name:userName,
+       email:userEmail,
+       password:password,
+     }
+   const {data} = await axios.post('http://localhost:3001/auth/users/register',user);
      //send create user
-     alert('REGISTER')
+    if(data.success == true){
+      toast(data?.message)
+      setMessage(data?.message)
+    }
    }else if(mode === 'LOGIN'){
      //send login request
 axios.defaults.withCredentials = true;
@@ -63,16 +71,21 @@ axios.defaults.withCredentials = true;
      if(data.success == true){
        router.push('/profile');
        setMessage(data?.message);
-       setError('')
      }
      console.log(userName,password, userEmail,emailCode,resetPassword)
    }else{
-     setError('Something problem, Try again.')
+     setMessage('Something problem, Try again.')
    }
    }catch(err:unknown){
     if(err instanceof Error){
-      toast(err.message)
-      setError(err.message);
+      if(err.status === 400){
+        toast("User Already Register")
+      }else if(err.status === 404){
+        toast("User is not Register")
+      }else{
+     toast(err.message)
+      setMessage(err);
+      }
     }
      setIsLoading(false);
    } 
@@ -106,7 +119,6 @@ axios.defaults.withCredentials = true;
       <button type="submit" className="text-blue text-1.5xl font-semibold">Resend</button></div>)} 
     
  <button type="submit" className= "text-1xl font-semibold py-2 px-6 bg-black text-white rounded-md disabled:cursor-not-allowed" disabled={isLoading}>{isLoading ? "Loading...":buttonTitle}</button>
- {error && <p>{error}</p>}
  {mode === MODL.LOGIN && (<div onClick={()=>setMode(MODL.REGISTER)}>{"Don't"} have , <br/> an Account? <button type="submit" className="text-blue">Register now</button></div>)}
 {mode === MODL.REGISTER && (<div>Already Register? <button onClick={()=>setMode(MODL.LOGIN)}><p className="text-blue font-semibold">Login</p></button></div>)}
 {mode === MODL.RESET_PASSWORD && (<div className="flex gap-3 text-white"><p onClick={()=>setMode(MODL.LOGIN)}>Go back to</p>
