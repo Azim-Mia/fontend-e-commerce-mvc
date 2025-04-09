@@ -25,7 +25,7 @@ const [isMenuClicked,setIsClicked] =useState(false);
   </div>
   <div className ={menu_class}>
     <ul className="p-2 text-center text-[#000]">
-     {isAdmin && <Link href="/"><li className="p-1 hover:text-white border-b mt-1">Deshboard</li></Link>}
+     {isAdmin && <Link href="/deshboard"><li className="p-1 hover:text-white border-b mt-1">Deshboard</li></Link>}
    <Link href="/"><li className="p-1 hover:text-white border-b mt-1">Home</li></Link>
   <Link href="/list"><li className="p-1 hover:text-white border-b mt-1">Category</li></Link>
   <Link href="/shop"><li className="p-1 hover:text-white border-b mt-1">Shop</li></Link>
