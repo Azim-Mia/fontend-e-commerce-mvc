@@ -9,7 +9,7 @@ import findSingle from '@/lips/findSingle'
 import findCartProducts from '@/lips/findCartProducts';
 import RemoveCartItem from '@/sub_components/RemoveCartItem'
 //get cart then map
-const CartModuls = ({onRemoveCart,onCartLength})=>{
+const CartModuls = ({onRemoveCart})=>{
   const [isCart,setIsCart]=useState(true)
   const [isCheckout,setIsCheckout]=useState(false)
   const [allCart, setAllCart] = useState(null)
@@ -18,15 +18,13 @@ const CartModuls = ({onRemoveCart,onCartLength})=>{
   //remove CartModuls
   const fetchAllCart = async()=>{
  try{
-   const { carts,subtotal, error  } = await findCartProducts();
-   onCartLength(carts?.length)
+ const {carts,subtotal,error} = await findCartProducts()
  setAllCart(carts)
  setSubtotal(subtotal);
  }catch(error){
   setErrors(error) 
  }
   }
-  
   //tiggle CartModuls
   const handleRemoveCart=()=>{
     setIsCart(false)

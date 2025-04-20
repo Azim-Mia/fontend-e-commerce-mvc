@@ -1,8 +1,7 @@
-
 import findSingle from '@/lips/findSingle';
 import productDatas from '@/lips/productDatas';
 import ProductImages from '@/components/ProductImages';
-import AddQuantity from '@/components/AddQuantity';
+import AddToCart from '@/components/AddToCart';
 const SinglePage = async ({ params }) => {
   const productId =(await params).slug;
   const url = `http://localhost:3001/products/find/${productId}`;
@@ -42,7 +41,7 @@ const SinglePage = async ({ params }) => {
         </div>
 
         <div className="bg-gray-100">
-          <AddQuantity data={data} />
+          <AddToCart data={data} />
         </div>
 
         {/* Additional Info */}
