@@ -1,6 +1,7 @@
 import "./globals.css";
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import {CartProvider} from '../contexts/CartContext.jsx'
 /*const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -25,8 +26,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="" >
-      <header className="index-full top-0 sticky">
-      <Navbar />
+          <CartProvider>
+       <header className="index-full top-0 sticky">
+          <Navbar /> 
       </header>
       <main>
         {children}
@@ -34,6 +36,7 @@ export default function RootLayout({
         <footer>
         <Footer />
         </footer>
+        </CartProvider>
       </body>
     </html>
   );

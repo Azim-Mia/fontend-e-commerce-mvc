@@ -1,5 +1,6 @@
 'use client'
 import axios from 'axios';
+//import { useCart } from "@/contexts/CartContext";
 const RemoveCartItem =({productId,onSetCartProduct})=>{
 const handleRemoveCartItem =async()=>{
   const requestId = await axios.get('http://localhost:3000/api/requestHeaders');

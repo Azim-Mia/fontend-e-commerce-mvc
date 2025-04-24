@@ -5,6 +5,7 @@ import {useRouter} from 'next/navigation';
 import Link from 'next/link';
 import CartModuls from '@/components/CartModuls';
 import findCartProducts from '@/lips/findCartProducts';
+import CartLength from '../sub_components/CartLength'
 import cartImg from '../assets/images/cart_2.png'
 import userImg from '../assets/images/user.png'
 import notificationImg from '../assets/images/notification.png'
@@ -29,7 +30,7 @@ const handleProfile =()=>{
    <div><Link href='/search'><Image src={searchImg} alt="search Icon" className="xs:h-5 w-5" /></Link></div>
    <div className="relative" onClick={()=>serIsCartOpen((prev)=>!prev)}>
     <Image src={cartImg} alt ="cart_img" width={42} height={42} className="xs:h-5 w-5" />
-    <div className="absolute -top-4 -right-4 w-6 h-6 xs:h-4 xs:w-4 bg-lama rounded-full text-sm text-white flex justify-center items-center">2</div>
+    <div className="absolute -top-4 -right-4 w-6 h-6 xs:h-4 xs:w-4 bg-lama rounded-full text-sm text-white flex justify-center items-center"><CartLength /></div>
    </div>
 {isCartOpen && <CartModuls onRemoveCart={removeCart} />}
    <Image src={notificationImg} alt ="notificationImg" width={28} height={28} className="xs:h-5 w-5" />

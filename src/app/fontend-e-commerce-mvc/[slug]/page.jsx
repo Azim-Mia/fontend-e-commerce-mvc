@@ -19,8 +19,7 @@ const SinglePage = async ({ params }) => {
   if (!data) {
     return <p>Loading product details...</p>;
   }
-  return (
-    <div className="px-4 gap-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 relative flex flex-col sm:flex-row sm:gap-4 md:flex-row lg:flex-row">
+  return ( <div className="px-4 gap-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 relative flex flex-col sm:flex-row sm:gap-4 md:flex-row lg:flex-row">
       {error && <p>{error?.response?.message || 'An error occurred'}</p>}
 
       {/* Image Container */}
@@ -42,7 +41,7 @@ const SinglePage = async ({ params }) => {
 
         <div className="bg-gray-100">
           <AddToCart data={data} />
-        </div>
+          </div>
 
         {/* Additional Info */}
         <div>
@@ -51,7 +50,7 @@ const SinglePage = async ({ params }) => {
         </div>
       </div>
     </div>
-  );
+ );
 };
 
 export default SinglePage;
