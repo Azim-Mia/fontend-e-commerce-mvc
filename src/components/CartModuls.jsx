@@ -6,11 +6,15 @@ import product_1 from '../assets/images/product_1.jpeg'
 import product_2 from '../assets/images/product_2.jpeg'
 import findCart from '@/lips/findCart';
 import findSingle from '@/lips/findSingle'
-
+import { useCart } from "@/contexts/CartContext";
 import RemoveCartItem from '@/sub_components/RemoveCartItem'
 //get cart then map
-const CartModuls = ({allCart,subtotal,errors,hideCartModule})=>{
-  const [carts, setCarts] =useState(allCart)
+const CartModuls = ({hideCartModule,allCarts})=>{
+  const {viewCartContext} = useCart();
+  const [carts,
+  setCarts]=useState(allCarts);
+  const [subtotal,setSubtotal] = useState(null);
+  const [error,setErrors] =useState(null);
   const [isCart,setIsCart]=useState(true)
   const [isCheckout,setIsCheckout]=useState(false)
   //remove CartModuls
@@ -22,6 +26,19 @@ const CartModuls = ({allCart,subtotal,errors,hideCartModule})=>{
  const handleCheckOut =()=>{
    setIsCheckout(true)
  }
+ const fetchAllCart = async () => {
+      try {
+        const {carts,length,subtotal} = await viewCartContext();
+        setCarts(carts);
+       setSubtotal(subtotal);
+       /* if (error) setErrors(error);*/
+      } catch (err) {
+        setErrors(err);
+      }
+    };
+    useEffect(()=>{
+    fetchAllCart()  
+    },[subtotal]);
   return (<>
  <div className="w-max absolute p-4 rounded-md shadow-[_0_3px_10px_rgb(0.0.0.2)] bg-white top-24  right-5 flex flex-col flex-center items-center">
   {isCart && (<div className="z-40 relative flex gap-4 sm:flex-col gap-1 xs:flex-col gap-1">
@@ -31,7 +48,7 @@ const CartModuls = ({allCart,subtotal,errors,hideCartModule})=>{
   </div>
   {/*Product --1*/}
   <>
-  <p>{errors}</p>
+  <p>{error}</p>
   { carts && carts.map((cart)=><div key={cart.productId} className="flex justify-between gap-2">
     <Image src={product_1} alt="products" width={72} height={96} className="object-cover rounded-md"/>
     {/*top*/}

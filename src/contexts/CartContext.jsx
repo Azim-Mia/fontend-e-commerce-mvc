@@ -8,11 +8,11 @@ export const useCart = () => useContext(CartContext);
 export const CartProvider = ({ children }) => {
   const [cartCount, setCartCount] = useState(0);
   let removed = [];
-  const addToCartLengthCheck =async()=>{
-    const {carts} = await findCartProducts()
+  const viewCartContext =async()=>{
+    const {carts,subtotal} = await findCartProducts()
     const length = carts.length;
     setCartCount(length)
-    return {carts,length};
+    return {carts,length,subtotal};
   }
   const removeCartItem =async(productId)=>{
   const requestId = await axios.get('http://localhost:3000/api/requestHeaders');
@@ -28,7 +28,7 @@ export const CartProvider = ({ children }) => {
   return removed;
   }
   return (
-    <CartContext.Provider value={{ cartCount, addToCartLengthCheck,setCartCount,removeCartItem}}>
+    <CartContext.Provider value={{ cartCount,viewCartContext,setCartCount,removeCartItem}}>
       {children}
     </CartContext.Provider>
   );

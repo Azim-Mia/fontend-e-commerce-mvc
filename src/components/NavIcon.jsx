@@ -13,28 +13,14 @@ import notificationImg from '../assets/images/notification.png';
 import searchImg from '../assets/images/search.png';
 
 const NavIcon = () => {
+  const {viewCartContext} = useCart()
+  const [carts,setCarts] = useState([]);
+  const [cartLength,setCartLength] = useState(null);
+  const [subtotal,setSubtotal] = useState(null);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
-  const [allCart, setAllCart] = useState(null);
-  const [errors, setErrors] = useState(null);
-  const [subtotal, setSubtotal] = useState(null);
   const router = useRouter();
   const isLoggedIn = true;
-  const {addToCartLengthCheck} = useCart()
-const fetchAllCart = async () => {
-      try {
-        const {carts,length} = await addToCartLengthCheck();
-        setAllCart(carts);
-      /*  setSubtotal(subtotal);
-        if (error) setErrors(error);*/
-      } catch (err) {
-        setErrors(err);
-      }
-    };
-  useEffect(() => {
-    fetchAllCart();
-  },[isCartOpen]);
-
   const toggleProfile = () => {
     if (!isLoggedIn) {
       router.push('/login');
@@ -46,7 +32,15 @@ const fetchAllCart = async () => {
   const hideCartModule = (action) => {
     setIsCartOpen(action);
   };
-
+  const fatchData = async()=>{
+    const {carts,length,subtotal} = await viewCartContext();
+    setCarts(carts);
+    setCartLength(length);
+    setSubtotal(subtotal)
+  }
+useEffect(()=>{
+  fatchData();
+},[isCartOpen,subtotal,length]);
   return (
     <div className="flex items-center gap-4 xs:text-sm sm:gap-6 lg:gap-10">
       <Link href="/search">
@@ -62,10 +56,8 @@ const fetchAllCart = async () => {
 
       {isCartOpen && (
         <CartModuls
-          allCart={allCart}
-          errors={errors}
+          hideCartModule={hideCartModule} allCarts = {carts}
           subtotal={subtotal}
-          hideCartModule={hideCartModule}
         />
       )}
 

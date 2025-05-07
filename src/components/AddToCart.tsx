@@ -6,7 +6,7 @@ import addToCartProduct from '@/lips/addToCartProduct';
 import CustomizeProducts from '@/components/CustomizeProducts';
 import { useCart } from "@/contexts/CartContext";
 const AddToCart = ({ data}) => {
- const { addToCartLengthCheck } = useCart();
+ const { viewCartContext } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [color,setColor]=useState('');
   const [size,setSize]=useState('');
@@ -46,14 +46,14 @@ const handleSize=(size)=>{
       const existsId = response.headers['x-card-session-id'];
       if (existsId == 'null') {
         const { data } = await addToCartProduct(url, 'post', body);
-        addToCartLengthCheck()
+        viewCartContext()
         setMessage(data?.message)
         await axios.post('http://localhost:3000/api/requestHeaders', { sessionId: data.sessionId });
         setMessage(data.message)
       } else {
        const {data} = await addToCartProduct(url, 'post', body, existsId);
-       //cart addToCartLengthCheck
-       addToCartLengthCheck()
+       //cart viewCartContext
+       viewCartContext()
         setMessage(data.message);
       }
     } catch (error){
