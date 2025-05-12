@@ -9,11 +9,8 @@ import findSingle from '@/lips/findSingle'
 import { useCart } from "@/contexts/CartContext";
 import RemoveCartItem from '@/sub_components/RemoveCartItem'
 //get cart then map
-const CartModuls = ({hideCartModule,allCarts})=>{
-  const {viewCartContext} = useCart();
-  const [carts,
-  setCarts]=useState(allCarts);
-  const [subtotal,setSubtotal] = useState(null);
+const CartModuls = ({hideCartModule})=>{
+  const {carts,subtotal,setCarts} = useCart()
   const [error,setErrors] =useState(null);
   const [isCart,setIsCart]=useState(true)
   const [isCheckout,setIsCheckout]=useState(false)
@@ -26,19 +23,7 @@ const CartModuls = ({hideCartModule,allCarts})=>{
  const handleCheckOut =()=>{
    setIsCheckout(true)
  }
- const fetchAllCart = async () => {
-      try {
-        const {carts,length,subtotal} = await viewCartContext();
-        setCarts(carts);
-       setSubtotal(subtotal);
-       /* if (error) setErrors(error);*/
-      } catch (err) {
-        setErrors(err);
-      }
-    };
-    useEffect(()=>{
-    fetchAllCart()  
-    },[subtotal]);
+ 
   return (<>
  <div className="w-max absolute p-4 rounded-md shadow-[_0_3px_10px_rgb(0.0.0.2)] bg-white top-24  right-5 flex flex-col flex-center items-center">
   {isCart && (<div className="z-40 relative flex gap-4 sm:flex-col gap-1 xs:flex-col gap-1">
@@ -63,7 +48,7 @@ const CartModuls = ({hideCartModule,allCarts})=>{
       {/*buttom*/}
     <div className="flex justify-between items-center">
     <span className="bg-gray-light p-1 rounded-sm">Qnt : {cart.quantity}</span>
-      <RemoveCartItem productId = {cart.productId} onRemoveCartItem={setCarts} />
+      <RemoveCartItem productId = {cart.productId} onSetCartsItem={setCarts} />
      </div>
      </div>
   </div>)}

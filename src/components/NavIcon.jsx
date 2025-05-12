@@ -13,10 +13,6 @@ import notificationImg from '../assets/images/notification.png';
 import searchImg from '../assets/images/search.png';
 
 const NavIcon = () => {
-  const {viewCartContext} = useCart()
-  const [carts,setCarts] = useState([]);
-  const [cartLength,setCartLength] = useState(null);
-  const [subtotal,setSubtotal] = useState(null);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const router = useRouter();
@@ -32,15 +28,6 @@ const NavIcon = () => {
   const hideCartModule = (action) => {
     setIsCartOpen(action);
   };
-  const fatchData = async()=>{
-    const {carts,length,subtotal} = await viewCartContext();
-    setCarts(carts);
-    setCartLength(length);
-    setSubtotal(subtotal)
-  }
-useEffect(()=>{
-  fatchData();
-},[isCartOpen,subtotal,length]);
   return (
     <div className="flex items-center gap-4 xs:text-sm sm:gap-6 lg:gap-10">
       <Link href="/search">
@@ -55,10 +42,7 @@ useEffect(()=>{
       </div>
 
       {isCartOpen && (
-        <CartModuls
-          hideCartModule={hideCartModule} allCarts = {carts}
-          subtotal={subtotal}
-        />
+        <CartModuls hideCartModule={hideCartModule} />
       )}
 
       <Image src={notificationImg} alt="notification icon" width={28} height={28} className="xs:h-5 w-5" />
