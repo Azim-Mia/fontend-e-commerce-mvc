@@ -46,7 +46,6 @@ const NavIcon = () => {
       )}
 
       <Image src={notificationImg} alt="notification icon" width={28} height={28} className="xs:h-5 w-5" />
-
       <Image
         src={userImg}
         alt="user icon"
@@ -55,15 +54,17 @@ const NavIcon = () => {
         onClick={toggleProfile}
         className="cursor-pointer xs:h-5 w-5"
       />
-
       {isProfileOpen && (
-        <div className="absolute flex flex-col bg-yellow gap-4 xs:mt-[60px] mt-[80px] right-4 p-4 rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)] z-20">
-          {isLoggedIn && <Link href="/profile" className="cursor-pointer hover:border-b-2">Profile</Link>}
-          <Link href={isLoggedIn ? "/logout" : "/login"} className="cursor-pointer hover:border-b-2">
+        <ul className="absolute flex flex-col bg-yellow gap-4 mt-56 right-4 p-4 rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)] z-20">
+          <button onClick={()=>setIsProfileOpen(false)} className='border-2 rounded-b-sm bg-amber-100 hover:bg-blend-color'>Close</button>
+          <li>{isLoggedIn && <Link href="/profile" className="cursor-pointer hover:border-b-2">Profile</Link>}</li>
+           <li>{isLoggedIn && <Link href="/my_orders" className="cursor-pointer hover:border-b-2">My Orders</Link>}</li>
+            <li>{isLoggedIn && <Link href="/favorite_list" className="cursor-pointer hover:border-b-2">Favorite List</Link>}</li>
+          <li><Link href={isLoggedIn ? "/logout" : "/login"} className="cursor-pointer hover:border-b-2">
             {isLoggedIn ? "Logout" : "Login"}
-          </Link>
-        </div>
-      )}
+          </Link></li>
+        </ul>
+        )}
     </div>
   );
 };
