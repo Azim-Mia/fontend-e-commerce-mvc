@@ -1,7 +1,7 @@
 'use client';
 import { useState } from "react";
 import axios from "axios"; // Import axios
-export default function ContactForm() {
+export default function CheckOutPage() {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",

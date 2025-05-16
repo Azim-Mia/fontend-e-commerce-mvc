@@ -17,7 +17,7 @@ export const CartProvider = ({ children }) => {
     const {carts,subtotal} = await findCartProducts()
     setCarts(carts);
     setSubtotal(subtotal)
-    const length = carts.length;
+    const length = carts?.length || 0;
     setCartCount(length);
     return;
    }

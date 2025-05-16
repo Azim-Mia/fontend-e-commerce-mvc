@@ -55,7 +55,7 @@ const NavIcon = () => {
         className="cursor-pointer xs:h-5 w-5"
       />
       {isProfileOpen && (
-        <ul className="absolute flex flex-col bg-yellow gap-4 mt-56 right-4 p-4 rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)] z-20">
+        <ul className="absolute flex flex-col bg-yellow gap-4 mt-72 right-4 p-4 rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)] z-20">
           <button onClick={()=>setIsProfileOpen(false)} className='border-2 rounded-b-sm bg-amber-100 hover:bg-blend-color'>Close</button>
           <li>{isLoggedIn && <Link href="/profile" className="cursor-pointer hover:border-b-2">Profile</Link>}</li>
            <li>{isLoggedIn && <Link href="/my_orders" className="cursor-pointer hover:border-b-2">My Orders</Link>}</li>

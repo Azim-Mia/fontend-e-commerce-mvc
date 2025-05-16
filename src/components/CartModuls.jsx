@@ -79,7 +79,7 @@ const CartModuls = ({hideCartModule})=>{
      Shipping taxes calculate
      </p>
      <div className="flex gap-4 justify-between text-sm">
-     <button className="rounded-md py-1 px-2 ring-1 ring-gray"><Link href="/carts/view">view_carts</Link></button>
+     <button onClick={()=>hideCartModule(false)} className="rounded-md py-1 px-2 ring-1 ring-gray"><Link href="/carts/view">view_carts</Link></button>
     <button onClick={handleCheckOut} className="rounded-md py-1 px-2 ring-1 ring-gray bg-black text-white">Checkout</button>
      </div>
   </div>

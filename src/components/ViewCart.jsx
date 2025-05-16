@@ -21,8 +21,7 @@ useEffect(()=>{
   getCart()
 },[])
   return (<>
-       { !carts && <p>Cart not found</p>}
-      { !carts && <p>Cart not found</p>}
+    <p>{carts ? 'Views Carts Items': 'Cart is Loading..'}</p>
   {carts && (<ul className="m-1 h-auto rounded-md gap-4 sm:w-2/3 text-white p-1 xs:w-full sm:text-md">{carts?.map((item)=><li key={item.productId} className="flex bg-[#000] mt-2 gap-4 gap-3 xs:w-full rounded-md">
    <div className="flex gap-2 p-4">
     <Image src={userImg} alt="image" width={60} height={40} className="sm:h-48 sm:w-48 rounded-sm"/>
