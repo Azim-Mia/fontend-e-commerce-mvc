@@ -20,10 +20,6 @@ const CartModuls = ({hideCartModule})=>{
   // setIsCart(false)
   hideCartModule(false)
   }
- const handleCheckOut =()=>{
-   setIsCheckout(true)
- }
- 
   return (<>
  <div className="w-max absolute p-4 rounded-md shadow-[_0_3px_10px_rgb(0.0.0.2)] bg-white top-24  right-5 flex flex-col flex-center items-center">
   {isCart && (<div className="z-40 relative flex gap-4 sm:flex-col gap-1 xs:flex-col gap-1">
@@ -80,7 +76,7 @@ const CartModuls = ({hideCartModule})=>{
      </p>
      <div className="flex gap-4 justify-between text-sm">
      <button onClick={()=>hideCartModule(false)} className="rounded-md py-1 px-2 ring-1 ring-gray"><Link href="/carts/view">view_carts</Link></button>
-    <button onClick={handleCheckOut} className="rounded-md py-1 px-2 ring-1 ring-gray bg-black text-white">Checkout</button>
+    <button onClick={()=>hideCartModule(false)} className="rounded-md py-1 px-2 ring-1 ring-gray bg-black text-white"><Link href="/checkout">CheckOut</Link></button>
      </div>
   </div>
   )}
