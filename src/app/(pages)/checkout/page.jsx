@@ -56,7 +56,7 @@ export default function CheckOutPage() {
     <div className="flex justify-center items-center mt-12">
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col bg-gray gap-8 p-4 rounded-md font-semibold text-sm"
+        className="flex flex-col bg-gray gap-6 p-2 rounded-md font-semibold text-sm"
       >
      <p>{message}</p>
    <h1 className="text-center">Order Details</h1>

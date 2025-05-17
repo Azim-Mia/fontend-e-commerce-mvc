@@ -13,7 +13,6 @@ if(existsId !== 'null' ){
       withCredentials: true,
       headers: { 'x-card-session-id': existsId },
     });
-
     const items = response.data.items || [];
 
     // Fetch product details for each cart item using Promise.all

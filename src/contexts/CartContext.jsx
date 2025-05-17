@@ -32,6 +32,8 @@ export const CartProvider = ({ children }) => {
       if (existsId == 'null') {
         const { data } = await addToCartProduct(url, 'post', body);
         setMessage(data?.message)
+        
+       //set sessionId 
         await axios.post('http://localhost:3000/api/requestHeaders', { sessionId: data.sessionId });
        await viewCartContext()
         setMessage(data.message)
