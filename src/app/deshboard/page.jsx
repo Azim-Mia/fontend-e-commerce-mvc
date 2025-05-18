@@ -1,6 +1,11 @@
 import MonthlySalseAnalysis from '@/components/deshboard/MonthlySalseAnalysis';
 import Cart from '@/components/deshboard/Cart';
-
+import Link from 'next/link';
+import Inventoris from './linkPage/Inventoris';
+import Products from './linkPage/Products'
+import Categories from './linkPage/Categories'
+import Orders from './linkPage/Orders'
+import Others from './linkPage/Others'
 const Dashboard = () => {
   return (
     <div className="min-h-screen flex bg-gray-100 p-4">
@@ -10,34 +15,12 @@ const Dashboard = () => {
           <strong className="block text-xl font-semibold text-blue-600 mb-4">
             Dashboard Menu
           </strong>
-
-          <details className="group border border-gray-200 rounded-md p-3 bg-gray-50 hover:bg-gray-100 transition">
-            <summary className="cursor-pointer text-gray-800 font-medium group-open:text-blue-600">
-              Products
-            </summary>
-            <ul className="mt-2 ml-4 list-disc text-gray-600 text-sm space-y-1">
-              <li className="hover:text-blue-600 cursor-pointer">Product List</li>
-            </ul>
-          </details>
-
-          <details className="group border border-gray-200 rounded-md p-3 bg-gray-50 hover:bg-gray-100 transition">
-            <summary className="cursor-pointer text-gray-800 font-medium group-open:text-blue-600">
-              Orders
-            </summary>
-            <ul className="mt-2 ml-4 list-disc text-gray-600 text-sm space-y-1">
-              <li className="hover:text-blue-600 cursor-pointer">Product List</li>
-            </ul>
-          </details>
-
-          <details className="group border border-gray-200 rounded-md p-3 bg-gray-50 hover:bg-gray-100 transition">
-            <summary className="cursor-pointer text-gray-800 font-medium group-open:text-blue-600">
-              Categories
-            </summary>
-            <ul className="mt-2 ml-4 list-disc text-gray-600 text-sm space-y-1">
-              <li className="hover:text-blue-600 cursor-pointer">Product List</li>
-            </ul>
-          </details>
-        </nav>
+          <Inventoris />
+          <Products />
+          <Orders />
+          <Categories />
+          <Others />
+      </nav>
       </aside>
 
       {/* Main Content */}
