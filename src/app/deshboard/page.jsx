@@ -1,3 +1,5 @@
+'use client';
+import React,{useState} from 'react';
 import MonthlySalseAnalysis from '@/components/deshboard/MonthlySalseAnalysis';
 import Cart from '@/components/deshboard/Cart';
 import Link from 'next/link';
@@ -7,6 +9,7 @@ import Categories from './linkPage/Categories'
 import Orders from './linkPage/Orders'
 import Others from './linkPage/Others'
 const Dashboard = () => {
+  const [isAnalysis, setIsAnalysis] = useState(false)
   return (
     <div className="min-h-screen flex bg-gray-100 p-4">
       {/* Sidebar */}
@@ -20,11 +23,15 @@ const Dashboard = () => {
           <Orders />
           <Categories />
           <Others />
+          <div>
+        <button onClick={()=>setIsAnalysis((prev)=> !prev)}>Analysis AI</button>
+          </div>
       </nav>
       </aside>
 
       {/* Main Content */}
       <main className="flex-1 ml-6">
+        {isAnalysis && <div className="text-white h-[80vh] w-full bg-black">Ai show</div>}
         {/* Summary Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <Cart title="Active Users" value="12" />
