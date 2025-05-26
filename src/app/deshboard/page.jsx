@@ -1,6 +1,7 @@
 'use client';
 import React,{useState} from 'react';
 import MonthlySalseAnalysis from '@/components/deshboard/MonthlySalseAnalysis';
+import Chat from '@/components/chats/Chat'
 import Cart from '@/components/deshboard/Cart';
 import Link from 'next/link';
 import Inventoris from './linkPage/Inventoris';
@@ -12,6 +13,7 @@ const Dashboard = () => {
   const [isAnalysis, setIsAnalysis] = useState(false)
   return (
     <div className="min-h-screen flex bg-gray-100 p-4">
+
       {/* Sidebar */}
       <aside className="w-64 bg-white rounded-2xl shadow-lg p-6 space-y-4">
         <nav className="space-y-2">
@@ -43,6 +45,7 @@ const Dashboard = () => {
         {/* Sales Chart */}
         <div className="bg-white rounded-2xl shadow-md p-6">
           <MonthlySalseAnalysis />
+                <Chat />
         </div>
       </main>
     </div>
