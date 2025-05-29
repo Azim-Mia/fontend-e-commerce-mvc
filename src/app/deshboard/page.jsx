@@ -4,11 +4,11 @@ import MonthlySalseAnalysis from '@/components/deshboard/MonthlySalseAnalysis';
 import Chat from '@/components/chats/Chat'
 import Cart from '@/components/deshboard/Cart';
 import Link from 'next/link';
-import Inventoris from './linkPage/Inventoris';
-import Products from './linkPage/Products'
-import Categories from './linkPage/Categories'
-import Orders from './linkPage/Orders'
-import Others from './linkPage/Others'
+import Inventoris from '@/components/deshboard/linkPage/Inventoris';
+import Products from '@/components/deshboard/linkPage/Products'
+import Categories from '@/components/deshboard/linkPage/Categories'
+import Orders from '@/components/deshboard/linkPage/Orders'
+import Others from '@/components/deshboard/linkPage/Others'
 const Dashboard = () => {
   const [isAnalysis, setIsAnalysis] = useState(false)
   return (
