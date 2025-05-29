@@ -6,9 +6,8 @@ const Inventoris = ()=>{
               Inventoris
             </summary>
             <ul className="mt-2 ml-4 list-disc text-gray-600 text-sm space-y-1">
-              <li className="hover:text-blue-600 cursor-pointer"><Link href="/deshboard/inventoris/list">Inventoris List</Link></li>
-        <li className="hover:text-blue-600 cursor-pointer"><Link href="/deshboard/inventoris/delete">Delete Stock</Link></li>  
-       <li className="hover:text-blue-600 cursor-pointer"><Link href="/deshboard/inventoris/delete">Update Stock</Link></li> 
+              <li className="hover:text-blue-600 cursor-pointer"><Link href="/deshboard/inventories/lists">Inventoris List</Link></li>
+        <li className="hover:text-blue-600 cursor-pointer"><Link href="/deshboard/inventories/delete">Delete Stock</Link></li>  
             </ul>
           </details>
   </>)

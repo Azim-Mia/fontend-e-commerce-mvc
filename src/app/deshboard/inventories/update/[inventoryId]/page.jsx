@@ -1,4 +1,3 @@
-
 const UpdateInventory = async({params})=>{
  const inventoryId =(await params).inventoryId;
   return (<>
