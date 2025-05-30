@@ -4,7 +4,7 @@ import MonthlySalseAnalysis from '@/components/deshboard/MonthlySalseAnalysis';
 import Chat from '@/components/chats/Chat'
 import Cart from '@/components/deshboard/Cart';
 import Link from 'next/link';
-import Inventoris from '@/components/deshboard/linkPage/Inventoris';
+import Inventoris from '@/components/deshboard/linkPage/Inventories';
 import Products from '@/components/deshboard/linkPage/Products'
 import Categories from '@/components/deshboard/linkPage/Categories'
 import Orders from '@/components/deshboard/linkPage/Orders'

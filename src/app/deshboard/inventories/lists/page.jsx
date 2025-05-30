@@ -1,6 +1,9 @@
-const InventorisList = ()=>{
+import getItem from '@/lips/getItem';
+import InventoryList from '@/components/deshboard/inventories/InventoryList'
+const InventoryPage = async()=>{
+  const data = await getItem('http://localhost:3001/inventoris/finds');
 return (<>
-  hello InventorisList
+  <InventoryList data ={data} />
 </>)
   }
-  export default InventorisList;
+  export default InventoryPage;

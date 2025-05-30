@@ -1,4 +1,4 @@
-const getItem =(url)=>{
+const getItem =async(url)=>{
   const res = await fetch(url, {
     method: 'GET',
     headers: {
