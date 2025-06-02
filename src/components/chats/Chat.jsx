@@ -217,8 +217,7 @@ class Chat extends Component {
             <button onClick={this.updateCharts}>Update!</button>
           </div>
         </div>
-      </div>
-    );
+      </div>);
   }
 }
 

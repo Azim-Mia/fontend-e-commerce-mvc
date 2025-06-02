@@ -27,15 +27,13 @@ export default function RootLayout({
     <html lang="en">
       <body className="" >
           <CartProvider>
-       <header className="index-full top-0 sticky">
+       <header className="w-auto index-full top-0 sticky">
           <Navbar /> 
       </header>
       <main>
         {children}
         </main>
-        <footer>
         <Footer />
-        </footer>
         </CartProvider>
       </body>
     </html>

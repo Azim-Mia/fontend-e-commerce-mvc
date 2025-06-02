@@ -12,11 +12,10 @@ import Others from '@/components/deshboard/linkPage/Others'
 const Dashboard = () => {
   const [isAnalysis, setIsAnalysis] = useState(false)
   return (
-    <div className="min-h-screen flex bg-gray-100 p-4">
-
+    <div className="flex justify-self-start gap-2 w-full xs:xs-small">
       {/* Sidebar */}
-      <aside className="w-64 bg-white rounded-2xl shadow-lg p-6 space-y-4">
-        <nav className="space-y-2">
+      <aside className="flex flex-col xs:w-full w-1/3">
+        <nav className="">
           <strong className="block text-xl font-semibold text-blue-600 mb-4">
             Dashboard Menu
           </strong>
@@ -32,10 +31,10 @@ const Dashboard = () => {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 ml-6">
-        {isAnalysis && <div className="text-white h-[80vh] w-full bg-black">Ai show</div>}
+      <main className="w-full">
+        {isAnalysis && <div className="text-white bg-black">Ai show</div>}
         {/* Summary Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="flex flex-wrap gap-6 px-2">
           <Cart title="Active Users" value="12" />
           <Cart title="Total Products" value="1,254" />
           <Cart title="Revenue" value="$56,746" />
@@ -43,9 +42,9 @@ const Dashboard = () => {
         </div>
 
         {/* Sales Chart */}
-        <div className="bg-white rounded-2xl shadow-md p-6">
+        <div>
           <MonthlySalseAnalysis />
-                <Chat />
+         <div className="xs:hidden"><Chat /></div>
         </div>
       </main>
     </div>

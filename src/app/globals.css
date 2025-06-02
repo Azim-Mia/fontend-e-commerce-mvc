@@ -77,7 +77,26 @@
   * {
     @apply border-border;
   }
+  @layer utilities {
+  h1 {
+    @apply font-semibold
+  }
+}
   body {
     @apply bg-background text-foreground;
   }
+}
+@layer components {
+   .btn-red {
+        @apply px-4 py-2 inline-block bg-red-500;
+    } 
+    .xs-small{
+      display:flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      align-items: center;
+      font:15px;
+      gap:2;
+    }
 }
