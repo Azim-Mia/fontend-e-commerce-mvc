@@ -181,9 +181,9 @@ class Chat extends Component {
 
   render() {
     return (
-      <div className="app">
-        <div className="row">
-          <div className="col mixed-chart">
+      <div className="app ">
+        <div className="row ">
+          <div className="col mixed-chart ">
             <Chart
               options={this.state.optionsMixedChart}
               series={this.state.seriesMixedChart}
@@ -192,7 +192,7 @@ class Chat extends Component {
             />
           </div>
 
-          <div className="col radial-chart">
+          <div className="col radial-chart ">
             <Chart
               options={this.state.optionsRadial}
               series={this.state.seriesRadial}
@@ -208,7 +208,7 @@ class Chat extends Component {
               options={this.state.optionsBar}
               series={this.state.seriesBar}
               type="bar"
-              height={140}
+              height={240}
               width={500}
             />
           </div>

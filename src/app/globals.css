@@ -99,4 +99,11 @@
       font:15px;
       gap:2;
     }
+    .li-style{
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      padding:0px 5px;
+      font: 16px;
+      border-radius: 2px;
+      margin-top: 2px;
+    }
 }
