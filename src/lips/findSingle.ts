@@ -1,19 +1,20 @@
 import axios from "axios";
+
 const findSingle = async (url: string, method: string) => {
   try {
-    const { data }  = await axios.request({
-      method: method, // Specify the request method (GET, POST, etc.)
+    const { data } = await axios.request({
+      method: method,
       withCredentials: true,
-      url:url,
+      url: url,
       headers: {
-        Authorization:'azim', // Replace this with actual token or variable
+        Authorization: 'azim', // Replace with dynamic token if needed
       },
     });
-    return { data } ;
+    return { data };
   } catch (error) {
     console.error("Error fetching data:", error);
-    throw error;
-    return {error}
+    return { error }; // OR: throw error;
   }
 };
+
 export default findSingle;

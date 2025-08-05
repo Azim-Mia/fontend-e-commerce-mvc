@@ -48,7 +48,7 @@ var findSingle = function (url, method) { return __awaiter(void 0, void 0, void 
                         withCredentials: true,
                         url: url,
                         headers: {
-                            Authorization: 'azim', // Replace this with actual token or variable
+                            Authorization: 'azim', // Replace with dynamic token if needed
                         },
                     })];
             case 1:
@@ -57,7 +57,7 @@ var findSingle = function (url, method) { return __awaiter(void 0, void 0, void 
             case 2:
                 error_1 = _a.sent();
                 console.error("Error fetching data:", error_1);
-                throw error_1;
+                return [2 /*return*/, { error: error_1 }]; // OR: throw error;
             case 3: return [2 /*return*/];
         }
     });
