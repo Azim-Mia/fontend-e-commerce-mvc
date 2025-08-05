@@ -3,17 +3,18 @@ import axios from "axios";
 const findSingle = async (url: string, method: string) => {
   try {
     const { data } = await axios.request({
-      method: method,
+      method,
       withCredentials: true,
-      url: url,
+      url,
       headers: {
-        Authorization: 'azim', // Replace with dynamic token if needed
+        Authorization: 'azim', // Use dynamic value in real apps
       },
     });
+
     return { data };
   } catch (error) {
     console.error("Error fetching data:", error);
-    return { error }; // OR: throw error;
+    return { error }; // no unreachable code
   }
 };
 
