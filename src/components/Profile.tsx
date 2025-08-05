@@ -1,6 +1,7 @@
 'use client';
 // app/profile/page.tsx
 import React,{useEffect,useState} from "react";
+import Image from 'next/image'
 import {redirect} from 'next/navigation';
 import findSingle from '@/lips/findSingle'
 const mockUser = {
@@ -33,12 +34,12 @@ if(info?.success == false){
       <h1 className="text-3xl font-bold text-center mb-8">My Profile</h1>
 
       <div className="bg-white shadow-md rounded-2xl p-6 flex flex-col items-center space-y-4">
-        <img
-          src={mockUser.avatar}
-          alt="User Avatar"
-          className="w-32 h-32 rounded-full border-4 border-blue-500 object-cover"
-        />
-
+<Image
+  src={mockUser.avatar}
+  alt="Profile"
+  width={200}
+  height={200}
+/>
         <div className="text-center">
           <h2 className="text-2xl font-semibold">{mockUser.name}</h2>
           <p className="text-gray-600">{info ? info.data.email:mockUser.email}</p>
