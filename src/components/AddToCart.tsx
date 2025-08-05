@@ -1,5 +1,4 @@
 'use client';
-import axios from 'axios';
 import React, { useState } from 'react';
 //get cart dat
 import CustomizeProducts from '@/components/CustomizeProducts';
