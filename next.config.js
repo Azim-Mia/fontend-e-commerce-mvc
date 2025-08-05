@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var nextConfig = {
-// ✅ Remove or don't include this line if you had it:
-// output: 'export'
+/* config options here */
 };
 exports.default = nextConfig;
