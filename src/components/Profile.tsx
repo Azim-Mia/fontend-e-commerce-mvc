@@ -1,57 +1,94 @@
 'use client';
-// app/profile/page.tsx
-import React,{useEffect,useState} from "react";
-import Image from 'next/image'
-import {redirect} from 'next/navigation';
-import findSingle from '@/lips/findSingle'
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
+import { redirect } from 'next/navigation';
+import findSingle from '@/lips/findSingle';
+
+// mock data for fallback
 const mockUser = {
-  name: "Jane Doe",
-  email: "jane.doe@example.com",
-  phone: "+1 (555) 123-4567",
-  address: "123 Main St, New Yorpk, NY",
-  joined: "January 2024",
-  avatar: "/avatar-placeholder.png", // Replace with actual avatar image path or API
+  name: 'Jane Doe',
+  email: 'jane.doe@example.com',
+  phone: '+1 (555) 123-4567',
+  address: '123 Main St, New York, NY',
+  joined: 'January 2024',
+  avatar: '/avatar-placeholder.png', // fallback avatar image
 };
 
- const Profile =()=>{
-   const [info, setInfo] =useState(null);
-   const [errors, setError] = useState(null);
-const fetchData =async()=>{
-  const url = "http://localhost:3001/profile/find"
-  const {data, error} = await findSingle(url,'get');
-setInfo(data);
-setError(error);
-}
-useEffect(()=>{
-  fetchData();
-},[])
-if(info?.success == false){
-     redirect('/login');
-   } 
-  return (<>
-    {errors && <p>{errors}</p>}
-    <main className="max-w-3xl mx-auto px-4 py-10">
-      <h1 className="text-3xl font-bold text-center mb-8">My Profile</h1>
+// Define type for expected API response
+type ApiResponse = {
+  success: boolean;
+  data: {
+    name: string;
+    email: string;
+    // Add more fields here if needed
+  };
+};
 
-      <div className="bg-white shadow-md rounded-2xl p-6 flex flex-col items-center space-y-4">
-<Image
-  src={mockUser.avatar}
-  alt="Profile"
-  width={200}
-  height={200}
-/>
-        <div className="text-center">
-          <h2 className="text-2xl font-semibold">{mockUser.name}</h2>
-          <p className="text-gray-600">{info ? info.data.email:mockUser.email}</p>
-          <p className="text-gray-600">{mockUser.phone}</p>
-        </div>
+const Profile = () => {
+  const [info, setInfo] = useState<ApiResponse | null>(null);
+  const [errors, setError] = useState<unknown>(null);
 
-        <div className="w-full border-t border-gray-200 pt-4 text-gray-700">
-          <p><strong>Address:</strong> {mockUser.address}</p>
-          <p><strong>Member Since:</strong> {mockUser.joined}</p>
+  const fetchData = async () => {
+    const url = 'http://localhost:3001/profile/find';
+
+    try {
+      const { data } = await findSingle(url, 'get');
+      setInfo(data);
+    } catch (err) {
+      setError(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  // Redirect to login if not authenticated
+  if (info?.success === false) {
+    redirect('/login');
+  }
+
+  return (
+    <>
+      {errors && (
+        <p className="text-red-500 text-center mb-4">
+          {(errors as Error).message || 'Something went wrong'}
+        </p>
+      )}
+      <main className="max-w-3xl mx-auto px-4 py-10">
+        <h1 className="text-3xl font-bold text-center mb-8">My Profile</h1>
+
+        <div className="bg-white shadow-md rounded-2xl p-6 flex flex-col items-center space-y-4">
+          <Image
+            src={mockUser.avatar}
+            alt="Profile"
+            width={200}
+            height={200}
+            className="rounded-full object-cover"
+          />
+
+          <div className="text-center">
+            <h2 className="text-2xl font-semibold">
+              {info?.data?.name || mockUser.name}
+            </h2>
+            <p className="text-gray-600">
+              {info?.data?.email || mockUser.email}
+            </p>
+            <p className="text-gray-600">{mockUser.phone}</p>
+          </div>
+
+          <div className="w-full border-t border-gray-200 pt-4 text-gray-700">
+            <p>
+              <strong>Address:</strong> {mockUser.address}
+            </p>
+            <p>
+              <strong>Member Since:</strong> {mockUser.joined}
+            </p>
+          </div>
         </div>
-      </div>
-    </main>
-  </>);
-}
+      </main>
+    </>
+  );
+};
+
 export default Profile;
