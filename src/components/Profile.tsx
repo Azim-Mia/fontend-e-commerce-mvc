@@ -27,7 +27,8 @@ useEffect(()=>{
 if(info?.success == false){
      redirect('/login');
    } 
-  return (
+  return (<>
+    {error && <p>{error}</p>}
     <main className="max-w-3xl mx-auto px-4 py-10">
       <h1 className="text-3xl font-bold text-center mb-8">My Profile</h1>
 
@@ -50,6 +51,6 @@ if(info?.success == false){
         </div>
       </div>
     </main>
-  );
+  </>);
 }
 export default Profile;
