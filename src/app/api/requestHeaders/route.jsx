@@ -1,41 +1,26 @@
-export const dynamic = "force-dynamic";
-
-import { cookies } from "next/headers";
-
-export async function GET() {
-  const cookieStore = cookies();
-  const session = cookieStore.get("sessionId")?.value || null;
-
-  return new Response(
-    JSON.stringify({ message: "successful" }),
-    {
-      status: 200,
-      headers: {
-        "Content-Type": "application/json",
-        "x-card-session-id": session,
-      },
+import { cookies } from 'next/headers';
+export async function GET(){
+  const cookiesRequest =await cookies()
+  const session =cookiesRequest.get('sessionId')?.value;
+  console.log(session);
+  return Response.json({message:"successfull"},{
+    headers:{
+      'Content-Type':'application/x-www-form-urlencoded',
+      'x-card-session-id':session || 'null',
     }
-  );
+  })
 }
+
 
 export async function POST(request) {
   const data = await request.json();
-
-  const expire = new Date(Date.now() + 20 * 60 * 1000); // 20 minutes
-  const cookieStore = cookies();
-
-  cookieStore.set("sessionId", data.sessionId, {
-    expires: expire,
-    httpOnly: true,
+  console.log(data);
+  const expire = new Date(Date.now() + 1200 * 1000); //120 seconds from now
+const cookiesRequest =await cookies()
+ cookiesRequest.set('sessionId', data.sessionId, {
+    expires: expire, 
+    httpOnly: true
   });
 
-  return new Response(
-    JSON.stringify({ message: "successful" }),
-    {
-      status: 200,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
+  return Response.json({ message: "successful" });
 }
