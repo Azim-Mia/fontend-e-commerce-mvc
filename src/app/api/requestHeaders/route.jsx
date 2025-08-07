@@ -1,11 +1,10 @@
-// app/api/requestHeaders/route.ts
+// route.jsx
 import { cookies } from 'next/headers';
-import { NextRequest } from 'next/server';
 
 export async function GET() {
   const cookieStore = cookies();
   const session = cookieStore.get('sessionId')?.value;
-  
+
   return Response.json(
     { message: 'successful' },
     {
@@ -17,9 +16,9 @@ export async function GET() {
   );
 }
 
-export async function POST(request: NextRequest) {
+export async function POST(request) {
   const data = await request.json();
-  const expire = new Date(Date.now() + 1200 * 1000); // 20 minutes
+  const expire = new Date(Date.now() + 1200 * 1000);
   const cookieStore = cookies();
 
   cookieStore.set('sessionId', data.sessionId, {
