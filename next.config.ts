@@ -1,7 +1,13 @@
+// next.config.ts
+
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  reactStrictMode: true,
+  output: "standalone",
+  experimental: {
+    serverActions: {},  // খালি object দিয়ে ট্রাই করতে পারো
+  },
 };
 
-export default nextConfig;
+export nextConfig;  // এটা ফাইলের বাইরে থাকতে হবে, object এর ভিতরে নয়

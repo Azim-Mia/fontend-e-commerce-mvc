@@ -12,7 +12,7 @@ export async function GET(){
 }
 
 
-export async function POST(request) {
+export default async function POST(request) {
   const data = await request.json();
   console.log(data);
   const expire = new Date(Date.now() + 1200 * 1000); //120 seconds from now
