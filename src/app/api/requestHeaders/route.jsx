@@ -1,26 +1,31 @@
+// app/api/requestHeaders/route.ts
 import { cookies } from 'next/headers';
-export async function GET(){
-  const cookiesRequest =await cookies()
-  const session =cookiesRequest.get('sessionId')?.value;
-  console.log(session);
-  return Response.json({message:"successfull"},{
-    headers:{
-      'Content-Type':'application/x-www-form-urlencoded',
-      'x-card-session-id':session || 'null',
+import { NextRequest } from 'next/server';
+
+export async function GET() {
+  const cookieStore = cookies();
+  const session = cookieStore.get('sessionId')?.value;
+  
+  return Response.json(
+    { message: 'successful' },
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        'x-card-session-id': session || 'null',
+      },
     }
-  })
+  );
 }
 
-
-export async function POST(request) {
+export async function POST(request: NextRequest) {
   const data = await request.json();
-  console.log(data);
-  const expire = new Date(Date.now() + 1200 * 1000); //120 seconds from now
-const cookiesRequest =await cookies()
- cookiesRequest.set('sessionId', data.sessionId, {
-    expires: expire, 
-    httpOnly: true
+  const expire = new Date(Date.now() + 1200 * 1000); // 20 minutes
+  const cookieStore = cookies();
+
+  cookieStore.set('sessionId', data.sessionId, {
+    expires: expire,
+    httpOnly: true,
   });
 
-  return Response.json({ message: "successful" });
+  return Response.json({ message: 'successful' });
 }
