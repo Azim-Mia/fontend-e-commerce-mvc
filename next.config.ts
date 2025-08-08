@@ -1,9 +1,7 @@
 // next.config.ts
-
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  reactStrictMode: true,
   experimental: {
     serverActions: {},  // খালি object দিয়ে ট্রাই করতে পারো
   },
