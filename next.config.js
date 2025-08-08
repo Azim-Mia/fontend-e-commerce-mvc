@@ -3,7 +3,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var nextConfig = {
     reactStrictMode: true,
-    output: "standalone",
     experimental: {
         serverActions: {}, // খালি object দিয়ে ট্রাই করতে পারো
     },
