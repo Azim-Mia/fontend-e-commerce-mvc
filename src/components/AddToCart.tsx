@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import CustomizeProducts from '@/components/CustomizeProducts';
 import { useCart } from '@/contexts/CartContext';
 
@@ -17,7 +17,7 @@ const AddToCart: React.FC<AddToCartProps> = ({ data }) => {
   const [quantity, setQuantity] = useState<number>(1);
   const [color, setColor] = useState<string>('');
   const [size, setSize] = useState<string>('');
-
+  
   const inventoryId = data?.findProduct?.inventoryId;
   const productId = data?.findProduct?.productId;
 
@@ -46,7 +46,6 @@ const AddToCart: React.FC<AddToCartProps> = ({ data }) => {
   const handleSize = (selectedSize: string) => {
     setSize(selectedSize);
   };
-
   return (
     <>
       <CustomizeProducts onHandleColor={handleColor} onHandleSize={handleSize} />

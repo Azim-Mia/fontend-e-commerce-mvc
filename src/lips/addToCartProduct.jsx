@@ -8,7 +8,7 @@ const addToCartProduct = async (url, method, body,sessionId) => {
       url,
       data: body,
       headers: {
-        'x-card-session-id': sessionId || '',
+        'x-card-session-id': sessionId || 'null',
       },
     });
     return   { data } ;

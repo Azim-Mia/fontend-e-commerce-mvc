@@ -19,7 +19,7 @@ export async function POST(request) {
 const cookiesRequest =await cookies()
  cookiesRequest.set('sessionId', data.sessionId, {
     expires: expire, 
-    httpOnly: true
+    //httpOnly: true
   });
 
   return Response.json({ message: "successful" });

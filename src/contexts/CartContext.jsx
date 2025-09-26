@@ -12,7 +12,6 @@ export const CartProvider = ({ children }) => {
   const [message,setMessage] =useState(null);
   const [carts,setCarts] = useState([]);
   const [subtotal,setSubtotal] = useState(null);
-  
   const viewCartContext =async()=>{
     const {carts,subtotal} = await findCartProducts()
     setCarts(carts);
@@ -22,26 +21,21 @@ export const CartProvider = ({ children }) => {
     return;
    }
    useEffect(()=>{
-     viewCartContext();
+    viewCartContext();
    },[cartCount,subtotal])
-   
-   const addedToCart = async (body) => {
+   const addedToCart = async(body) => {
     try {
-      const response = await axios.get('http://localhost:3000/api/requestHeaders');
-      const existsId = response.headers['x-card-session-id'];
-      if (existsId == 'null') {
+      const requestId = await axios.get('http://localhost:3000/api/requestHeaders');
+    const existsId = requestId.headers['x-card-session-id'] || 'null';
+      if(existsId != 'null'){
+        const {data} = await addToCartProduct(url, 'post', body,existsId);
+      await viewCartContext();
+    setMessage(data?.message);
+      }else{
         const { data } = await addToCartProduct(url, 'post', body);
-        setMessage(data?.message)
-        
-       //set sessionId 
-        await axios.post('http://localhost:3000/api/requestHeaders', { sessionId: data.sessionId });
-       await viewCartContext()
-        setMessage(data.message)
-      } else {
-       const {data} = await addToCartProduct(url, 'post', body, existsId);
-       //cart viewCartContext
-    await viewCartContext();
-        setMessage(data.message);
+        await axios.post('http://localhost:3000/api/requestHeaders',data.sessionId)
+      await viewCartContext();
+    setMessage(data?.message);
       }
     } catch (error){
      setMessage(error instanceof Error ? error.message : 'An error occurred'); 
@@ -51,7 +45,7 @@ export const CartProvider = ({ children }) => {
   const removeCartItem =async(productId)=>{
   const requestId = await axios.get('http://localhost:3000/api/requestHeaders');
     const existsId = requestId.headers['x-card-session-id'] || 'null';
-  if(existsId !== 'null'){
+  if(existsId != 'null'){
     const response = await axios.get(`http://localhost:3001/carts/me/item/${productId}`,{
     withCredentials: true,
     headers: { 'x-card-session-id': existsId }
