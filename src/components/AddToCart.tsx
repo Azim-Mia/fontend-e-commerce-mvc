@@ -1,5 +1,5 @@
 'use client';
-import React, { useState,useEffect } from 'react';
+import React, { useState } from 'react';
 import CustomizeProducts from '@/components/CustomizeProducts';
 import { useCart } from '@/contexts/CartContext';
 
