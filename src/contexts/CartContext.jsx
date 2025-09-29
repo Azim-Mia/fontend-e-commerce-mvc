@@ -7,7 +7,7 @@ import axios from 'axios';
 export const useCart = () => useContext(CartContext);
 
 export const CartProvider = ({ children }) => {
-  const url = 'http://localhost:3001/carts/add-to-cart';
+  const urlApi = 'http://localhost:3001/carts/add-to-cart';
   const [cartCount, setCartCount] = useState(0);
   const [message,setMessage] =useState(null);
   const [carts,setCarts] = useState([]);
@@ -28,12 +28,12 @@ export const CartProvider = ({ children }) => {
       const requestId = await axios.get('http://localhost:3000/api/requestHeaders');
     const existsId = requestId.headers['x-card-session-id'] || 'null';
       if(existsId != 'null'){
-        const {data} = await addToCartProduct(url, 'post', body,existsId);
+        const {data} = await addToCartProduct(urlApi, 'post',body,existsId);
       await viewCartContext();
     setMessage(data?.message);
       }else{
-        const { data } = await addToCartProduct(url, 'post', body);
-        await axios.post('http://localhost:3000/api/requestHeaders',data.sessionId)
+        const { data } = await addToCartProduct(urlApi, 'post', body);
+        await axios.post('http://localhost:3000/api/requestHeaders',{sessionId:data.sessionId})
       await viewCartContext();
     setMessage(data?.message);
       }

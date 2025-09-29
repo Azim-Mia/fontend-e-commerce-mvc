@@ -3,15 +3,15 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
 import findSingle from '@/lips/findSingle';
-
+import azim from '../assets/images/azim.jpg'
 // mock data for fallback
 const mockUser = {
   name: 'Jane Doe',
   email: 'jane.doe@example.com',
   phone: '+1 (555) 123-4567',
-  address: '123 Main St, New York, NY',
+  address: 'Dewangong, Jamalpur',
   joined: 'January 2024',
-  avatar: '/avatar-placeholder.png', // fallback avatar image
+  avatar: azim, // fallback avatar image
 };
 
 // Define type for expected API response

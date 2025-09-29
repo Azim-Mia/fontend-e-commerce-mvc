@@ -1,5 +1,6 @@
 'use client';
 import React,{useState,useEffect} from 'react'
+import {redirect} from 'next/navigation';
 import findAll from '@/lips/findAll'
 import OrderDetailsViews from '@/sub_components/OrderDetailsViews'
 const OrderCheck =()=>{
@@ -8,6 +9,9 @@ const OrderCheck =()=>{
     const url='http://localhost:3001/orders/find';
     const facthOrder =async()=>{
     const {data} = await findAll(url);
+    if (!data?.success) {
+          redirect('/login');
+        }
     setInfo(data)
   }
   facthOrder()
