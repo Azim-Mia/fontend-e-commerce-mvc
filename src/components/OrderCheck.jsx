@@ -9,7 +9,11 @@ const OrderCheck =()=>{
     const url='http://localhost:3001/orders/find';
     const facthOrder =async()=>{
     const {data} = await findAll(url);
-    setInfo(data)
+    if(data){
+      setInfo(data)
+    }else{
+      redirect('/login');
+    }
   }
   facthOrder()
   },[])
