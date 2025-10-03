@@ -4,6 +4,7 @@ const findCart = async (sessionId) => {
     const { data }   = await axios.request({
       method:'get', // Specify the request method (GET, POST, etc.)
       withCredentials: true,
+      credentials: "include",  // ✅ cookie যাবে
       url:"http://localhost:3001/carts/me",
       headers: {
         'x-card-session-id':sessionId ||'', // Replace this with actual token or variable

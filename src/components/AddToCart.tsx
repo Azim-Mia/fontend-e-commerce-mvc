@@ -13,7 +13,7 @@ type AddToCartProps = {
 };
 
 const AddToCart: React.FC<AddToCartProps> = ({ data }) => {
-  const { message, addedToCart } = useCart();
+  const { message, addedToCart,ToastContainer } = useCart();
   const [quantity, setQuantity] = useState<number>(1);
   const [color, setColor] = useState<string>('');
   const [size, setSize] = useState<string>('');
@@ -85,6 +85,7 @@ const AddToCart: React.FC<AddToCartProps> = ({ data }) => {
           </button>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 };

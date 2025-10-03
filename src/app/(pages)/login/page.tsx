@@ -68,7 +68,7 @@ const LoginPage = () => {
           email: userEmail,
           password: password,
         };
-        const { data } = await axios.post('http://localhost:3001/auth/users/login', user);
+        const { data } = await axios.post('http://localhost:3001/auth/users/login',user);
         if (data.success) {
           toast(data.message);
           setMessage(data.message);
@@ -166,7 +166,7 @@ const LoginPage = () => {
         )}
 
         {mode === MODL.LOGIN && (
-          <div className="text-sm text-blue-600 cursor-pointer" onClick={() => setMode(MODL.RESET_PASSWORD)}>
+          <div className="text-sm text-blue-600 cursor-pointer hover_btn" onClick={() => setMode(MODL.RESET_PASSWORD)}>
             Forgot Password?
           </div>
         )}

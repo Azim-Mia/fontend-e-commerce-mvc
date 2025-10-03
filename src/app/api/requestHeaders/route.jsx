@@ -2,7 +2,7 @@ import { cookies } from 'next/headers';
 export async function GET(){
   const cookiesRequest =await cookies()
   const session =cookiesRequest.get('sessionId')?.value;
-  console.log("session" + session);
+  console.log("sessionId " + session);
   return Response.json({message:"successfull"},{
     headers:{
       'Content-Type':'application/x-www-form-urlencoded',
@@ -15,7 +15,7 @@ export async function GET(){
 export async function POST(request) {
   const data = await request.json();
   console.log(data);
-  const expire = new Date(Date.now() + 1200 * 1000); //120 seconds from now
+  const expire = new Date(Date.now() + 120 * 1000); //120 seconds from now
 const cookiesRequest =await cookies()
  cookiesRequest.set('sessionId', data.sessionId, {
     expires: expire, 

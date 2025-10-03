@@ -5,6 +5,7 @@ const findSingle = async (url, method) => {
     const { data } = await axios.request({
       method,
       withCredentials: true,
+      credentials: "include",  // ✅ cookie যাবে
       url,
       headers: {
         Authorization: 'azim', // Use dynamic value in real apps

@@ -9,9 +9,6 @@ const OrderCheck =()=>{
     const url='http://localhost:3001/orders/find';
     const facthOrder =async()=>{
     const {data} = await findAll(url);
-    if (!data?.success) {
-          redirect('/login');
-        }
     setInfo(data)
   }
   facthOrder()

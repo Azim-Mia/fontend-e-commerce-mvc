@@ -1,11 +1,11 @@
 'use client'
 import { createContext, useContext, useState,useEffect} from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 const CartContext = createContext();
 import findCartProducts from '@/lips/findCartProducts';
 import addToCartProduct from '@/lips/addToCartProduct';
 import axios from 'axios';
 export const useCart = () => useContext(CartContext);
-
 export const CartProvider = ({ children }) => {
   const urlApi = 'http://localhost:3001/carts/add-to-cart';
   const [cartCount, setCartCount] = useState(0);
@@ -30,12 +30,12 @@ export const CartProvider = ({ children }) => {
       if(existsId != 'null'){
         const {data} = await addToCartProduct(urlApi, 'post',body,existsId);
       await viewCartContext();
-    setMessage(data?.message);
+    toast(data?.message);
       }else{
         const { data } = await addToCartProduct(urlApi, 'post', body);
         await axios.post('http://localhost:3000/api/requestHeaders',{sessionId:data.sessionId})
       await viewCartContext();
-    setMessage(data?.message);
+    toast(data?.message);
       }
     } catch (error){
      setMessage(error instanceof Error ? error.message : 'An error occurred'); 
@@ -65,6 +65,7 @@ export const CartProvider = ({ children }) => {
     ,removeCartItem
    ,message
    ,addedToCart
+   ,ToastContainer
     }}>
       {children}
     </CartContext.Provider>

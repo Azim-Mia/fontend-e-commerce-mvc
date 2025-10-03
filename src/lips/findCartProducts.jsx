@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 const findCartProducts = async () => {
   try {
     let carts = [];
@@ -7,10 +6,12 @@ const findCartProducts = async () => {
     // Fetch session ID
     const requestId = await axios.get('http://localhost:3000/api/requestHeaders');
     const existsId = requestId.headers['x-card-session-id'] || 'null';
+        console.log(existsId)
 if(existsId !== 'null' ){
     // Fetch cart items
     const response = await axios.get('http://localhost:3001/carts/me', {
       withCredentials: true,
+      credentials: "include",  // ✅ cookie যাবে
       headers: { 'x-card-session-id': existsId },
     });
     const items = response.data.items || [];
