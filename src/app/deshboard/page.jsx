@@ -27,7 +27,7 @@ const Dashboard = () => {
       <Others />
     </nav>
     
-    <main className="xs:hidden sm:block w-full flex justify-center items-center flex-col gap-4 p-4 bg-pink">
+    <main className="hidden md:block w-full flex justify-center items-center flex-col gap-4 p-4 bg-pink">
       <div className="flex justify-center flex-wrap gap-4">
         <Cart title="Pendings Orders" value="30" />
                 <Cart title="Sale Today" value="30" />
