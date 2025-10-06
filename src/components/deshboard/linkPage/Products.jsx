@@ -9,7 +9,7 @@ const Products = ()=>{
         <ChevronDown className="w-4 h-4 transition-transform duration-300 group-open:rotate-180 text-gray-500" />
       </summary>
             <ul className="mt-2 ml-4 list-disc text-gray-600 text-sm space-y-1 list-none">
-              <li className="li-style"><Link href="/deshboard/products/list">Product List</Link></li>
+              <li><Link href="/deshboard/products/list">Product List</Link></li>
             </ul>
           </details>
  

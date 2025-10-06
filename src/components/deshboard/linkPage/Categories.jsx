@@ -10,8 +10,8 @@ const Categories = () => {
       </summary>
 
       <ul className="mt-2 ml-4 list-disc text-gray-600 text-sm space-y-1 list-none">
-        <li className="li-style">Categories List</li>
-       <li className="li-style">Categories 2</li>
+        <li>Categories List</li>
+       <li>Categories 2</li>
       </ul>
     </details>
   );

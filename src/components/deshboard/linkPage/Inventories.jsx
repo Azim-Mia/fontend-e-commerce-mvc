@@ -9,7 +9,7 @@ const Inventories = ()=>{
       </summary>
             <ul className="mt-2 ml-4 list-disc text-gray-600 text-sm space-y-1 list-none">
              <Link href='/deshboard/inventories/lists'>
-                <li className="li-style">Inventories List</li>
+                <li>Inventories List</li>
              </Link>
             </ul>
           </details>

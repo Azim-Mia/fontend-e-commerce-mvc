@@ -14,9 +14,9 @@ import Orders from '@/components/deshboard/linkPage/Orders'
 import Others from '@/components/deshboard/linkPage/Others'
 const Dashboard = () => {
   const [isAnalysis, setIsAnalysis] = useState(false)
-  return (<div className="flex justify-start p-0.5 mt-2 h-auto">
+  return (<div className="flex gap-4 justify-start p-0.5 mt-2 h-auto">
     <nav className="w-48">
-<div className="flex justify-center items-center gap-2 rounded-sm text-2xl bg-pink">
+<div className="flex justify-center items-center gap-2 rounded-sm text-2xl bg-cyan-400">
   <span><Image src={ff} alt="My Insta" width="25" height="25" className="rounded-md"/></span>
    <b className=" text-blue opacity-40">Deshboard</b>
 </div>
@@ -27,8 +27,8 @@ const Dashboard = () => {
       <Others />
     </nav>
     
-    <main className="w-full flex flex-col gap-4 p-4 bg-pink">
-      <div className="flex justify-self-start flex-wrap gap-4">
+    <main className="xs:hidden sm:block w-full flex justify-center items-center flex-col gap-4 p-4 bg-pink">
+      <div className="flex justify-center flex-wrap gap-4">
         <Cart title="Pendings Orders" value="30" />
                 <Cart title="Sale Today" value="30" />
         <Cart title="Total Users" value="30" />

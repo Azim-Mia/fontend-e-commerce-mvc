@@ -1,19 +1,62 @@
-import Link from 'next/link';
-import Menu from '@/components/Menu';
-import NavIcon from '@/components/NavIcon';
-import MenuItems from '@/components/MenuItems';
-const Navbar = ()=>{
-  return(<>
-  <div className="w-auto h-15 px-4 bg-gray-light sm:px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64">
-  <div className="flex pt-4 pb-4 justify-between items-center">
-  <div className="flex items-center gap-4">
-    <div className="xs:hidden sm:hidden md:hidden lg:inline-flex xl:inline-flex 2xl:inline-flex"><MenuItems /></div>
-  <div className="lg:hidden xl:hidden 2xl:hidden"><Menu/></div>
-  <div className="text-3xl xs:2xl sm:text-2xl xs:text-1.5xl"><Link href ='/'>Logo</Link></div>
-   </div>
-<NavIcon />
-  </div>
-  </div>
-  </>)
-}
+"use client";
+
+import Link from "next/link";
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
+//import MenuComponent from "@/components/Menu";
+import MenuItems from "@/components/MenuItems";
+import NavIcon from "@/components/NavIcon";
+import LargePageMenuItems  from "@/components/LargePageMenuItems"
+
+const Navbar = () => {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <nav className="bg-white shadow-md sticky top-0 z-50">
+      <div className="w-auto mx-auto px- 1 sm:px-2 lg:px-4">
+        <div className="flex justify-between items-center h-16">
+          {/* Left Section - Menu Button + Logo */}
+          <div className="flex items-center space-x-1">
+            {/* Custom Menu component (Hamburger/Menu toggle) */}
+            <div className="lg:hidden">
+              <button
+                onClick={() => setOpen(!open)}
+                className="p-2 rounded-full hover:bg-gray-100 transition"
+              >
+                {open ? <X size={22} /> : <Menu size={22} />}
+              </button>
+            </div>
+
+            {/* Logo */}
+            <Link
+              href="/"
+              className="text-2xl font-bold text-gray-800 hover:text-indigo-600 transition"
+            >
+              MyBrand
+            </Link>
+          </div>
+          <div className="flex hidden lg:block">
+           <LargePageMenuItems />
+          </div>
+          {/* Right Section - Navigation Icons */}
+          <div className="flex items-center space-x-4">
+            <NavIcon />
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Dropdown Menu */}
+      {open && (
+        <div className=" bg-white border-t border-gray-100 shadow-sm">
+          <div className="p-4 space-y-2">
+            <MenuItems />
+          </div>
+        </div>
+      )}
+    </nav>
+  );
+};
+
 export default Navbar;
+ {/* Middle Section - Menu Items */}
+         
