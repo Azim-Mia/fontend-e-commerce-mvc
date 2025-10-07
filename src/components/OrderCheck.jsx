@@ -17,7 +17,7 @@ const OrderCheck =()=>{
   }
   facthOrder()
   },[])
-  return (<div className="flex flex-wrap justify-center items-center">
+  return (<div className="flex gap-4 flex-wrap justify-center items-center">
     {info && info.data?.map((order)=><ul key={order._id}>
       <OrderDetailsViews order ={order} />
     </ul>)}

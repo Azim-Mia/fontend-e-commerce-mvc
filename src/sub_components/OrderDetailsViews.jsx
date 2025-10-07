@@ -51,7 +51,7 @@ const OrderDetailsViews = ({ order }) => {
                     <p className="text-sm text-gray-500">
                       Buy Date: {formattedDate}
                     </p>
-                    <p className="text-lg font-semibold text-gray-800">
+                    <p className="text-md font-semibold text-gray-800">
                       {item.productName}
                     </p>
                     <p className="text-sm text-gray-600">SKU: {item.sku}</p>
@@ -90,7 +90,7 @@ const OrderDetailsViews = ({ order }) => {
           <span>Tax:</span>
           <span className="font-medium">${tax}</span>
         </div>
-        <div className="flex justify-between text-lg font-bold text-gray-800">
+        <div className="flex justify-between text-md font-bold text-gray-800">
           <span>Grand Total:</span>
           <span className="text-indigo-600">${grandTotal}</span>
         </div>

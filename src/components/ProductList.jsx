@@ -3,6 +3,7 @@ import Image from 'next/image';
 import productDatas from '@/lips/productDatas';
 import ProductsDisplay from '@/components/ProductsDisplay';
 import findAllProducts from '@/lips/findAllProducts';
+import { Fullscreen } from 'lucide-react';
 
 const ProductList = async () => {
   const url = 'http://localhost:3001/products/finds';
@@ -31,8 +32,7 @@ const ProductList = async () => {
                 alt="product"
                 width={200}
                 height={200}
-                className="object-contain w-full h-full p-3 group-hover:scale-105 transition-transform duration-300"
-              />
+             />
             </div>
 
             {/* Card Body */}

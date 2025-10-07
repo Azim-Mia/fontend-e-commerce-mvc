@@ -4,7 +4,7 @@ import ProductList  from '@/components/ProductList'
 import NewProducts from '@/components/NewProducts'
 import CategoryList from  '@/components/CategoryList'
 export default function HomePage() {
-  return (<div className="flex flex-col gap-8" >
+  return (<div className="flex p flex-col gap-8" >
   <div><Slider /></div>
     <div>
         <div>
