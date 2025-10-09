@@ -1,5 +1,10 @@
+"use client";
+
 import React, { Component } from "react";
-import Chart from "react-apexcharts";
+import dynamic from "next/dynamic";
+
+// ✅ ApexCharts dynamic import (SSR disabled)
+const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 class Chat extends Component {
   constructor(props) {
@@ -181,9 +186,9 @@ class Chat extends Component {
 
   render() {
     return (
-      <div className="app ">
-        <div className="row ">
-          <div className="col mixed-chart ">
+      <div className="app p-4">
+        <div className="row flex flex-wrap gap-6">
+          <div className="mixed-chart bg-white rounded-2xl shadow p-4">
             <Chart
               options={this.state.optionsMixedChart}
               series={this.state.seriesMixedChart}
@@ -192,7 +197,7 @@ class Chat extends Component {
             />
           </div>
 
-          <div className="col radial-chart ">
+          <div className="radial-chart bg-white rounded-2xl shadow p-4">
             <Chart
               options={this.state.optionsRadial}
               series={this.state.seriesRadial}
@@ -202,8 +207,8 @@ class Chat extends Component {
           </div>
         </div>
 
-        <div className="row">
-          <div className="col percentage-chart">
+        <div className="row flex flex-wrap mt-6 gap-6">
+          <div className="percentage-chart bg-white rounded-2xl shadow p-4">
             <Chart
               options={this.state.optionsBar}
               series={this.state.seriesBar}
@@ -213,11 +218,15 @@ class Chat extends Component {
             />
           </div>
 
-          <div className="col">
-            <button onClick={this.updateCharts}>Update!</button>
-          </div>
+          <button
+            className="px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition"
+            onClick={this.updateCharts}
+          >
+            Update!
+          </button>
         </div>
-      </div>);
+      </div>
+    );
   }
 }
 
