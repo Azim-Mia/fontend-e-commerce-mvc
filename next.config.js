@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // এখানে আর কিছু লাগবে না
+  images: {
+    unoptimized: true, // sharp বাদ দেবে
+  },
 }
 
 module.exports = nextConfig;
