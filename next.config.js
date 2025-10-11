@@ -1,15 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // এখানে আর কিছু লাগবে না
   images: {
-    unoptimized: true, // sharp বাদ দেবে
+    unoptimized: true, // disables sharp optimization
   },
-typescript: {
-    ignoreBuildErrors: true,
+  webpack: (config) => {
+    config.cache = false; // optional for termux stability
+    return config;
   },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-}
+};
 
 module.exports = nextConfig;
