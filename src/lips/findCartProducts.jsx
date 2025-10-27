@@ -1,18 +1,12 @@
 import axios from 'axios';
-const findCartProducts = async () => {
+const findCartProducts = async (sessionId) => {
   try {
     let carts = [];
-
-    // Fetch session ID
-    const requestId = await axios.get('http://localhost:3000/api/requestHeaders');
-    const existsId = requestId.headers['x-card-session-id'] || 'null';
-        console.log(existsId)
-if(existsId !== 'null' ){
     // Fetch cart items
     const response = await axios.get('http://localhost:3001/carts/me', {
       withCredentials: true,
       credentials: "include",  // ✅ cookie যাবে
-      headers: { 'x-card-session-id': existsId },
+      headers: { 'x-card-session-id': sessionId },
     });
     const items = response.data.items || [];
 
@@ -30,9 +24,9 @@ if(existsId !== 'null' ){
     });
     // Wait for all product requests to complete
     carts = await Promise.all(productPromises);
-}
+
 const subtotal = carts.reduce((acc, item)=>acc + item.total, 0);
-    return { carts,subtotal };
+    return { carts,subtotal, sessionId };
   } catch (error) {
     console.error('Error fetching cart products:', error);
     return { error };

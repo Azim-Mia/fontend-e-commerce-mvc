@@ -1,20 +1,20 @@
 'use client';
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { useCartStore } from '../contexts/CartContext.jsx';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export default function MiniCart() {
+export default function MiniCart({hideCartModule}) {
   const cart = useCartStore(state => state.cart);
   const cartCount = useCartStore(state => state.cartCount);
- // const fetchCart = useCartStore(state => state.fetchCart);
-  
   const subtotal = useCartStore(state => state.subtotal);
   const removeFromCart = useCartStore(state => state.removeFromCart);
   const clearCart = useCartStore(state => state.clearCart);
   return (
     <div className="">
         { subtotal > 0 ? <div className="relative flex flex-col right-0 top-full w-80 border border-gray-300 bg-white p-4 shadow-lg z-50 flex flex-col gap-4">
+          <button onClick={()=>hideCartModule(false)}>close</button>
             <div>
               <ul className="flex flex-col gap-3 max-h-60 overflow-y-auto">
                 {cart && cart.map(item => (
@@ -42,14 +42,17 @@ export default function MiniCart() {
                 <span>Subtotal:</span>
                 <span>${subtotal}</span>
               </div>
-
+               <div className="flex justify-around gap-2">
+                  <button className="mt-2 w-full py-2 rounded-md bg-red-500 text-white hover:bg-red-600"><Link href="/carts/view">View_cart</Link></button>
+           <button className="mt-2 w-full py-2 rounded-md bg-red-500 text-white hover:bg-red-600">CheckOut</button>
+            </div>
               <button
                 onClick={clearCart}
                 className="mt-2 w-full py-2 rounded-md bg-red-500 text-white hover:bg-red-600"
               >
                 Clear Cart
               </button>
-            </div>
+</div>
         </div>:<p className="text-center">Enpty</p>}
       <ToastContainer position="top-center" autoClose={2000} />
     </div>

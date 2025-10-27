@@ -1,5 +1,4 @@
-// stores/cartStore.js
-"use client"
+
 import { create } from "zustand";
 import { persist } from "zustand/middleware";  // ✅ persist add
 import findCartProducts from "@/lips/findCartProducts";
@@ -13,55 +12,21 @@ export const useCartStore = create(
       cart: [],
       cartCount: 0,
       subtotal: 0,
+      sessionId:'',
       message: null,
       loading: false,
-
-      fetchCart: async () => {
+      addToCart: async (body) => {
         set({ loading: true });
         try {
-          const { carts, subtotal } = await findCartProducts();
+         const session = get().sessionId;
+          const { data } = await addToCartProduct('http://localhost:3001/carts/add-to-cart', 'post', body,session)
+          const { carts, subtotal } = await findCartProducts(data.sessionId);
           set({
             cart: carts,
             cartCount: carts?.length || 0,
             subtotal: subtotal || 0,
+            sessionId:data.sessionId,
           });
-        } catch (err) {
-          console.error("Cart fetch error:", err);
-        } finally {
-          set({ loading: false });
-        }
-      },
-
-      addToCart: async (body) => {
-        set({ loading: true });
-        try {
-          const requestId = await axios.get("http://localhost:3000/api/requestHeaders");
-          const existsId = requestId.headers["x-card-session-id"] || "null";
-
-          let data;
-
-          if (existsId !== "null") {
-            const response = await addToCartProduct(
-              "http://localhost:3001/carts/add-to-cart",
-              "post",
-              body,
-              existsId
-            );
-            data = response.data;
-          } else {
-            const response = await addToCartProduct(
-              "http://localhost:3001/carts/add-to-cart",
-              "post",
-              body
-            );
-            data = response.data;
-            await axios.post("http://localhost:3000/api/requestHeaders", {
-              sessionId: data.sessionId,
-            });
-          }
-
-          await get().fetchCart();
-          toast(data?.message);
         } catch (error) {
           set({
             message:
@@ -71,28 +36,25 @@ export const useCartStore = create(
           set({ loading: false });
         }
       },
-
       removeFromCart: async (productId) => {
         try {
-          const requestId = await axios.get("http://localhost:3000/api/requestHeaders");
-          const existsId = requestId.headers["x-card-session-id"] || "null";
-
-          if (existsId !== "null") {
-            const response = await axios.get(
+const sessionId = get().sessionId;
+          if (sessionId) {
+      const {data} =  await axios.get(
               `http://localhost:3001/carts/me/item/${productId}`,
               {
                 withCredentials: true,
-                headers: { "x-card-session-id": existsId },
+                headers: { "x-card-session-id": sessionId},
               }
             );
-
-            const removedData = response.data.cart.filter(
-              (item) => item.productId !== productId
+          const cart =await get().cart;
+    const removedData =cart.filter(
+          (item) => item.productId !== productId
             );
-            set({
-              cart: removedData,
-              cartCount: removedData.length,
-              subtotal: removedData.reduce(
+           set({
+             cart:removedData,
+             cartCount:removedData.length,
+              subtotal:removedData.reduce(
                 (sum, i) => sum + i.price * i.quantity,
                 0
               ),
@@ -112,6 +74,7 @@ export const useCartStore = create(
         cart: state.cart,
         cartCount: state.cartCount,
         subtotal: state.subtotal,
+        sessionId: state.sessionId,
       }), // ✅ শুধু এগুলো persist হবে
     }
   )
