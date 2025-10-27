@@ -1,7 +1,9 @@
 'use client';
 import React, { useState } from 'react';
 import CustomizeProducts from '@/components/CustomizeProducts';
-import { useCart } from '@/contexts/CartContext';
+import { useCartStore } from '../contexts/CartContext.jsx'; // Zustand store
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 type AddToCartProps = {
   data: {
@@ -13,11 +15,13 @@ type AddToCartProps = {
 };
 
 const AddToCart: React.FC<AddToCartProps> = ({ data }) => {
-  const { message, addedToCart,ToastContainer } = useCart();
+  const addToCart = useCartStore(state => state.addToCart);
+  const message = useCartStore(state => state.message);
+
   const [quantity, setQuantity] = useState<number>(1);
   const [color, setColor] = useState<string>('');
   const [size, setSize] = useState<string>('');
-  
+
   const inventoryId = data?.findProduct?.inventoryId;
   const productId = data?.findProduct?.productId;
 
@@ -30,22 +34,18 @@ const AddToCart: React.FC<AddToCartProps> = ({ data }) => {
   };
 
   const handleQuantityDecrement = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
+    if (quantity > 1) setQuantity(quantity - 1);
   };
 
-  const handleQuantityIncrement = () => {
-    setQuantity(quantity + 1);
+  const handleQuantityIncrement = () => setQuantity(quantity + 1);
+  const handleColor = (selectedColor: string) => setColor(selectedColor);
+  const handleSize = (selectedSize: string) => setSize(selectedSize);
+
+  const handleAddToCart = async () => {
+    await addToCart(body);
+    toast(message);
   };
 
-  const handleColor = (selectedColor: string) => {
-    setColor(selectedColor);
-  };
-
-  const handleSize = (selectedSize: string) => {
-    setSize(selectedSize);
-  };
   return (
     <>
       <CustomizeProducts onHandleColor={handleColor} onHandleSize={handleSize} />
@@ -78,14 +78,15 @@ const AddToCart: React.FC<AddToCartProps> = ({ data }) => {
 
           <button
             type="button"
-            onClick={() => addedToCart(body)}
+            onClick={handleAddToCart}
             className="w-32 text-sm rounded-3xl ring-1 ring-lama text-lama py-2 px-4 hover:bg-lama hover:text-white disabled:cursor-not-allowed disabled:bg-pink-200 disabled:text-white disabled:ring-none"
           >
             Add to cart
           </button>
         </div>
       </div>
-      <ToastContainer />
+
+      <ToastContainer position="top-right" autoClose={2000} />
     </>
   );
 };

@@ -1,8 +1,7 @@
-import { useCart } from '../contexts/CartContext';
+import { useCartStore } from '../contexts/CartContext';
 
 const CartLength = () => {
-  const { cartCount } = useCart();
-
+  const cartCount = useCartStore(state => state.cartCount);
   return <span>{cartCount}</span>;
 };
 

@@ -1,73 +1,57 @@
 'use client';
-import React,{useState,useEffect} from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import product_1 from '../assets/images/product_1.jpeg'
-import product_2 from '../assets/images/product_2.jpeg'
-import findCart from '@/lips/findCart';
-import findSingle from '@/lips/findSingle'
-import { useCart } from "@/contexts/CartContext";
-import RemoveCartItem from '@/sub_components/RemoveCartItem'
-//get cart then map
-const CartModuls = ({hideCartModule})=>{
-  const {carts,subtotal,setCarts} = useCart();
-  const [error,setErrors] =useState(null);
-  const [isCart,setIsCart]=useState(true)
-  const [condition,setCondition]=useState(false)
-  //remove CartModuls
-  //tiggle CartModuls
-  const handleRemoveCart=()=>{
-  // setIsCart(false)
-  hideCartModule(false)
-  }
-  useEffect(()=>{
-    if(subtotal>0){
-    setCondition(true)
-  }
-  },[])
-  return (<>
- <div className="w-max absolute p-4 rounded-md shadow-[_0_3px_10px_rgb(0.0.0.2)] bg-white top-24  right-5 flex flex-col flex-center items-center">
-  {isCart && (<div className="z-40 relative flex gap-4 sm:flex-col gap-1 xs:flex-col gap-1">
- <div className="flex justify-between">
-   {condition ? <h2>Shipping Cart</h2>:'Cart is Empty'}
-   <button onClick={handleRemoveCart} className="bg-yellow py-1 px-2 rounded-md hover:text-gray-light">Close</button>
-  </div>
-  {/*Product --1*/}
-  <>
-  <p>{error}</p>
-  { carts && carts.map((cart)=><div key={cart.productId} className="flex justify-between gap-2">
-    <Image src={product_1} alt="products" width={72} height={96} className="object-cover rounded-md"/>
-    {/*top*/}
-    <div className="flex flex-col justify-between w-full">
-     {/*title*/}
-   <div className="flex items-center justify-between gap-8">
-   <h3 className="font-senibold">{cart.name}</h3>
-   <div className="p-2 bg-pink rounded-sm">{cart.price}</div>
-   </div>
-     {/*dsc*/}
-     <div className="text-sm text-gray">ableable</div>
-      {/*buttom*/}
-    <div className="flex justify-between items-center">
-    <span className="bg-gray-light p-1 rounded-sm">Qnt : {cart.quantity}</span>
-      <RemoveCartItem productId = {cart.productId} onSetCartsItem={setCarts} />
-     </div>
-     </div>
-  </div>)}
-</>
-     {condition && <div className="flex justify-between text-sm items-center">
-     <span className="text-lama">Subtotal</span>
-     <span className="text-blue">{subtotal}</span>
-     </div>}
-      {condition ? <p className="text-sm text-gray mt-2 md-4">
-     Shipping taxes calculate
-     </p>:null}
-    {condition ? <div className="flex gap-4 justify-between text-sm">
- <button onClick={()=>hideCartModule(false)} className="rounded-md py-1 px-2 ring-1 ring-gray"><Link href="/carts/view">view_carts</Link></button>
-<button onClick={()=>hideCartModule(false)} className="rounded-md py-1 px-2 ring-1 ring-gray bg-black text-white"><Link href="/checkout">CheckOut</Link></button>
-     </div>:null}
-  </div>
-  )}
-  </div>
-  </>)
+import React, { useState } from 'react';
+import { useCartStore } from '../contexts/CartContext.jsx';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+export default function MiniCart() {
+  const cart = useCartStore(state => state.cart);
+  const cartCount = useCartStore(state => state.cartCount);
+ // const fetchCart = useCartStore(state => state.fetchCart);
+  
+  const subtotal = useCartStore(state => state.subtotal);
+  const removeFromCart = useCartStore(state => state.removeFromCart);
+  const clearCart = useCartStore(state => state.clearCart);
+  return (
+    <div className="">
+        { subtotal > 0 ? <div className="relative flex flex-col right-0 top-full w-80 border border-gray-300 bg-white p-4 shadow-lg z-50 flex flex-col gap-4">
+            <div>
+              <ul className="flex flex-col gap-3 max-h-60 overflow-y-auto">
+                {cart && cart.map(item => (
+                  <li
+                    key={item.productId}
+                    className="flex justify-between items-center border-b border-gray-200 pb-2"
+                  >
+                    <div className="flex flex-col">
+                      <span className="font-medium">{item.name}</span>
+                      <span className="text-sm text-gray-600">
+                        Quantity: {item.quantity} | Price: ${item.price * item.quantity}
+                      </span>
+                    </div>
+                    <button
+                      onClick={() => removeFromCart(item.productId)}
+                      className="text-red-500 text-sm hover:underline"
+                    >
+                      Remove
+                    </button>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="flex justify-between items-center font-semibold mt-2">
+                <span>Subtotal:</span>
+                <span>${subtotal}</span>
+              </div>
+
+              <button
+                onClick={clearCart}
+                className="mt-2 w-full py-2 rounded-md bg-red-500 text-white hover:bg-red-600"
+              >
+                Clear Cart
+              </button>
+            </div>
+        </div>:<p className="text-center">Enpty</p>}
+      <ToastContainer position="top-center" autoClose={2000} />
+    </div>
+  );
 }
-export default CartModuls;

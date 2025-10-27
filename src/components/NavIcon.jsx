@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -13,6 +13,7 @@ import notificationImg from '../assets/images/notification.png';
 import searchImg from '../assets/images/search.png';
 
 const NavIcon = () => {
+  //const fetchCart = useCartStore(state => state.fetchCart);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const router = useRouter();
@@ -24,7 +25,6 @@ const NavIcon = () => {
       setIsProfileOpen(prev => !prev);
     }
   };
-
   const hideCartModule = (action) => {
     setIsCartOpen(action);
   };
@@ -41,9 +41,9 @@ const NavIcon = () => {
         </div>
       </div>
 
-      {isCartOpen && (
-        <CartModuls hideCartModule={hideCartModule} />
-      )}
+      {isCartOpen && (<div className="absolute top-full mt-2 right-0 w-80 bg-white border border-gray-300 shadow-lg flex flex-col z-50">
+      <CartModuls hideCartModule={hideCartModule} />
+    </div>)}
 
       <Image src={notificationImg} alt="notification icon" width={28} height={28} className="xs:h-5 w-5" />
       <Image
