@@ -19,8 +19,8 @@ export const useCartStore = create(
         set({ loading: true });
         try {
          const session = get().sessionId;
-          const { data } = await addToCartProduct('http://localhost:3001/carts/add-to-cart', 'post', body,session)
-          const { carts, subtotal } = await findCartProducts(data.sessionId);
+          const { data } = await addToCartProduct('http://localhost:3001/carts/add-to-cart', 'post', body, session)
+          const { carts, subtotal } = await findCartProducts('http://localhost:3001', 'cartContext', data.sessionId);
           set({
             cart: carts,
             cartCount: carts?.length || 0,
@@ -41,7 +41,7 @@ export const useCartStore = create(
 const sessionId = get().sessionId;
           if (sessionId) {
       const {data} =  await axios.get(
-              `http://localhost:3001/carts/me/item/${productId}`,
+              `http://localhost:3001/carts/remove/item/${productId}`,
               {
                 withCredentials: true,
                 headers: { "x-card-session-id": sessionId},

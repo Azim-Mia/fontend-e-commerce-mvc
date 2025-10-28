@@ -58,11 +58,11 @@ const Footer = () => {
             Be the first to get the latest news about trends, promotions, and much more!
           </p>
           <div className="flex sm:w-1/3 md:2/3 flex-1 mb-4">
-            <input
+            {/* <input
               type="email"
               placeholder="Email address"
               className="p-2 text-gray-800 border rounded-l"
-            />
+            /> */}
             <button className="bg-black text-white px-4 py-2 rounded-r">Join</button>
           </div>
           <h3 className="text-lg font-semibold mt-6">Secure Payments</h3>

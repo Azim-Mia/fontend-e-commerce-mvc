@@ -1,6 +1,7 @@
 import axios from "axios";
-const findCart = async (sessionId) => {
+const findCart = async (...info) => {
   try {
+    const [ sessionId = 'null'] = info;
     const { data }   = await axios.request({
       method:'get', // Specify the request method (GET, POST, etc.)
       withCredentials: true,
