@@ -8,7 +8,7 @@ import { Fullscreen } from 'lucide-react';
 const ProductList = async () => {
   const url = 'http://localhost:3001/products/finds';
   const productData = productDatas();
-  const { data } = await findAllProducts(url);
+  const { data } = await findAllProducts(url, 'findProductAll', {credentials:"include", method:"GET"});
 
   return (
     <div className="h-full w-full px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 py-10">

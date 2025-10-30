@@ -1,5 +1,6 @@
 const findAll = async (apiUrl, caller, option = {}) => {
-  const url = new URL(apiUrl);
+ try{
+   const url = new URL(apiUrl);
 
   console.log(`[${caller}] fetching ${url.pathname} started`);
 
@@ -28,6 +29,11 @@ const findAll = async (apiUrl, caller, option = {}) => {
   console.log(`[${caller}] fetching ${url.pathname} completed in ${duration}ms`);
 
   return { data };
+ }catch(error){
+  console.log(error)
+  return {error}
+ }
+  
 };
 
 export default findAll;
