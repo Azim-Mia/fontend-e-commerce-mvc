@@ -1,22 +1,33 @@
-import axios from 'axios';
+const findAll = async (apiUrl, caller, option = {}) => {
+  const url = new URL(apiUrl);
 
-const findAllProducts = async (url, caller, ...rest) => {
-  // Destructure rest parameters for flexibility (optional extra config)
-  const [extraConfig = {}] = rest;
+  console.log(`[${caller}] fetching ${url.pathname} started`);
 
-  try {
-    const { data } = await axios.request({
-      url,
-      method: "GET",
-      withCredentials: true,      // ✅ send cookies
-      credentials: "include",     // ✅ legacy for some setups
-      ...extraConfig,             // any additional Axios options
-    });
-    return { data };
-  } catch (error) {
-    console.error("Error fetching products:", error);
-    return { error: error.response?.data || "An error occurred" };
+  const startTime = performance.now();
+
+  // ✅ Always include cookies
+  const response = await fetch(apiUrl, {
+    ...option,
+    withCredentials:true,
+    credentials: "include", // send cookies cross-origin
+    headers: {
+      "Content-Type": "application/json",
+      ...(option.headers || {}),
+    },
+  });
+
+  const endTime = performance.now();
+  const duration = (endTime - startTime).toFixed(2);
+
+  if (!response.ok) {
+    console.error(`[${caller}] failed to fetch ${url.pathname}`);
+    throw new Error(`[${caller}] failed to fetch ${url.pathname}`);
   }
+
+  const data = await response.json();
+  console.log(`[${caller}] fetching ${url.pathname} completed in ${duration}ms`);
+
+  return { data };
 };
 
-export default findAllProducts;
+export default findAll;

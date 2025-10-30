@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import CustomizeProducts from '@/components/CustomizeProducts';
 import { useCartStore } from '../contexts/CartContext.jsx'; // Zustand store
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 type AddToCartProps = {
@@ -18,9 +18,10 @@ const AddToCart: React.FC<AddToCartProps> = ({ data }) => {
   const addToCart = useCartStore(state => state.addToCart);
   const message = useCartStore(state => state.message);
 
-  const [quantity, setQuantity] = useState<number>(1);
+  const [quantity, setQuantity] = useState<number>(0);
   const [color, setColor] = useState<string>('');
   const [size, setSize] = useState<string>('');
+  const [disabled, setDisabled] = useState(false);
 
   const inventoryId = data?.findProduct?.inventoryId;
   const productId = data?.findProduct?.productId;
@@ -35,15 +36,19 @@ const AddToCart: React.FC<AddToCartProps> = ({ data }) => {
 
   const handleQuantityDecrement = () => {
     if (quantity > 1) setQuantity(quantity - 1);
+    setDisabled(false)
   };
 
-  const handleQuantityIncrement = () => setQuantity(quantity + 1);
+  const handleQuantityIncrement = () =>{
+     setQuantity(quantity + 1)
+setDisabled(false)
+  };
   const handleColor = (selectedColor: string) => setColor(selectedColor);
   const handleSize = (selectedSize: string) => setSize(selectedSize);
 
   const handleAddToCart = async () => {
-    await addToCart(body);
-    toast(message);
+    await addToCart(body,quantity);
+    setDisabled(true)
   };
 
   return (
@@ -76,17 +81,18 @@ const AddToCart: React.FC<AddToCartProps> = ({ data }) => {
             <p className="text-sm bg-[#eeffcc] py-2 px-4 rounded-md">Quantity: {quantity}</p>
           </div>
 
-          <button
+          <button disabled={disabled}
             type="button"
             onClick={handleAddToCart}
-            className="w-32 text-sm rounded-3xl ring-1 ring-lama text-lama py-2 px-4 hover:bg-lama hover:text-white disabled:cursor-not-allowed disabled:bg-pink-200 disabled:text-white disabled:ring-none"
+            className="w-32 text-sm rounded-3xl ring-1 ring-lama text-lama py-2 px-4 hover:bg-lama
+             hover:text-white disabled:cursor-not-allowed disabled:bg-blue disabled:text-black disabled:ring-none"
           >
             Add to cart
           </button>
         </div>
       </div>
 
-      <ToastContainer position="top-right" autoClose={2000} />
+      <ToastContainer position="top-center" autoClose={2000} />
     </>
   );
 };

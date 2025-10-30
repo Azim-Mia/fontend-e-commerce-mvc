@@ -14,26 +14,31 @@ export const useCartStore = create(
       subtotal: 0,
       sessionId:'',
       message: null,
-      loading: false,
-      addToCart: async (body) => {
-        set({ loading: true });
+      addToCart: async (body,quantity) => {
         try {
          const session = get().sessionId;
-          const { data } = await addToCartProduct('http://localhost:3001/carts/add-to-cart', 'post', body, session)
+         if(quantity > 0 ){
+const { data } = await addToCartProduct('http://localhost:3001/carts/add-to-cart', 'post', body, session)
           const { carts, subtotal } = await findCartProducts('http://localhost:3001', 'cartContext', data.sessionId);
           set({
             cart: carts,
             cartCount: carts?.length || 0,
+            message:data.message,
             subtotal: subtotal || 0,
             sessionId:data.sessionId,
           });
+       toast(data.message)
+       return;
+         }else{
+       toast("Please Quantity update now")
+         }
+         
         } catch (error) {
+          toast(error.message)
           set({
             message:
               error instanceof Error ? error.message : "An error occurred",
           });
-        } finally {
-          set({ loading: false });
         }
       },
       removeFromCart: async (productId) => {
@@ -47,6 +52,7 @@ const sessionId = get().sessionId;
                 headers: { "x-card-session-id": sessionId},
               }
             );
+           
           const cart =await get().cart;
     const removedData =cart.filter(
           (item) => item.productId !== productId
@@ -54,6 +60,7 @@ const sessionId = get().sessionId;
            set({
              cart:removedData,
              cartCount:removedData.length,
+             message:data.message,
               subtotal:removedData.reduce(
                 (sum, i) => sum + i.price * i.quantity,
                 0
@@ -62,6 +69,7 @@ const sessionId = get().sessionId;
           }
         } catch (err) {
           console.error("Remove cart item error:", err);
+           toast(err.message)
         }
       },
 

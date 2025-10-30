@@ -8,7 +8,8 @@ const OrderCheck =()=>{
   useEffect(()=>{
     const url='http://localhost:3001/orders/find';
     const facthOrder =async()=>{
-    const {data} = await findAll(url);
+    const {data} = await findAll(url,'orderCheck',{ withCredentials:true,
+    credentials: "include", method:'GET'});
     if(data){
       setInfo(data)
     }else{

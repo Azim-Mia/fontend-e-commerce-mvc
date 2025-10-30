@@ -16,7 +16,7 @@ const findAll = async (apiUrl, caller, option = {}) => {
   }
 
   const data = await response.json();
-  console.log(`[${caller}] fetching ${url.pathname} completed in ${duration}ms`);
+  console.log(`[${caller}] fetching data ${url.pathname} completed in ${duration}ms`);
 
   return { data };
 };
