@@ -4,7 +4,8 @@ import ProductImages from '@/components/ProductImages';
 import AddToCart from '@/components/AddToCart';
 const SinglePage = async ({ params }) => {
   const productId =(await params).slug;
-  const url = `http://localhost:3001/products/find/${productId}`;
+  const api = process.env.SERVER_API;
+  const url = `${api}/products/find/${productId}`;
 
   let data = null;
   let error = null;

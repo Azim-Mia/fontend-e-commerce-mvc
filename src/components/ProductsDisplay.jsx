@@ -22,7 +22,7 @@ const ProductsDisplay = ({ products }) => {
     <div className="grid gap-6 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8">
       {products.map((product) => (
         <Link
-          href={`/fontend-e-commerce-mvc/${product.productId}`}
+          href={`/product/${product.productId}`}
           key={product.productId}
           className="group block rounded-2xl border bg-white p-4 shadow-sm transition hover:shadow-lg"
         >

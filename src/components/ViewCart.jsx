@@ -2,18 +2,19 @@
 import {useState, useEffect} from 'react';
 import Image from 'next/image';
 import axios from 'axios';
+import findSingle from '@/lips/findSingle';
+import findAll from '@/lips/findAllProducts';
 import userImg from '../assets/images/product_1.jpeg'
 const ViewCart = ()=>{
+   const apiUrl = process.env.SERVER_API;
   const [carts,setCart] = useState(null);
+
 const getCart =async()=>{
   const requestId = await axios.get('http://localhost:3000/api/requestHeaders');
     const existsId = requestId.headers['x-card-session-id'] || 'null';
 if(existsId !== 'null' ){
     // Fetch cart items
-    const {data} = await axios.get('http://localhost:3001/carts/views', {
-      withCredentials: true,
-      headers: { 'x-card-session-id': existsId },
-    });
+   const {data} = await findAll(`http://localhost:3001/carts/views`, "viewsCart", {method:"GET", sessionId:existsId});
     setCart(data.result);
 }
 }

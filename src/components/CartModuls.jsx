@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useCartStore } from '../contexts/CartContext.jsx';
-import { ToastContainer } from 'react-toastify';
+//import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function MiniCart({hideCartModule}) {
@@ -54,7 +54,6 @@ export default function MiniCart({hideCartModule}) {
               </button>
 </div>
         </div>:<p className="text-center">Enpty</p>}
-      <ToastContainer position="top-center" autoClose={2000} />
     </div>
   );
 }

@@ -8,12 +8,12 @@ const findAll = async (apiUrl, caller, option = {}) => {
 
   // ✅ Always include cookies
   const response = await fetch(apiUrl, {
-    ...option,
+    method:option?.method || 'GET',
     withCredentials:true,
     credentials: "include", // send cookies cross-origin
     headers: {
       "Content-Type": "application/json",
-      ...(option.headers || {}),
+      'x-card-session-id':option?.sessionId,
     },
   });
 

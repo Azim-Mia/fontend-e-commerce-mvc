@@ -22,7 +22,7 @@ const ProductList = async () => {
       <div className="grid gap-5 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
         {productData.map((item) => (
           <Link
-            href={`/fontend-e-commerce-mvc/${item.id}`}
+            href={`/product/${item.id}`}
             key={item.id}
             className="bg-white rounded-xl shadow hover:shadow-lg transition-all duration-300 overflow-hidden group"
           >
