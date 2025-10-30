@@ -12,7 +12,7 @@ const NewPassword = ({token}) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+    const api = process.env.SERVER_API
     if (password !== confirmPassword) {
       setError("Passwords do not match!");
       return;
@@ -20,7 +20,7 @@ const NewPassword = ({token}) => {
 
     try {
       await axios.post(
-        `http://localhost:3001/auth/users/password/forget/verify/${sliceToken}`,
+        `${api}/auth/users/password/forget/verify/${sliceToken}`,
         { password }
       );
       setSuccess("Password updated successfully!");

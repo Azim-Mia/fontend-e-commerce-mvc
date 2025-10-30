@@ -6,7 +6,8 @@ import findAllProducts from '@/lips/findAllProducts';
 import { Fullscreen } from 'lucide-react';
 
 const ProductList = async () => {
-  const url = 'http://localhost:3001/products/finds';
+   const api= process.env.SERVER_API;
+  const url = `${api}/products/finds`;
   const productData = productDatas();
   const { data } = await findAllProducts(url, 'findProductAll', {credentials:"include", method:"GET"});
 
