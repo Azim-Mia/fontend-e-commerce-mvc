@@ -8,10 +8,11 @@ import { Fullscreen } from 'lucide-react';
 const ProductList = async () => {
    const api= process.env.SERVER_API;
   const url = `${api}/products/finds`;
-  const productData = productDatas();
+  const productDataAll = productDatas();
   const { data } = await findAllProducts(url, 'findProductAll', {credentials:"include", method:"GET"});
 
-  return (
+  return (<>
+  {/* <p>{JSON.stringify(data)}</p> */}
     <div className="h-full w-full px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 py-10">
       {/* Server Fetched Products */}
       <div className="mb-10">
@@ -19,15 +20,15 @@ const ProductList = async () => {
       </div>
 
       {/* Local Product Cards */}
-      <div className="grid gap-5 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-        {productData.map((item) => (
+      <div className="cartStyle">
+        {productDataAll.map((item) => (<div key={item.id} className='cartItem'>
           <Link
             href={`/product/${item.id}`}
             key={item.id}
             className="bg-white rounded-xl shadow hover:shadow-lg transition-all duration-300 overflow-hidden group"
           >
             {/* Image Placeholder */}
-            <div className="w-full h-32 bg-gray-100 flex items-center justify-center">
+            <div className='flex justify-center'>
               <Image
                 src={item.img || '/placeholder.png'}
                 alt="product"
@@ -37,7 +38,7 @@ const ProductList = async () => {
             </div>
 
             {/* Card Body */}
-            <div className="p-3 text-center">
+            <div>
               <h3 className="text-xs font-semibold text-gray-800 mb-1 truncate">
                 {item.name || 'Product Name'}
               </h3>
@@ -47,12 +48,14 @@ const ProductList = async () => {
               <span className="text-sm font-bold text-indigo-600 block">
                 {item.price ? `$${item.price}` : '$00.00'}
               </span>
+              <button className='bg-[#0a193a]'>Order now</button>
             </div>
+            <p>Descount details</p>
           </Link>
-        ))}
+        </div>))}
       </div>
     </div>
-  );
+  </>);
 };
 
 export default ProductList;

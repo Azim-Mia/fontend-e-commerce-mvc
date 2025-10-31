@@ -1,13 +1,14 @@
 'use client'
 import Link from 'next/link'
 import Image from 'next/image'
+import product_1 from '../assets/images/product_1.jpeg'
 
 const ProductsDisplay = ({ products }) => {
   if (!products || products.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-20 text-gray-500">
         <Image
-          src="/empty-box.png" // 👉 public ফোল্ডারে একটা empty ইমেজ রাখুন
+          src="/images/empty.png" // ✅ public/images/empty.png
           alt="No products"
           width={150}
           height={150}
@@ -19,29 +20,21 @@ const ProductsDisplay = ({ products }) => {
   }
 
   return (
-    <div className="grid gap-6 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8">
-      {products.map((product) => (
+    <div className="cartStyle">
+      {products.map((product) => (<div key={product.productId} className='cartItem '>
         <Link
           href={`/product/${product.productId}`}
           key={product.productId}
-          className="group block rounded-2xl border bg-white p-4 shadow-sm transition hover:shadow-lg"
+          className=""
         >
-          <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-gray-100">
-            {product.image ? (
-              <Image
-                src={product.image}
-                alt={product.name}
-                fill
-                className="object-cover transition-transform duration-300 group-hover:scale-105"
+          <div className='flex justify-center'>
+            <Image
+              src={product_1} alt="product"
+            width={200}
+              height={200} 
               />
-            ) : (
-              <div className="flex h-full w-full items-center justify-center text-gray-400">
-                No Image
-              </div>
-            )}
           </div>
-
-          <div className="mt-3">
+          <div className="flex justify-around mt-3">
             <p className="truncate text-sm font-medium text-gray-900">
               {product.name}
             </p>
@@ -49,8 +42,10 @@ const ProductsDisplay = ({ products }) => {
               ${product.price}
             </p>
           </div>
+            <button className='bg-[#0a193a]'>Order Now</button>
+          <div className='text-center'>Discount details added</div>
         </Link>
-      ))}
+      </div>))}
     </div>
   )
 }

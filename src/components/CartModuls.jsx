@@ -2,8 +2,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useCartStore } from '../contexts/CartContext.jsx';
-//import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
 
 export default function MiniCart({hideCartModule}) {
   const cart = useCartStore(state => state.cart);
