@@ -1,5 +1,4 @@
 "use client";
-
 import Link from "next/link";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
@@ -59,4 +58,4 @@ const Navbar = () => {
 
 export default Navbar;
  {/* Middle Section - Menu Items */}
-         
+          
