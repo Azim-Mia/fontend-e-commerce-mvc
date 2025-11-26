@@ -1,4 +1,5 @@
 'use client'
+import Link from 'next/link'
 export default function NotFound() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 text-gray-800">
@@ -9,12 +10,12 @@ export default function NotFound() {
       <p className="mt-8 text-lg text-gray-600">
         Sorry, the page you’re looking for doesn’t exist or has been moved.
       </p>
-      <a
+      <Link
         href="/"
         className="mt-6 inline-block px-6 py-2 text-white bg-blue-600 rounded-md shadow hover:bg-blue-700 transition"
       >
         Go Home
-      </a>
+      </Link>
     </div>
   );
 }
