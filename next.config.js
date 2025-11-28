@@ -1,10 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    unoptimized: true, // disables sharp optimization
+    unoptimized: true,     // সব image optimize বন্ধ
+  },
+  experimental: {
+    images: {
+      allowFutureImage: true,
+    }
   },
   webpack: (config) => {
-    config.cache = false; // optional for termux stability
+    config.cache = false;
     return config;
   },
 };
