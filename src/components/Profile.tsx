@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
 import findSingle from '@/lips/findSingle';
-import azim from '../assets/images/azim.jpg'
+import azim from '/public/images/avatars/azim.jpg'
 // mock data for fallback
 const mockUser = {
   name: 'Jane Doe',

@@ -1,15 +1,15 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import bkashImg from '../assets/images/bkash.png';
-import nogotImg from '../assets/images/nogot.png';
-import paypalImg from '../assets/images/paypal.png';
-import rocketImg from '../assets/images/rocket.png';
-import masterCartImg from '../assets/images/master_cart.png';
-import facebookImg from '../assets/images/facebook.png';
-import instagramImg from '../assets/images/instagram.png';
-import twitterImg from '../assets/images/twitter.webp';
-import youtubeImg from '../assets/images/youtube.webp';
-import map from '../assets/images/map.jpg';
+import bkashImg from '/public/images/icons/bkash.png';
+import nogotImg from '/public/images/icons/nogot.png';
+import paypalImg from '/public/images/icons/paypal.png';
+import rocketImg from '/public/images/icons/rocket.png';
+import masterCartImg from '/public/images/icons/master_cart.png';
+import facebookImg from '/public/images/icons/facebook.png';
+import instagramImg from '/public/images/icons/instagram.png';
+import twitterImg from '/public/images/icons/twitter.webp';
+import youtubeImg from '/public/images/icons/youtube.webp';
+import map from '/public/images/maps/map.jpg';
 const Footer = () => {
   return (
     <footer className="bg-gray-100 text-gray-800 px-6 py-12 xs:text-center">

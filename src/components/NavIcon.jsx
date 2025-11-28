@@ -7,10 +7,10 @@ import CartModuls from '@/components/CartModuls';
 import findCartProducts from '@/lips/findCartProducts';
 import { useCart } from "@/contexts/CartContext";
 import CartLength from '../sub_components/CartLength';
-import cartImg from '../assets/images/cart_2.png';
-import userImg from '../assets/images/user.png';
-import notificationImg from '../assets/images/notification.png';
-import searchImg from '../assets/images/search.png';
+import cartImg from '/public/images/icons/cart_2.png';
+import userImg from '/public/images/icons/user.png';
+import notificationImg from '/public/images/icons/notification.png';
+import searchImg from '/public/images/icons/search.png';
 
 const NavIcon = () => {
   //const fetchCart = useCartStore(state => state.fetchCart);
