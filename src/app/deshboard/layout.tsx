@@ -1,17 +1,19 @@
 import "../globals.css";
-import Navbar from '@/components/Navbar';
+import Navbar from "@/components/Navbar";
+
 export const metadata = {
   title: "ecommerce",
-  description: "Dewangonj morden fashion",
+  description: "Dewangonj modern fashion",
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
-      <body>
-        <p>yesdv</p>
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
