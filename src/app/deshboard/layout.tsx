@@ -1,6 +1,4 @@
 import "../globals.css";
-import Navbar from "@/components/Navbar";
-
 export const metadata = {
   title: "ecommerce",
   description: "Dewangonj modern fashion",
