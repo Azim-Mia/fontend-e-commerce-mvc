@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Fillter from '@/components/Fillter';
 import ProductList from '@/components/ProductList';
-import product_11 from '../../../assets/images/product_11.webp'
+import product_11 from '/public/images/products/product_11.webp'
 export default async function ListPage(){
   return (<>
   <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 relative ">
