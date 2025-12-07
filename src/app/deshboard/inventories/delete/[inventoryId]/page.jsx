@@ -4,3 +4,18 @@ const DeleteInventory =async({params})=>{
     DeleteInventory {inventoryId}  </>)
 }
 export default DeleteInventory;
+export async function generateStaticParams() {
+  const products = [
+    {
+    inventoryId:1,
+    name:'Matador',
+  },
+      {
+    inventoryId:2,
+    name:'Matador',
+  },
+  ]
+  return products.map((data) => ({
+    slug: data.inventoryId.toString(),
+  }));
+}
