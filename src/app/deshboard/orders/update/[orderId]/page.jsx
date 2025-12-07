@@ -6,7 +6,6 @@ const OrderUpdate = async({params})=>{
   </>)
 }
 export default OrderUpdate;
-export default DeleteProduct;
 export async function generateStaticParams() {
   const products = [
     {
