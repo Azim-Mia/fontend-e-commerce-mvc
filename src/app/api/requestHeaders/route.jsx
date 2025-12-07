@@ -1,3 +1,4 @@
+export const dynamic = "force-static";
 import { cookies } from 'next/headers';
 export async function GET(){
   const cookiesRequest =await cookies()
