@@ -10,15 +10,15 @@ export default DeleteProduct;
 export async function generateStaticParams() {
   const products = [
     {
-    id:1,
+    productId:1,
     name:'Matador',
   },
       {
-    id:2,
+    productId:2,
     name:'Matador',
   },
   ]
   return products.map((data) => ({
-    productId: data.id.toString(),
+    productId: data.productId.toString(),
   }));
 }

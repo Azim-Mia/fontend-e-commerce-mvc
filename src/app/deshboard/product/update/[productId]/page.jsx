@@ -7,3 +7,18 @@ const UpdateProduct = async({params})=>{
   </>)
 }
 export default UpdateProduct;
+export async function generateStaticParams() {
+  const products = [
+    {
+    productId:1,
+    name:'Matador',
+  },
+      {
+    productId:2,
+    name:'Matador',
+  },
+  ]
+  return products.map((data) => ({
+    productId: data.productId.toString(),
+  }));
+}
