@@ -20,6 +20,6 @@ export async function generateStaticParams() {
   },
   ]
   return products.map((data) => ({
-    slug: data.id.toString(),
+    slug: data.inventoryId.toString(),
   }));
 }
