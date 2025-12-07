@@ -16,6 +16,6 @@ export async function generateStaticParams() {
   },
   ]
   return products.map((data) => ({
-    slug: data.inventoryId.toString(),
+    inventoryId: data.inventoryId.toString(),
   }));
 }
