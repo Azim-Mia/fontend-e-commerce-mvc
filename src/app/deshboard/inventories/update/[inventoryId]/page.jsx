@@ -8,3 +8,18 @@ export default function UpdateInventoryPage({ params }) {
     </div>
   );
 }
+export async function generateStaticParams() {
+  const products = [
+    {
+    inventoryId:1,
+    name:'Matador',
+  },
+      {
+    inventoryId:2,
+    name:'Matador',
+  },
+  ]
+  return products.map((data) => ({
+    slug: data.id.toString(),
+  }));
+}
