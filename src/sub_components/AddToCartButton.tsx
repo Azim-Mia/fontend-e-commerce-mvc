@@ -1,8 +1,8 @@
 // components/AddToCartButton.js
-import { useCart } from "@/contexts/CartContext";
+import { useCartStore } from "@/contexts/CartContext";
 
 export default function AddToCartButton() {
-  const { addToCart } = useCart();
+  const { addToCart } = useCartStore();
   return (
     <button onClick={addToCart}>
       Add to Cart
