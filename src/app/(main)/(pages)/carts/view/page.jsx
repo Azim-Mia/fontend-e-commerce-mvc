@@ -1,6 +1,6 @@
 "use client";
-import ViewCart from '@/components/ViewCart';
-import ProductList from '@/components/ProductList';
+import ViewCart from "@/components/ViewCart";
+import ProductList from "@/components/ProductList";
 
 const ViewCartPage = () => {
   return (
