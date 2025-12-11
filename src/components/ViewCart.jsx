@@ -6,7 +6,6 @@ import findSingle from '@/lips/findSingle';
 import findAll from '@/lips/findAllProducts';
 import userImg from '../assets/images/product_1.jpeg'
 const ViewCart = ()=>{
-   const apiUrl = process.env.SERVER_API;
   const [carts,setCart] = useState(null);
 
 const getCart =async()=>{

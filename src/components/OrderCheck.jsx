@@ -5,9 +5,8 @@ import findAll from '@/lips/findAll'
 import OrderDetailsViews from '@/sub_components/OrderDetailsViews'
 const OrderCheck =()=>{
   const [info,setInfo]=useState([])
-   const api = process.env.SERVER_API;
   useEffect(()=>{
-    const url=`${api}/orders/find`;
+    const url=`http://localhost:3001/orders/find`;
     const facthOrder =async()=>{
     const {data, error} = await findAll(url,'orderCheck',{ withCredentials:true, credentials: "include", method:'GET'});
    

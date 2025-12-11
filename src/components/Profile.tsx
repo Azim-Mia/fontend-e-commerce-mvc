@@ -29,8 +29,7 @@ const Profile = () => {
   const [errors, setError] = useState<unknown>(null);
 
   const fetchData = async () => {
-    const api = process.env.SERVER_API;
-    const url = `${api}/profile/find`;
+    const url = `http://localhost:3001/profile/find`;
 
     try {
       const { data } = await findSingle(url, 'get');
