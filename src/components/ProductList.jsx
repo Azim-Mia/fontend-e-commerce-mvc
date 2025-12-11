@@ -4,7 +4,7 @@ import '@/lips/productDatas'
 export default async function ProductsPage() {
   // ✅ একসাথে fetch করবো API ও static data
   const [productsRes, staticData] = await Promise.all([
-    fetch(`${process.env.SERVER_API}/products/finds`, {
+    fetch(`http://localhost:3001/products/finds`, {
       next: { revalidate: 600 }, // প্রতি ৬০ সেকেন্ডে cache refresh হবে
     }),
      import('@/lips/productDatas'), // static file import
