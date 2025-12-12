@@ -6,17 +6,11 @@ import AddToCart from "@/components/AddToCart";
 
 const SinglePage = async ({ params }) => {
   const productId = params.slug;
-
-  const api = process.env.NEXT_PUBLIC_API_URL;
-  if (!api) {
-    throw new Error("API URL is not defined");
-  }
-
   let data = null;
 
   try {
     const response = await findSingle(
-      `${api}/products/find/${productId}`,
+      `http://localhost:3001/products/find/${productId}`,
       "get"
     );
     data = response.data;
