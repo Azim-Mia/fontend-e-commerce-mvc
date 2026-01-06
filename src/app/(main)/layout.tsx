@@ -18,8 +18,12 @@ export default function RootLayout({
           <header className="w-auto index-full top-0 sticky">
             <NavbarWrapper />
           </header>
-        <main>{children}</main>
-        <Footer />
+        <main>
+          {children}
+        </main>
+        <footer>
+          <Footer />
+        </footer>
       </body>
     </html>
   );
