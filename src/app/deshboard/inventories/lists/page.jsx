@@ -1,7 +1,7 @@
 'use client'
 import React, {useState,useEffect} from 'react';
 import getItem from '@/lips/getItem';
-import InventoryList from '@/components/deshboard/inventories/InventoryList'
+import InventoryList from '@/deshboard-components/inventories/InventoryList'
 const InventoryPage =()=>{
   const [data,setData] =useState([])
   const fatchData =async()=>{

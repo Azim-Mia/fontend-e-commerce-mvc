@@ -1,6 +1,6 @@
 'use client';
 import React,{useState, useRef} from 'react';
-const SearchBar = ({onSearchText})=>{
+const SearchBar = ({onSearchText, url, method, onSuccess})=>{
   const searchValue = useRef();
   const handleSearch =(e)=>{
     e.preventDefault();

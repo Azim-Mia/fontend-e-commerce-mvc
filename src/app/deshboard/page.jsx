@@ -3,15 +3,15 @@ import React,{useState} from 'react';
 import { ChevronDown } from 'lucide-react'; // lucide-react থেকে chevron আইকন আনুন
 import Image from 'next/image'
 import ff from '../../assets/images/deshboard.jpeg'
-import MonthlySalseAnalysis from '@/components/deshboard/MonthlySalseAnalysis';
+import MonthlySalseAnalysis from '@/deshboard-components/MonthlySalseAnalysis';
 import Chat from '@/components/chats/Chat'
-import Cart from '@/components/deshboard/Cart';
+import Cart from '@/deshboard-components/Cart';
 import Link from 'next/link';
-import Inventoris from '@/components/deshboard/linkPage/Inventories';
-import Products from '@/components/deshboard/linkPage/Products'
-import Categories from '@/components/deshboard/linkPage/Categories'
-import Orders from '@/components/deshboard/linkPage/Orders'
-import Others from '@/components/deshboard/linkPage/Others'
+import Inventoris from './linkPage/Inventories';
+import Products from './linkPage/Products'
+import Categories from './linkPage/Categories'
+import Orders from './linkPage/Orders'
+import Others from './linkPage/Others'
 const Dashboard = () => {
   const [isAnalysis, setIsAnalysis] = useState(false)
   return (<div className="flex gap-4 justify-start p-0.5 mt-2 h-auto">

@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 
 export function middleware(request) {
-  const admin = false // এখানে পরে token / cookie চেক করবে
+  const admin = true// এখানে পরে token / cookie চেক করবে
 
   if (!admin) {
     return NextResponse.redirect(

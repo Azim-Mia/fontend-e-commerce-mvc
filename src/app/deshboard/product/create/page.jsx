@@ -1,4 +1,4 @@
-import ProductFrom from '@/components/deshboard/CreateProduct'
+import ProductFrom from '@/deshboard-components/products/CreateProduct'
 const CreateProduct = ()=>{
   return (<>
     <ProductFrom />
