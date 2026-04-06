@@ -3,24 +3,8 @@ import Image from 'next/image'
 import product_1 from '../assets/images/product_1.jpeg'
 
 const ProductsDisplay = ({ products ,statickProduct}) => {
-  if (!products || products.length === 0) {
-    return (
-      <div className="flex flex-col items-center justify-center py-20 text-gray-500">
-        <Image
-          src="/images/empty.png" // ✅ public/images/empty.png
-          alt="No products"
-          width={150}
-          height={150}
-          className="opacity-70"
-        />
-        <p className="mt-4 text-lg font-medium">No products found</p>
-      </div>
-    )
-  }
-
-  return (<>
-    <div className="cartStyle">
-      {products.map((product) => (
+ return (<>{products ? <div className="cartStyle">
+      {products?.map((product) => (
         <div key={product.productId} className="group relative">
           <Link
             href={`/product/${product.productId}`}
@@ -50,11 +34,9 @@ const ProductsDisplay = ({ products ,statickProduct}) => {
           </Link>
         </div>
       ))}
-    </div>
-    {/*section two*/}
-        <div className="w-full px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 py-10">
+    </div>:<div className="w-full px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 py-10">
       <div className="cartStyle">
-        {statickProduct.map((item) => (
+        {statickProduct?.map((item) => (
           <div key={item.id} className="group relative md:mt-8 mt-16">
             <Link
               href={`/product/${item.id}`}
@@ -92,7 +74,7 @@ const ProductsDisplay = ({ products ,statickProduct}) => {
         ))}
       </div>
     </div>
-  </>)
+ }</>)
 }
 
 export default ProductsDisplay

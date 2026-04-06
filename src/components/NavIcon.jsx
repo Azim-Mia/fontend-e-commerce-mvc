@@ -41,10 +41,7 @@ const NavIcon = () => {
         </div>
       </div>
 
-      {isCartOpen && (<div className="absolute top-full mt-1 w-auto bg-white border border-gray-300 shadow-lg flex flex-col z-50 p-4">
-      <CartModuls hideCartModule={hideCartModule} />
-      <button onClick={()=>hideCartModule(false)}  className="bg-amber-500 rounded-md p-2 opacity-60 h:opacity-0 cursor-pointer">Close</button>
-    </div>)}
+      {isCartOpen && <CartModuls hideCartModule={hideCartModule} />}
 
       <Image src={notificationImg} alt="notification icon" width={28} height={28} className="xs:h-5 w-5" />
       <Image
