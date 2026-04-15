@@ -1,4 +1,4 @@
-import InventoryUpdateForm from '@/components/deshboard/InventoryUpdateForm';
+import InventoryUpdateForm from '@/deshboard-components/InventoryUpdateForm'
 export default function UpdateInventoryPage({ params }) {
   const inventoryId = params.inventoryId;
   return (
@@ -7,19 +7,4 @@ export default function UpdateInventoryPage({ params }) {
       <InventoryUpdateForm />
     </div>
   );
-}
-export async function generateStaticParams() {
-  const products = [
-    {
-    inventoryId:1,
-    name:'Matador',
-  },
-      {
-    inventoryId:2,
-    name:'Matador',
-  },
-  ]
-  return products.map((data) => ({
-    inventoryId: data.inventoryId.toString(),
-  }));
 }

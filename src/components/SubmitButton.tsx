@@ -1,27 +1,29 @@
-'use client'
-import { useState } from 'react';
+'use client';
+
+import React, { useState } from 'react';
 
 type SubmitButtonProps = {
   url: string;
   method?: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
+  lable?: string;
   body?: any;
-  label?: string;
-  headers?: Record<string, string>;
-  onSuccess?: (data: any) => void;
 };
 
-const SubmitButton = ({
+const SubmitButton: React.FC<SubmitButtonProps> = ({
   url,
-  method = 'GET',
-  body = {},
-  label = 'Submit',
-  headers = {},
-  onSuccess,
-}: SubmitButtonProps) => {
-
-  const [loading, setLoading] = useState<boolean>(false);
+  method = 'POST',
+  lable = 'Submit',
+  body,
+}) => {
+  const [loading, setLoading] = useState(false);
 
   const handleClick = async () => {
+    // 👉 Delete হলে confirm দেখাবে
+    if (lable.toLowerCase() === 'delete') {
+      const confirmDelete = confirm('Are you sure you want to delete?');
+      if (!confirmDelete) return;
+    }
+
     try {
       setLoading(true);
 
@@ -29,21 +31,19 @@ const SubmitButton = ({
         method,
         headers: {
           'Content-Type': 'application/json',
-          ...headers,
         },
-        body: method !== 'GET' ? JSON.stringify(body) : undefined,
+        body: body ? JSON.stringify(body) : undefined,
       });
 
       if (!res.ok) {
         throw new Error('Request failed');
       }
 
-      const data = await res.json();
-
-      onSuccess?.(data);
-
-    } catch (err) {
-      console.error(err);
+      // 👉 success message
+      alert(`${lable} success ✅`);
+    } catch (error) {
+      console.error(error);
+      alert(`${lable} failed ❌`);
     } finally {
       setLoading(false);
     }
@@ -53,9 +53,15 @@ const SubmitButton = ({
     <button
       onClick={handleClick}
       disabled={loading}
-      className="px-4 py-2 rounded-lg bg-blue-600 text-white disabled:bg-gray-400"
+      className={`px-3 py-1 rounded text-white transition ${
+        loading
+          ? 'bg-gray-400 cursor-not-allowed'
+          : lable.toLowerCase() === 'delete'
+          ? 'bg-red-500 hover:bg-red-600'
+          : 'bg-blue-500 hover:bg-blue-600'
+      }`}
     >
-      {loading ? 'Submitting...' : label}
+      {loading ? 'Processing...' : lable}
     </button>
   );
 };

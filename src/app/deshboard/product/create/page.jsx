@@ -1,7 +1,7 @@
-import ProductFrom from '@/deshboard-components/products/CreateProduct'
+import ProductForm from '@/deshboard-components/products/ProductForm'
 const CreateProduct = ()=>{
   return (<>
-    <ProductFrom />
+    <ProductForm />
   </>)
 }
 export default CreateProduct;

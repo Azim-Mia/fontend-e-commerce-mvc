@@ -1,14 +1,15 @@
 'use client'
 import { string } from 'prop-types';
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 // 👉 Type define
 type InventoryItem = {
-  productId:string;
   inventoryId:string;
   name: string;
   price: number;
   stock: number;
+  sku:string;
 };
 
 const InventoryPage: React.FC = () => {
@@ -16,9 +17,9 @@ const InventoryPage: React.FC = () => {
 
   useEffect(() => {
     const inventoryData: InventoryItem[] = [
-      { inventoryId: 1, name: 'Product A', price: 100, stock: 10 },
-      { inventoryId: 2, name: 'Product B', price: 200, stock: 5 },
-      { inventoryId: 3, name: 'Product C', price: 300, stock: 8 },
+      { inventoryId: 'jdjsd', name: 'Product A', price: 100, stock: 10,sku:'Metador' },
+      { inventoryId: 'sdhsddsd2', name: 'Product B', price: 200, stock: 5, sku:'Metador' },
+      { inventoryId: 'jffd', name: 'Product C', price: 300, stock: 8, sku:'Metador' },
     ];
 
     setData(inventoryData);
@@ -37,7 +38,9 @@ const InventoryPage: React.FC = () => {
             <th className="border p-2">ID</th>
             <th className="border p-2">Name</th>
             <th className="border p-2">Price</th>
+             <th className="border p-2">SKU</th>
             <th className="border p-2">Stock</th>
+            <th className='border p-2' colSpan={2}>Costomize</th>
           </tr>
         </thead>
 
@@ -48,7 +51,10 @@ const InventoryPage: React.FC = () => {
               <td className="border p-2">{item.inventoryId}</td>
               <td className="border p-2">{item.name}</td>
               <td className="border p-2">{item.price}</td>
+               <td className="border p-2">{item.sku}</td>
               <td className="border p-2">{item.stock}</td>
+             <td><Link href={`/deshboard/inventories/update/${item.inventoryId}`}>Edid</Link></td>
+              <td><Link href={`/deshboard/inventories/delete/${item.inventoryId}`}>delete</Link></td>
             </tr>
           ))}
         </tbody>

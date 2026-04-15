@@ -10,9 +10,10 @@ const Categories = () => {
       </summary>
 
       <ul className="mt-2 ml-4 list-disc text-gray-600 text-sm space-y-1 list-none">
-        <Link href={'/'}> <li>Man</li></Link>
-         <Link href={'/'}> <li>Women</li></Link>
-          <Link href={'/'}> <li>Child</li></Link>
+        <Link href={'/deshboard/man'}> <li>Man</li></Link>
+         <Link href={'/deshboard/women'}> <li>Women</li></Link>
+          <Link href={'/deshboard/child'}> <li>Child</li></Link>
+           <Link href={'/deshboard/toyes'}> <li>Toyes</li></Link>
       </ul>
     </details>
   );

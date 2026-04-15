@@ -3,7 +3,7 @@
 
 import { useState } from "react";
 
-export default function ProductForm({ onSubmit }) {
+export default function ProductForm({ url, method }) {
   const [formData, setFormData] = useState({
     name: "",
     sku: "",
@@ -19,7 +19,6 @@ export default function ProductForm({ onSubmit }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(formData); // send data up
     setFormData({ name: "", sku: "", price: "", image: "", description: "" });
   };
 
