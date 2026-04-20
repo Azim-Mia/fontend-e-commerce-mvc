@@ -54,7 +54,7 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({
     <button
       onClick={handleClick}
       disabled={loading}
-      className={`px-3 py-1 rounded text-white transition ${
+      className={`px-3 py-1 rounded text-black transition ${
         loading
           ? 'bg-gray-400 cursor-not-allowed'
           : label.toLowerCase() === 'delete'
