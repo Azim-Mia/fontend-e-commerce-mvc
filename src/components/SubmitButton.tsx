@@ -2,25 +2,27 @@
 
 import React, { useState } from 'react';
 
+type HttpMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
+
 type SubmitButtonProps = {
   url: string;
-  method?: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
-  lable?: string;
-  body?: any;
+  method?: HttpMethod;
+  label?: string;
+  body?: Record<string, unknown>; // ❌ any removed (safe type)
 };
 
 const SubmitButton: React.FC<SubmitButtonProps> = ({
   url,
   method = 'POST',
-  lable = 'Submit',
+  label = 'Submit',
   body,
 }) => {
   const [loading, setLoading] = useState(false);
 
   const handleClick = async () => {
-    // 👉 Delete হলে confirm দেখাবে
-    if (lable.toLowerCase() === 'delete') {
-      const confirmDelete = confirm('Are you sure you want to delete?');
+    // Delete confirmation
+    if (label.toLowerCase() === 'delete') {
+      const confirmDelete = window.confirm('Are you sure you want to delete?');
       if (!confirmDelete) return;
     }
 
@@ -39,11 +41,10 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({
         throw new Error('Request failed');
       }
 
-      // 👉 success message
-      alert(`${lable} success ✅`);
+      alert(`${label} success ✅`);
     } catch (error) {
       console.error(error);
-      alert(`${lable} failed ❌`);
+      alert(`${label} failed ❌`);
     } finally {
       setLoading(false);
     }
@@ -56,12 +57,12 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({
       className={`px-3 py-1 rounded text-white transition ${
         loading
           ? 'bg-gray-400 cursor-not-allowed'
-          : lable.toLowerCase() === 'delete'
+          : label.toLowerCase() === 'delete'
           ? 'bg-red-500 hover:bg-red-600'
           : 'bg-blue-500 hover:bg-blue-600'
       }`}
     >
-      {loading ? 'Processing...' : lable}
+      {loading ? 'Processing...' : label}
     </button>
   );
 };
