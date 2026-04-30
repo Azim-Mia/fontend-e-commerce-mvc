@@ -1,6 +1,12 @@
-const url = process.env.URL;
+const url = process.env.NEXT_PUBLIC_URL;
 
-const DeleteInventory = ({ params }) => {
+type Props = {
+  params: {
+    inventoryId: string;
+  };
+};
+
+const DeleteInventory = ({ params }: Props) => {
   const inventoryId = params.inventoryId;
 
   const handleDelete = async () => {
@@ -13,8 +19,9 @@ const DeleteInventory = ({ params }) => {
       );
 
       const data = await res.json();
-      console.log("Deleted:", data);
-      alert("Inventory deleted successfully!");
+      console.log(data);
+
+      alert("Deleted successfully!");
     } catch (error) {
       console.error(error);
       alert("Delete failed!");
@@ -23,21 +30,12 @@ const DeleteInventory = ({ params }) => {
 
   return (
     <div style={{ padding: "20px" }}>
-      <h1>Delete Inventory Page</h1>
+      <h1>Delete Inventory</h1>
 
-      <p>Inventory ID: {inventoryId}</p>
+      <p>ID: {inventoryId}</p>
       <p>URL: {url}</p>
 
-      <button
-        onClick={handleDelete}
-        style={{
-          padding: "10px 20px",
-          background: "red",
-          color: "white",
-          border: "none",
-          cursor: "pointer",
-        }}
-      >
+      <button onClick={handleDelete}>
         Delete
       </button>
     </div>
