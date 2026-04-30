@@ -1,35 +1,22 @@
-"use client";
 
-const url = process.env.URL ?? "";
+const url = process.env.NEXT_PUBLIC_URL ?? "";
 
 type Props = {
-  params: Promise<{
+  params: {
     inventoryId: string;
-  }>;
+  };
 };
 
-const DeleteInventory = async ({ params }: Props) => {
-  const { inventoryId } = await params;
+export function generateStaticParams() {
+  return [
+    { inventoryId: "1" },
+    { inventoryId: "2" },
+    { inventoryId: "3" },
+  ];
+}
 
-  const handleDelete = async () => {
-    try {
-      const res = await fetch(
-        `/api/inventories/delete/${inventoryId}`,
-        {
-          method: "DELETE",
-        }
-      );
-
-      const data = await res.json();
-      console.log(data);
-
-      alert("Deleted successfully!");
-    } catch (error) {
-      console.error(error);
-      alert("Delete failed!");
-    }
-  };
-
+const DeleteInventory = ({ params }: Props) => {
+  const inventoryId = params.inventoryId;
   return (
     <div style={{ padding: "20px" }}>
       <h1>Delete Inventory</h1>
@@ -37,7 +24,7 @@ const DeleteInventory = async ({ params }: Props) => {
       <p>ID: {inventoryId}</p>
       <p>URL: {url}</p>
 
-      <button onClick={handleDelete}>
+      <button>
         Delete
       </button>
     </div>
