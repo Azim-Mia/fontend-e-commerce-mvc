@@ -1,13 +1,15 @@
-const url = process.env.NEXT_PUBLIC_URL;
+"use client";
+
+const url = process.env.URL ?? "";
 
 type Props = {
-  params: {
+  params: Promise<{
     inventoryId: string;
-  };
+  }>;
 };
 
-const DeleteInventory = ({ params }: Props) => {
-  const inventoryId = params.inventoryId;
+const DeleteInventory = async ({ params }: Props) => {
+  const { inventoryId } = await params;
 
   const handleDelete = async () => {
     try {
