@@ -1,6 +1,4 @@
-// src/app/deshboard/inventories/delete/[inventoryId]/page.tsx
-
-import { notFound } from "next/navigation";
+const url = process.env.URL || "";
 
 type Props = {
   params: {
@@ -8,17 +6,14 @@ type Props = {
   };
 };
 
-export default async function DeleteInventoryPage({ params }: Props) {
-  const { inventoryId } = params;
-
-  if (!inventoryId) {
-    return notFound();
-  }
+export default function DeleteInventory({ params }: Props) {
+  const inventoryId = params.inventoryId;
 
   return (
     <div>
       <h1>Delete Inventory</h1>
-      <p>Inventory ID: {inventoryId}</p>
+      <p>ID: {inventoryId}</p>
+      <p>URL: {url}</p>
     </div>
   );
 }
