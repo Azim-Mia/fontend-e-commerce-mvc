@@ -1,13 +1,13 @@
 const url = process.env.URL || "";
 
 type Props = {
-  params: {
+  params: Promise<{
     inventoryId: string;
-  };
+  }>;
 };
 
-export default function DeleteInventory({ params }: Props) {
-  const inventoryId = params.inventoryId;
+export default async function DeleteInventory({ params }: Props) {
+  const { inventoryId } = await params;
 
   return (
     <div>
